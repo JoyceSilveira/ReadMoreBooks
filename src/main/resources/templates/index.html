@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Sistema acadêmico</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/css/page-landing.css}" rel="stylesheet">
+</head>
+<body id="page-landing">
+<div id="container">
+    <header class="page-header">
+        <div class="top-bar-container">
+            <h2>Sistema acadêmico</h2>
+        </div>
+    </header>
+    <main>
+        <div class="cards">
+            <div class="card card-curso">
+                <div class="conteudo-card">
+                    <p class="titulo-card">Curso</p>
+                    <a href="/index/" class="opcao-card">Cadastrar Curso</a>
+                    <a class="opcao-card" href="/index/">Lista de Cursos</a>
+                </div>
+            </div>
+            <div class="card card-aluno">
+                <div class="conteudo-card">
+                    <p class="titulo-card">Aluno</p>
+                    <a href="/alunos/add-aluno" class="opcao-card">Cadastrar Aluno</a>
+                    <a class="opcao-card" href="/alunos/list-aluno">Lista de Alunos</a>
+                </div>
+            </div>
+            <div class="card card-disciplina">
+                <div class="conteudo-card">
+                    <p class="titulo-card">Disciplina</p>
+                    <a href="/index/" class="opcao-card">Cadastrar Disciplina</a>
+                    <a class="" href="/index/">Lista de Disciplinas</a>
+                </div>
+            </div>
+            <div class="card card-professor">
+                <div class="conteudo-card">
+                    <p class="titulo-card">Professor</p>
+                    <a href="/index/" class="">Cadastrar Professor</a>
+                    <a class="opcao-card" href="/index/">Lista de Professores</a>
+                </div>
+            </div>
+        </div>
+        <div class="imagem">
+            <img th:src="@{/img/pagina_inicial.png}" />
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+</div>
+</body>
+</html>
