@@ -1,8 +1,4 @@
 :root {
-    --color-text-in-base: #6A6180;
-    --cor-principal-1: #044696;
-    --cor-principal-2: #24A8D6;
-    --cor-principal-3: #0063FE;
     font-size: 60%;
 }
 
@@ -33,6 +29,20 @@ textarea {
 #container {
     width: 100vw;
     max-width: 700px;
+}
+
+.page-header .top-bar-container{
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 2.5rem;
+    padding-bottom: 1.8rem;
+    padding-top: 1.8rem;
+
+    display: flex;
+    align-items: center;
+
+    background-color: #ffffff;
+    border-bottom: 3px solid var(--cor-principal-3);
 }
 
 @media (min-width: 700px) {

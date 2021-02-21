@@ -1,0 +1,147 @@
+#page-landing #container{
+    max-width: 100vw;
+    height: 100vh;
+}
+
+.page-header .top-bar-container h2{
+    font-family: 'Roboto', 'sans-serif';
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: #000000;
+}
+
+.page-header .top-bar-container .logo{
+    background-color: #FCC06D;
+    padding: 1.5rem;
+
+    margin-right: 1.5rem;
+}
+
+#page-landing main{
+    width: 100%;
+    margin: 0 auto;
+    background-color: #FAFAFA;
+
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+main .caixa{
+    margin: 7rem auto;
+
+    padding: 3rem 5rem;
+    border: #FCC06D solid 1.5px;
+    border-radius: 0.8rem;
+    background-color: #ffffff;
+}
+
+main .caixa .titulo{
+    display: flex;
+}
+
+main .caixa .titulo .cadastrar{
+    font-family: 'Roboto', 'sans serif';
+    font-size: 3rem;
+    color: #000000;
+
+    margin-bottom: 2rem;
+    margin-right: 2rem;
+}
+
+.titulo .red-entrar{
+    font-family: 'Roboto', 'sans serief';
+    font-size: 1.5rem;
+    align-self: center;
+}
+
+.titulo .red-entrar a{
+    color: #FCC06D;
+    font-weight: bold;
+}
+
+.caixa form fieldset{
+    border: none;
+    margin-top: 2rem;
+}
+
+.caixa form fieldset .sub-categorias{
+    color: #FCC06D;
+    font-size: 1.8rem;
+    font-weight: bold;
+
+    margin-bottom: 1rem;
+}
+
+.caixa form fieldset .sub-legend{
+    color: #FCC06D;
+    font-size: 1.7rem;
+}
+
+.caixa form fieldset .coluna{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.caixa form fieldset .campo{
+    margin-top: 1.3rem
+}
+
+.caixa form fieldset label{
+    display: block;
+    font-family: 'Roboto', 'Sans serief';
+    font-size: 1.7rem;
+    margin-bottom: 0.8rem;
+    color: #4B4C4D;
+}
+
+.caixa form fieldset input{
+    padding: 0.5rem 1rem;
+    border: #4B4C4D solid 1px;
+}
+
+.caixa form fieldset select{
+    padding: 0.5rem 1rem;
+    border: #4B4C4D solid 1px;
+}
+
+.caixa form fieldset .esp{
+    margin-right: 2.5rem;
+}
+
+.caixa form fieldset .p{
+    width: 20rem;
+}
+
+.caixa form fieldset .m{
+    width: 30rem;
+}
+
+.caixa form fieldset .g{
+    width: 40rem;
+}
+
+.caixa form fieldset .info-senha {
+    margin-top: 0.8rem;
+}
+
+.caixa form fieldset .info-senha p{
+    font-size: 1.5rem;
+}
+
+.caixa form .div-botao {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
+    margin-top: 2rem;
+}
+
+.caixa form .div-botao .botao{
+    background-color: #FCC06D;
+    padding: 0.8rem 2rem;
+    color:#ffffff;
+    font-size: 1.5rem;
+    font-family: 'Roboto', 'sans serief';
+    border: none;
+}
