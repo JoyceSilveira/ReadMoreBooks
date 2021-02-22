@@ -23,66 +23,11 @@
     <main>
         <div class="caixa">
             <div class="titulo">
-                <p class="cadastrar">Cadastrar-se</p>
-                <p class="red-entrar">Já possui uma conta? <a href="index.html">Entre</a></p>
+                <p class="cadastrar">Alterar endereço</p>
             </div>
-            <form th:action="@{/clientes/salvar-cliente}">
+            <form action="">
                 <div class="dados-form">
                     <fieldset>
-                        <legend class="sub-categorias">Dados pessoais</legend>
-                        <div class="coluna">
-                            <div class="campo esp">
-                                <label for="nome">Nome completo</label>
-                                <input class="g" type="text" id="nome">
-                            </div>
-                            <div class="campo">
-                                <label for="genero">Gênero</label>
-                                <select class="p" name="genero" id="genero">
-                                    <option value="m">Masculino</option>
-                                    <option value="f">Feminino</option>
-                                    <option value="o">Outros</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="coluna">
-                            <div class="campo esp">
-                                <label for="dt_nascimento">Data de nascimento</label>
-                                <input class="p" type="text" id="dt_nascimento">
-                            </div>
-                            <div class="campo esp">
-                                <label for="cpf">CPF</label>
-                                <input class="p" type="text" id="cpf">
-                            </div>
-                            <div class="campo">
-                                <label for="tel">Telefone</label>
-                                <input class="p" type="text" id="tel">
-                            </div>
-                        </div>
-                        <div class="coluna">
-                            <div class="campo">
-                                <label for="email">E-mail</label>
-                                <input class="g" type="text" id="email">
-                            </div>
-                        </div>
-                        <div class="coluna">
-                            <div class="campo esp">
-                                <label for="senha">Senha</label>
-                                <input class="p" type="text" id="senha">
-                            </div>
-                            <div class="campo">
-                                <label for="rep-senha">Digite a senha novamente</label>
-                                <input class="p" type="text" id="rep-senha">
-                            </div>
-                        </div>
-                        <p class="info-senha">
-                            <p>* A senha deve ser composta de no mínimo 8 caractereres, contendo pelo menos:</p>
-                            <p>1 letra maiúscula</p>
-                            <p>1 letra minúscula</p>
-                            <p>1 caracter especial.</p>
-                        </p>
-                    </fieldset>
-                    <fieldset>
-                        <legend class="sub-categorias">Endereços</legend>
                         <p class="sub-legend">Entrega</p>
                         <div class="coluna">
                             <div class="campo esp">
@@ -104,45 +49,45 @@
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="logradouro_end">Logradouro</label>
-                                <input class="g" type="text" id="logradouro_end">
+                                <input class="g" type="text" id="logradouro_end" required>
                             </div>
                             <div class="campo">
                                 <label for="cep_end">CEP</label>
-                                <input class="p" type="text" id="cep_end">
+                                <input class="p" type="text" id="cep_end" required>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo esp">
-                                <label for="numero_end">Número</label>
-                                <input class="p" type="text" id="numero_end">
+                                <label for="num_end">Número</label>
+                                <input class="p" type="text" id="numero_end" required>
                             </div>
                             <div class="campo esp">
                                 <label for="complemento_end">Complemento</label>
-                                <input class="p" type="text" id="complemento_end">
+                                <input class="p" type="text" id="complemento_end" required>
                             </div>
                             <div class="campo">
                                 <label for="bairro_end">Bairro</label>
-                                <input class="p" type="text" id="bairro_end">
+                                <input class="p" type="text" id="bairro_end" required>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="cidade_end">Cidade</label>
-                                <input class="p" type="text" id="cidade_end">
+                                <input class="p" type="text" id="cidade_end" required>
                             </div>
                             <div class="campo esp">
                                 <label for="estado_end">Estado</label>
-                                <input class="p" type="text" id="estado_end">
+                                <input class="p" type="text" id="estado_end" required>
                             </div>
                             <div class="campo">
                                 <label for="pais_end">País</label>
-                                <input class="p" type="text" id="pais_end">
+                                <input class="p" type="text" id="pais_end" required>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo">
                                 <label for="obs_end">Observações</label>
-                                <input class="g" type="text" id="obs_end">
+                                <input class="g" type="text" id="obs_end" required>
                             </div>
                         </div>
                         <p class="sub-legend">Cobrança</p>
@@ -166,17 +111,17 @@
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="logradouro">Logradouro</label>
-                                <input class="g" type="text" id="logradouro">
+                                <input class="g" type="text" id="logradouro" required>
                             </div>
                             <div class="campo">
                                 <label for="cep">CEP</label>
-                                <input class="p" type="text" id="cep">
+                                <input class="p" type="text" id="cep" required>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo esp">
-                                <label for="numero">Número</label>
-                                <input class="p" type="text" id="numero">
+                                <label for="num">Número</label>
+                                <input class="p" type="text" id="numero" required>
                             </div>
                             <div class="campo esp">
                                 <label for="complemento">Complemento</label>
@@ -184,62 +129,33 @@
                             </div>
                             <div class="campo">
                                 <label for="bairro">Bairro</label>
-                                <input class="p" type="text" id="bairro">
+                                <input class="p" type="text" id="bairro" required>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="cidade">Cidade</label>
-                                <input class="p" type="text" id="cidade">
+                                <input class="p" type="text" id="cidade" required>
                             </div>
                             <div class="campo esp">
                                 <label for="estado">Estado</label>
-                                <input class="p" type="text" id="estado">
+                                <input class="p" type="text" id="estado" required>
                             </div>
                             <div class="campo">
                                 <label for="pais">País</label>
-                                <input class="p" type="text" id="pais">
+                                <input class="p" type="text" id="pais" required>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo">
                                 <label for="obs">Observações</label>
-                                <input class="g" type="text" id="obs">
-                            </div>
-                        </div>
-                    </fieldset>
-                    <fieldset>
-                        <legend class="sub-categorias">Cartão de crédito</legend>
-                        <div class="coluna">
-                            <div class="campo esp">
-                                <label for="bandeira">Bandeira</label>
-                                <select class="p" name="bandeira" id="bandeira">
-                                    <option value="mastercard">Mastercard</option>
-                                    <option value="visa">Visa</option>
-                                    <option value="elo">Elo</option>
-                                </select>
-                            </div>
-                            <div class="campo esp">
-                                <label for="num_card">Número</label>
-                                <input class="p" type="text" id="num_card">
-                            </div>
-                            <div class="campo">
-                                <label for="cod_seguranca">Código de segurança</label>
-                                <input class="p" type="text" id="cod_seguranca">
-                            </div>
-                        </div>
-                        <div class="coluna">
-                            <div class="campo">
-                                <div class="campo">
-                                    <label for="nome_card">Nome impresso no cartão</label>
-                                    <input class="p" type="text" id="nome_card">
-                                </div>
+                                <input class="g" type="text" id="obs" required>
                             </div>
                         </div>
                     </fieldset>
                 </div>
                 <div class="div-botao">
-                    <input type="submit" class="botao" value="Salvar">
+                    <input type="submit" class="botao" value="Entrar">
                 </div>
             </form>
         </div>
