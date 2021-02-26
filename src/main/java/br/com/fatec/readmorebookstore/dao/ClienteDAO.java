@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ClienteDAO extends CrudRepository<Cliente, Integer> {
+
+    Cliente findClienteByCpf(String cpf);
 }

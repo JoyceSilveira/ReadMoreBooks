@@ -23,6 +23,7 @@ public class Endereco extends AbstractEntidade {
     private String numero;
     private String bairro;
     private String cep;
+    private String complemento;
     private Cidade cidade;
     // Preenchimento opcional
     private String observacoes;
