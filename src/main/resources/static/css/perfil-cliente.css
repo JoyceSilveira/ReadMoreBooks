@@ -51,6 +51,8 @@ main .caixa .titulo p{
 .caixa .perfil fieldset{
     border: none;
     margin-top: 2rem;
+    border-bottom: #FCC06D solid 1px;
+    padding-bottom: 2rem;
 }
 
 .caixa .perfil fieldset .sub-categorias{
@@ -83,6 +85,11 @@ main .caixa .titulo p{
     color: #4B4C4D;
 }
 
+.caixa .perfil fieldset input{
+    font-size: 1.5rem;
+    border: none;
+}
+
 .caixa .perfil fieldset .esp{
     margin-right: 2.5rem;
 }
@@ -99,12 +106,34 @@ main .caixa .titulo p{
     width: 40rem;
 }
 
-.caixa .perfil fieldset .info-senha {
-    margin-top: 0.8rem;
+.caixa .perfil fieldset .alt-senha{
+    font-size: 1.8rem;
+    color: black;
 }
 
-.caixa .perfil fieldset .info-senha p{
-    font-size: 1.5rem;
+.caixa .perfil fieldset .botao-editar{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.caixa .perfil fieldset .editar{
+    padding: 1rem;
+    background-color: #FCC06D;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+.caixa .perfil fieldset .adicionar{
+    padding: 1rem;
+    background-color: #FCC06D;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    margin-left: 1.5rem;
 }
 
 .caixa .perfil .div-botao {
@@ -122,6 +151,7 @@ main .caixa .titulo p{
     font-size: 1.5rem;
     font-family: 'Roboto', 'sans serief';
     border: none;
+    text-decoration: none;
 }
 
 .dados-form .dados{

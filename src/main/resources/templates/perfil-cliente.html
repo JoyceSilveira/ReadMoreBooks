@@ -29,185 +29,198 @@
                 <div class="dados-form">
                     <fieldset>
                         <legend class="sub-categorias">Dados pessoais</legend>
+                        <div class="botao-editar">
+                            <a href="/clientes/update-dados" class="editar">Editar</a>
+                        </div>
                         <div class="coluna">
                             <div class="campo esp">
-                                <label>Nome completo</label>
-                                <p class="dados">Joyce Silveira dos Santos</p>
+                                <label for="nome">Nome completo</label>
+                                <input class="g" type="text" id="nome" value="" readonly>
                             </div>
                             <div class="campo">
-                                <label>Gênero</label>
-                                <p class="dados">Feminino</p>
+                                <label for="genero">Gênero</label>
+                                <input type="text" class="p" id="genero" value="" readonly>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo esp">
-                                <label>Data de nascimento</label>
-                                <p class="dados">10/04/2001</p>
+                                <label for="dt_nascimento">Data de nascimento</label>
+                                <input class="p" type="text" id="dt_nascimento" value="" readonly>
                             </div>
                             <div class="campo esp">
-                                <label>CPF</label>
-                                <p class="dados">000.000.000-00</p>
+                                <label for="cpf">CPF</label>
+                                <input class="p" type="text" id="cpf" value="" readonly>
                             </div>
                             <div class="campo">
-                                <label>Telefone</label>
-                                <p class="dados">(11)99999-9999</p>
+                                <label for="tel">Telefone</label>
+                                <input class="p" type="text" id="tel" value="" readonly>
+                            </div>
+                        </div>
+                        <div class="coluna">
+                            <div class="campo">
+                                <label for="email">E-mail</label>
+                                <input class="g" type="text" id="email" value="" readonly>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo esp">
-                                <label>E-mail</label>
-                                <p class="dados">joyce@hotmail.com</p>
-                            </div>
-                            <div class="campo">
-                                <label>Senha</label>
-                                <p class="dados">********</p>
+                                <label >Senha</label>
+                                <a href="/clientes/update-senha" class="alt-senha">Alterar senha</a>
                             </div>
                         </div>
                     </fieldset>
                     <fieldset>
                         <legend class="sub-categorias">Endereços</legend>
                         <p class="sub-legend">Entrega</p>
+                        <div class="botao-editar">
+                            <a href="/clientes/update-endereco" class="editar">Editar</a>
+                            <a href="" class="adicionar">Adicionar</a>
+                        </div>
                         <div class="coluna">
                             <div class="campo esp">
-                                <label>Tipo de residência</label>
-                                <p class="dados">Casa</p>
+                                <label for="tp_residencia">Tipo de residência</label>
+                                <input type="text" class="p" id="tp_residencia" value="" readonly>
                             </div>
                             <div class="campo">
-                                <label>Tipo de logradouro</label>
-                                <p class="dados">Rua</p>
+                                <label for="tp_logradouro">Tipo de logradouro</label>
+                                <input type="text" class="p" id="tp_logradouro" value="" readonly>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo esp">
-                                <label>Logradouro</label>
-                                <p class="dados">Dr. Deodato</p>
+                                <label for="logradouro">Logradouro</label>
+                                <input class="g" type="text" id="logradouro" value="" readonly>
                             </div>
                             <div class="campo">
-                                <label>CEP</label>
-                                <p class="dados">00000-000</p>
+                                <label for="cep">CEP</label>
+                                <input class="p" type="text" id="cep" value="" readonly>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo esp">
-                                <label>Número</label>
-                                <p class="dados">000</p>
+                                <label for="numero">Número</label>
+                                <input class="p" type="text" id="numero" value="" readonly>
                             </div>
                             <div class="campo esp">
-                                <label>Complemento</label>
-                                <p class="dados">00</p>
+                                <label for="complemento">Complemento</label>
+                                <input class="p" type="text" id="complemento" value="" readonly>
                             </div>
                             <div class="campo">
-                                <label>Bairro</label>
-                                <p class="dados">Centro</p>
+                                <label for="bairro">Bairro</label>
+                                <input class="p" type="text" id="bairro" value="" readonly>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo esp">
-                                <label>Cidade</label>
-                                <p class="dados">Mogi das Cruzes</p>
+                                <label for="cidade">Cidade</label>
+                                <input class="p" type="text" id="cidade" value="" readonly>
                             </div>
                             <div class="campo esp">
-                                <label>Estado</label>
-                                <p class="dados">SP</p>
+                                <label for="estado">Estado</label>
+                                <input class="p" type="text" id="estado" value="" readonly>
                             </div>
                             <div class="campo">
-                                <label>País</label>
-                                <p class="dados">Brasil</p>
+                                <label for="pais">País</label>
+                                <input class="p" type="text" id="pais" value="" readonly>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo">
-                                <label>Observações</label>
-                                <p class="dados">Próximo a Fatec</p>
+                                <label for="obs">Observações</label>
+                                <input class="g" type="text" id="obs" value="" readonly>
                             </div>
                         </div>
-                    </fieldset>
-                    <fieldset>
-                        <legend class="sub-categorias">Endereços</legend>
                         <p class="sub-legend">Cobrança</p>
+                        <div class="botao-editar">
+                            <a href="/clientes/update-endereco" class="editar">Editar</a>
+                            <a href="" class="adicionar">Adicionar</a>
+                        </div>
                         <div class="coluna">
                             <div class="campo esp">
-                                <label>Tipo de residência</label>
-                                <p class="dados">Casa</p>
+                                <label for="tp_residencia_end">Tipo de residência</label>
+                                <input type="text" class="p" id="tp_residencia_end" value="" readonly>
                             </div>
                             <div class="campo">
-                                <label>Tipo de logradouro</label>
-                                <p class="dados">Rua</p>
+                                <label for="tp_logradouro_end">Tipo de logradouro</label>
+                                <input type="text" class="p" id="tp_logradouro_end" value="" readonly>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo esp">
-                                <label>Logradouro</label>
-                                <p class="dados">Dr. Deodato</p>
+                                <label for="logradouro_end">Logradouro</label>
+                                <input class="g" type="text" id="logradouro_end" value="" readonly>
                             </div>
                             <div class="campo">
-                                <label>CEP</label>
-                                <p class="dados">00000-000</p>
+                                <label for="cep_end">CEP</label>
+                                <input class="p" type="text" id="cep_end" value="" readonly>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo esp">
-                                <label>Número</label>
-                                <p class="dados">000</p>
+                                <label for="numero_end">Número</label>
+                                <input class="p" type="text" id="numero_end" value="" readonly>
                             </div>
                             <div class="campo esp">
-                                <label>Complemento</label>
-                                <p class="dados">00</p>
+                                <label for="complemento_end">Complemento</label>
+                                <input class="p" type="text" id="complemento_end" value="" readonly>
                             </div>
                             <div class="campo">
-                                <label>Bairro</label>
-                                <p class="dados">Centro</p>
+                                <label for="bairro_end">Bairro</label>
+                                <input class="p" type="text" id="bairro_end" value="" readonly>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo esp">
-                                <label>Cidade</label>
-                                <p class="dados">Mogi das Cruzes</p>
+                                <label for="cidade_end">Cidade</label>
+                                <input class="p" type="text" id="cidade_end" value="" readonly>
                             </div>
                             <div class="campo esp">
-                                <label>Estado</label>
-                                <p class="dados">SP</p>
+                                <label for="estado_end">Estado</label>
+                                <input class="p" type="text" id="estado_end" value="" readonly>
                             </div>
                             <div class="campo">
-                                <label>País</label>
-                                <p class="dados">Brasil</p>
+                                <label for="pais_end">País</label>
+                                <input class="p" type="text" id="pais_end" value="" readonly>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo">
-                                <label>Observações</label>
-                                <p class="dados">Próximo a Fatec</p>
+                                <label for="obs_end">Observações</label>
+                                <input class="g" type="text" id="obs_end" value="" readonly>
                             </div>
                         </div>
                     </fieldset>
                     <fieldset>
                         <legend class="sub-categorias">Cartão de crédito</legend>
+                        <div class="botao-editar">
+                            <a href="" class="editar">Editar</a>
+                        </div>
                         <div class="coluna">
                             <div class="campo esp">
-                                <label>Bandeira</label>
-                                <p class="dados">Mastercard</p>
+                                <label for="bandeira">Bandeira</label>
+                                <input class="g" type="text" id="bandeira" value="" readonly>
                             </div>
                             <div class="campo esp">
-                                <label>Número</label>
-                                <p class="dados">0000000000000</p>
+                                <label for="num_card">Número</label>
+                                <input class="p" type="text" id="num_card" value="" readonly>
                             </div>
                             <div class="campo">
-                                <label>Código de segurança</label>
-                                <p class="dados">000</p>
+                                <label for="cod_seguranca">Código de segurança</label>
+                                <input class="p" type="text" id="cod_seguranca" value="" readonly>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo">
                                 <div class="campo">
-                                    <label>Nome impresso no cartão</label>
-                                    <p class="dados">Joyce Silveira dos Santos</p>
+                                    <label for="nome_card">Nome impresso no cartão</label>
+                                    <input class="p" type="text" id="nome_card" value="" readonly>
                                 </div>
                             </div>
                         </div>
                     </fieldset>
                 </div>
                 <div class="div-botao">
-                    <input type="submit" class="botao" value="Entrar">
+                    <a href="/index/" class="botao">Voltar</a>
                 </div>
             </div>
         </div>

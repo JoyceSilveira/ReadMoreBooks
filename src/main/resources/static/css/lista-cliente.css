@@ -1,0 +1,84 @@
+#page-landing #container{
+    max-width: 100vw;
+    height: 100vh;
+}
+
+.page-header .top-bar-container h2{
+    font-family: 'Roboto', 'sans-serif';
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: #000000;
+}
+
+.page-header .top-bar-container .logo{
+    background-color: #FCC06D;
+    padding: 1.5rem;
+
+    margin-right: 1.5rem;
+}
+
+#page-landing main{
+    width: 100%;
+    margin: 0 auto;
+    background-color: #FAFAFA;
+
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+main .listagem{
+    margin: 0 auto;
+}
+
+main .listagem .alerta{
+    color: #FCC06D;
+    font-size: 4rem;
+}
+
+main .listagem .titulo-tabela{
+    font-size: 2.5rem;
+}
+
+main .listagem .tabela{
+
+}
+
+main .listagem .tabela th{
+    padding: 1rem;
+    color: white;
+    background-color: #FCC06D;
+    font-size: 1.8rem;
+}
+
+main .listagem .tabela td{
+    font-size: 1.7rem;
+    padding: 1.8rem 1.2rem;
+}
+
+main .listagem .tabela tr .nome{
+    width: 40rem;
+}
+
+main .listagem .tabela tr .cpf{
+    width: 16rem;
+}
+
+main .listagem .tabela tr .telefone{
+    width: 14rem;
+}
+
+main .listagem .tabela tr .email{
+    width: 40rem;
+}
+
+main .listagem .tabela .botao-excluir{
+    margin-left: 2rem;
+}
+
+main .listagem .tabela .excluir{
+    padding: 1.2rem;
+    color: white;
+    background-color: #FCC06D;
+    font-size: 1.5rem;
+}

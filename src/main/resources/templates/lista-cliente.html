@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>ReadMore Books</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/css/lista-cliente.css}" rel="stylesheet">
+</head>
+<body id="page-landing">
+<div id="container">
+    <header class="page-header">
+        <div class="top-bar-container">
+            <div class="logo"></div>
+            <h2>ReadMore Books</h2>
+        </div>
+    </header>
+    <main>
+        <div th:switch="" class="listagem">
+            <h2 th:case="null" class="alerta">Nenhum cliente cadastrado ainda!</h2>
+            <div th:case="*" class="div-tabela">
+                <h2 class="titulo-tabela">Clientes</h2>
+                <table class="tabela">
+                    <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>Telefone</th>
+                        <th>E-mail</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="">
+                        <td th:text="" class="nome">Joyce Silveira</td>
+                        <td th:text="" class="cpf">430777777777</td>
+                        <td th:text="" class="telefone">999999999</td>
+                        <td th:text="" class="email">joyce@hotmail.com</td>
+                        <td class="botao-excluir"><a th:href="" class="excluir">Excluir</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+</div>
+</body>
+</html>
