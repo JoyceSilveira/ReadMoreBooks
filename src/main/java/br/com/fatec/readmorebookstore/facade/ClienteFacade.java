@@ -82,10 +82,7 @@ public class ClienteFacade implements IFachada {
         Cliente cliente = (Cliente) entidade;
         List<AbstractEntidade> entidades = new ArrayList<>();
         entidades.add(cliente);
-        entidades.add(cliente.getEndereco());
-        entidades.add(cliente.getEndereco().getCidade().getEstado());
-        entidades.add(cliente.getEndereco().getCidade());
-        entidades.add(cliente.getCurso());
+        entidades.addAll(cliente.getEnderecos());
         StringBuilder msgRetorno = new StringBuilder();
         for (AbstractEntidade entidadeSalvar : entidades) {
             String nmClasse = entidadeSalvar.getClass().getName();
