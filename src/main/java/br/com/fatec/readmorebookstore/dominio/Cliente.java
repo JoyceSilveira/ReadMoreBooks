@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,8 @@ public class Cliente extends AbstractEntidade {
     private String telefone;
     private String email;
     private String senha;
+    @Transient
     private List<Endereco> enderecos;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "aluno")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "cliente")
     private List<EnderecoCliente> enderecosVinculados = new ArrayList<>();
 }
