@@ -21,7 +21,7 @@
         </div>
     </header>
     <main>
-        <div th:switch="" class="listagem">
+        <div th:switch="${clientes}" class="listagem">
             <h2 th:case="null" class="alerta">Nenhum cliente cadastrado ainda!</h2>
             <div th:case="*" class="div-tabela">
                 <h2 class="titulo-tabela">Clientes</h2>
@@ -35,12 +35,12 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="">
-                        <td th:text="" class="nome">Joyce Silveira</td>
-                        <td th:text="" class="cpf">430777777777</td>
-                        <td th:text="" class="telefone">999999999</td>
-                        <td th:text="" class="email">joyce@hotmail.com</td>
-                        <td class="botao-excluir"><a th:href="" class="excluir">Excluir</a></td>
+                    <tr th:each="cliente: ${clientes}">
+                        <td th:text="${cliente.nome}" class="nome">Joyce Silveira</td>
+                        <td th:text="${cliente.cpf}" class="cpf">430777777777</td>
+                        <td th:text="${cliente.telefone}" class="telefone">999999999</td>
+                        <td th:text="${cliente.email}" class="email">joyce@hotmail.com</td>
+                        <td class="botao-excluir"><a th:href="" class="excluir">Inativar</a></td>
                     </tr>
                     </tbody>
                 </table>

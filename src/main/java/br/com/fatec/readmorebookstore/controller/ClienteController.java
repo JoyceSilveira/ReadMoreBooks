@@ -31,4 +31,15 @@ public class ClienteController {
     public String upDadosPessoais() {
         return "update-cliente-dados";
     }
+
+    @GetMapping("/add-endereco-cobranca")
+    public String addEndCobranca() {
+        return "perfil-cliente";
+    }
+
+    @GetMapping("/add-endereco-entrega")
+    public String addEndEntrega() {
+        return "perfil-cliente";
+    }
+
 }

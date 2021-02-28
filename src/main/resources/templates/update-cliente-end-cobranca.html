@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>ReadMore Books</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+    <link href="../static/css/main.css" rel="stylesheet">
+    <link href="../static/css/cadastro-cliente.css" rel="stylesheet">
+</head>
+<body id="page-landing">
+<div id="container">
+    <header class="page-header">
+        <div class="top-bar-container">
+            <div class="logo"></div>
+            <h2>ReadMore Books</h2>
+        </div>
+    </header>
+    <main>
+        <div class="caixa">
+            <div class="titulo">
+                <p class="cadastrar">Alterar endereço cobrança</p>
+            </div>
+            <form action="" th:object="${cliente}" method="post">
+                <div class="dados-form">
+                    <fieldset>
+                        <div class="coluna">
+                            <div class="campo esp">
+                                <label for="tp_residencia">Tipo de residência</label>
+                                <select th:field="*{tipoResidencia}" class="p" name="tp_residencia" id="tp_residencia">
+                                    <option value="casa">Casa</option>
+                                    <option value="apto">Apartamento</option>
+                                </select>
+                            </div>
+                            <div class="campo">
+                                <label for="tp_logradouro">Tipo de logradouro</label>
+                                <select th:field="*{tipoLogradouro}" class="p" name="tp_logradouro" id="tp_logradouro">
+                                    <option value="rua">Rua</option>
+                                    <option value="av">Avenida</option>
+                                    <option value="est">Estrada</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="coluna">
+                            <div class="campo esp">
+                                <label for="logradouro">Logradouro</label>
+                                <input th:field="*{logradouro}" class="g" type="text" id="logradouro" required>
+                            </div>
+                            <div class="campo">
+                                <label for="cep">CEP</label>
+                                <input th:field="*{cep}" class="p" type="text" id="cep" required>
+                            </div>
+                        </div>
+                        <div class="coluna">
+                            <div class="campo esp">
+                                <label for="numero">Número</label>
+                                <input th:field="*{numero}" class="p" type="text" id="numero" required>
+                            </div>
+                            <div class="campo esp">
+                                <label for="complemento">Complemento</label>
+                                <input th:field="*{complemento}" class="p" type="text" id="complemento">
+                            </div>
+                            <div class="campo">
+                                <label for="bairro">Bairro</label>
+                                <input th:field="*{bairro}" class="p" type="text" id="bairro" required>
+                            </div>
+                        </div>
+                        <div class="coluna">
+                            <div class="campo esp">
+                                <label for="cidade">Cidade</label>
+                                <input th:field="*{cidade}" class="p" type="text" id="cidade" required>
+                            </div>
+                            <div class="campo esp">
+                                <label for="estado">Estado</label>
+                                <input th:field="*{sigla}" class="p" type="text" id="estado" required>
+                            </div>
+                            <div class="campo">
+                                <label for="pais">País</label>
+                                <input th:field="*{pais}" class="p" type="text" id="pais" required>
+                            </div>
+                        </div>
+                        <div class="coluna">
+                            <div class="campo">
+                                <label for="obs">Observações</label>
+                                <input th:field="*{observacoes}" class="g" type="text" id="obs">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="div-botao">
+                    <input type="submit" class="botao" value="Salvar">
+                </div>
+            </form>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+</div>
+</body>
+</html>

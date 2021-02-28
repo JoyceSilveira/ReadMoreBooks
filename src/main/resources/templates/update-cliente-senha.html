@@ -25,19 +25,13 @@
             <div class="titulo">
                 <p class="cadastrar">Alteração de senha</p>
             </div>
-            <form action="">
+            <form action="" th:object="${cliente}" method="post">
                 <div class="dados-form">
                     <fieldset>
                         <div class="coluna">
-                            <div class="campo">
-                                <label for="email">Senha antiga</label>
-                                <input class="g" type="text" id="email" required>
-                            </div>
-                        </div>
-                        <div class="coluna">
                             <div class="campo esp">
                                 <label for="senha">Nova senha</label>
-                                <input class="p" type="text" id="senha" required>
+                                <input th:field="*{senha}" class="p" type="text" id="senha" required>
                             </div>
                             <div class="campo">
                                 <label for="rep-senha">Digite a nova senha novamente</label>

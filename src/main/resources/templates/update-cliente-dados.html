@@ -25,17 +25,17 @@
             <div class="titulo">
                 <p class="cadastrar">Alterar dados pessoais</p>
             </div>
-            <form action="">
+            <form action="" th:object="${cliente}" method="post">
                 <div class="dados-form">
                     <fieldset>
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="nome">Nome completo</label>
-                                <input class="g" type="text" id="nome" required>
+                                <input th:field="*{nome}" class="g" type="text" id="nome">
                             </div>
                             <div class="campo">
                                 <label for="genero">Gênero</label>
-                                <select class="p" name="genero" id="genero">
+                                <select th:field="*{genero}" class="p" name="genero" id="genero">
                                     <option value="m">Masculino</option>
                                     <option value="f">Feminino</option>
                                     <option value="o">Outros</option>
@@ -45,25 +45,23 @@
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="dt_nascimento">Data de nascimento</label>
-                                <input class="p" type="text" id="dt_nascimento" required>
+                                <input th:field="*{dataNascimento}" class="p" type="text" id="dt_nascimento">
                             </div>
                             <div class="campo esp">
                                 <label for="cpf">CPF</label>
-                                <input class="p" type="text" id="cpf" required>
+                                <input th:field="*{cpf}" class="p" type="text" id="cpf">
                             </div>
                             <div class="campo">
                                 <label for="tel">Telefone</label>
-                                <input class="p" type="text" id="tel" required>
+                                <input th:field="*{telefone}" class="p" type="text" id="tel">
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo">
                                 <label for="email">E-mail</label>
-                                <input class="g" type="text" id="email" required>
+                                <input th:field="*{email}" class="g" type="text" id="email">
                             </div>
                         </div>
-                    </fieldset>
-                </div>
                 <div class="div-botao">
                     <input type="submit" class="botao" value="Salvar">
                 </div>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>ReadMore Books</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+    <link href="../static/css/main.css" rel="stylesheet">
+    <link href="../static/css/cadastro-cliente.css" rel="stylesheet">
+</head>
+<body id="page-landing">
+<div id="container">
+    <header class="page-header">
+        <div class="top-bar-container">
+            <div class="logo"></div>
+            <h2>ReadMore Books</h2>
+        </div>
+    </header>
+    <main>
+        <div class="caixa">
+            <div class="titulo">
+                <p class="cadastrar">Atualizar cartão</p>
+            </div>
+            <form method="post" th:action="" th:object="${alunoDTO}">
+                <div class="dados-form">
+                    <fieldset>
+                        <legend class="sub-categorias">Cartão de crédito</legend>
+                        <div class="coluna">
+                            <div class="campo esp">
+                                <label for="bandeira">Bandeira</label>
+                                <select th:field="*{bandeira}" class="p" name="bandeira" id="bandeira">
+                                    <option value="mastercard">Mastercard</option>
+                                    <option value="visa">Visa</option>
+                                    <option value="elo">Elo</option>
+                                </select>
+                            </div>
+                            <div class="campo esp">
+                                <label for="num_card">Número</label>
+                                <input th:field="*{numero}" class="p" type="text" id="num_card">
+                            </div>
+                            <div class="campo">
+                                <label for="cod_seguranca">Código de segurança</label>
+                                <input th:field="*{cvv}" class="p" type="text" id="cod_seguranca">
+                            </div>
+                        </div>
+                        <div class="coluna">
+                            <div class="campo">
+                                <div class="campo">
+                                    <label for="nome_card">Nome impresso no cartão</label>
+                                    <input th:field="*{nomeImpresso}" class="p" type="text" id="nome_card">
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="div-botao">
+                    <input type="submit" class="botao" value="Salvar">
+                </div>
+            </form>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+</div>
+</body>
+</html>
