@@ -25,47 +25,47 @@
             <div class="titulo">
                 <p>Dados do usuário</p>
             </div>
-            <div class="perfil">
+            <form class="perfil" th:object="${clienteDTO}>
                 <div class="dados-form">
                     <fieldset>
                         <legend class="sub-categorias">Dados pessoais</legend>
                         <div class="botao-editar">
-                            <a href="/clientes/update-dados" class="editar">Editar</a>
+                            <a href="@{/clientes/update-dados/{id}(id=${cliente.id})}" class="editar">Editar</a>
                         </div>
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="nome">Nome completo</label>
-                                <input class="g" type="text" id="nome" value="" readonly>
+                                <input th:field="*{nome}" class="g" type="text" id="nome" readonly>
                             </div>
                             <div class="campo">
                                 <label for="genero">Gênero</label>
-                                <input type="text" class="p" id="genero" value="" readonly>
+                                <input th:field="*{genero}" type="text" class="p" id="genero" value="" readonly>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="dt_nascimento">Data de nascimento</label>
-                                <input class="p" type="text" id="dt_nascimento" value="" readonly>
+                                <input th:field="*{dataNascimento}" class="p" type="text" id="dt_nascimento" value="" readonly>
                             </div>
                             <div class="campo esp">
                                 <label for="cpf">CPF</label>
-                                <input class="p" type="text" id="cpf" value="" readonly>
+                                <input th:field="*{cpf}" class="p" type="text" id="cpf" value="" readonly>
                             </div>
                             <div class="campo">
                                 <label for="tel">Telefone</label>
-                                <input class="p" type="text" id="tel" value="" readonly>
+                                <input th:field="*{telefone}" class="p" type="text" id="tel" value="" readonly>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo">
                                 <label for="email">E-mail</label>
-                                <input class="g" type="text" id="email" value="" readonly>
+                                <input th:field="*{email}" class="g" type="text" id="email" value="" readonly>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo esp">
                                 <label >Senha</label>
-                                <a href="/clientes/update-senha" class="alt-senha">Alterar senha</a>
+                                <a href="@{/clientes/update-senha/{id}(id=${cliente.id})}" class="alt-senha">Alterar senha</a>
                             </div>
                         </div>
                     </fieldset>
@@ -73,147 +73,148 @@
                         <legend class="sub-categorias">Endereços</legend>
                         <p class="sub-legend">Entrega</p>
                         <div class="botao-editar">
-                            <a href="/clientes/update-endereco" class="editar">Editar</a>
-                            <a href="" class="adicionar">Adicionar</a>
+                            <a href="@{/clientes/update-endereco-entrega/{id}(id=${cliente.id})}" class="editar">Editar</a>
+                            <a href="@{/clientes/}" class="adicionar">Adicionar</a>
                         </div>
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="tp_residencia">Tipo de residência</label>
-                                <input type="text" class="p" id="tp_residencia" value="" readonly>
+                                <input th:field="*{tipoResidencia}" type="text" class="p" id="tp_residencia" value="" readonly>
                             </div>
                             <div class="campo">
                                 <label for="tp_logradouro">Tipo de logradouro</label>
-                                <input type="text" class="p" id="tp_logradouro" value="" readonly>
+                                <input th:field="*{tipoLogradouro}" type="text" class="p" id="tp_logradouro" value="" readonly>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="logradouro">Logradouro</label>
-                                <input class="g" type="text" id="logradouro" value="" readonly>
+                                <input th:field="*{logradouro}" class="g" type="text" id="logradouro" value="" readonly>
                             </div>
                             <div class="campo">
                                 <label for="cep">CEP</label>
-                                <input class="p" type="text" id="cep" value="" readonly>
+                                <input th:field="*{cep}" class="p" type="text" id="cep" value="" readonly>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="numero">Número</label>
-                                <input class="p" type="text" id="numero" value="" readonly>
+                                <input th:field="*{numero}" class="p" type="text" id="numero" value="" readonly>
                             </div>
                             <div class="campo esp">
                                 <label for="complemento">Complemento</label>
-                                <input class="p" type="text" id="complemento" value="" readonly>
+                                <input th:field="*{complemento}" class="p" type="text" id="complemento" value="" readonly>
                             </div>
                             <div class="campo">
                                 <label for="bairro">Bairro</label>
-                                <input class="p" type="text" id="bairro" value="" readonly>
+                                <input th:field="*{bairro}" class="p" type="text" id="bairro" value="" readonly>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="cidade">Cidade</label>
-                                <input class="p" type="text" id="cidade" value="" readonly>
+                                <input th:field="*{cidade}" class="p" type="text" id="cidade" value="" readonly>
                             </div>
                             <div class="campo esp">
                                 <label for="estado">Estado</label>
-                                <input class="p" type="text" id="estado" value="" readonly>
+                                <input th:field="*{sigla}" class="p" type="text" id="estado" value="" readonly>
                             </div>
                             <div class="campo">
                                 <label for="pais">País</label>
-                                <input class="p" type="text" id="pais" value="" readonly>
+                                <input th:field="*{pais}" class="p" type="text" id="pais" value="" readonly>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo">
                                 <label for="obs">Observações</label>
-                                <input class="g" type="text" id="obs" value="" readonly>
+                                <input th:field="*{observacoes}" class="g" type="text" id="obs" value="" readonly>
                             </div>
                         </div>
                         <p class="sub-legend">Cobrança</p>
                         <div class="botao-editar">
-                            <a href="/clientes/update-endereco" class="editar">Editar</a>
-                            <a href="" class="adicionar">Adicionar</a>
+                            <a href="@{/clientes/update-endereco-cobranca/{id}(id=${cliente.id})}" class="editar">Editar</a>
+                            <a href="@{/clientes/}" class="adicionar">Adicionar</a>
                         </div>
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="tp_residencia_end">Tipo de residência</label>
-                                <input type="text" class="p" id="tp_residencia_end" value="" readonly>
+                                <input th:field="*{tipoResidencia}" type="text" class="p" id="tp_residencia_end" value="" readonly>
                             </div>
                             <div class="campo">
                                 <label for="tp_logradouro_end">Tipo de logradouro</label>
-                                <input type="text" class="p" id="tp_logradouro_end" value="" readonly>
+                                <input th:field="*{tipoLogradouro}" type="text" class="p" id="tp_logradouro_end" value="" readonly>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="logradouro_end">Logradouro</label>
-                                <input class="g" type="text" id="logradouro_end" value="" readonly>
+                                <input th:field="*{logradouro}" class="g" type="text" id="logradouro_end" value="" readonly>
                             </div>
                             <div class="campo">
                                 <label for="cep_end">CEP</label>
-                                <input class="p" type="text" id="cep_end" value="" readonly>
+                                <input th:field="*{cep}" class="p" type="text" id="cep_end" value="" readonly>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="numero_end">Número</label>
-                                <input class="p" type="text" id="numero_end" value="" readonly>
+                                <input th:field="*{numero}" class="p" type="text" id="numero_end" value="" readonly>
                             </div>
                             <div class="campo esp">
                                 <label for="complemento_end">Complemento</label>
-                                <input class="p" type="text" id="complemento_end" value="" readonly>
+                                <input th:field="*{complemento}"class="p" type="text" id="complemento_end" value="" readonly>
                             </div>
                             <div class="campo">
                                 <label for="bairro_end">Bairro</label>
-                                <input class="p" type="text" id="bairro_end" value="" readonly>
+                                <input th:field="*{bairro}" class="p" type="text" id="bairro_end" value="" readonly>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="cidade_end">Cidade</label>
-                                <input class="p" type="text" id="cidade_end" value="" readonly>
+                                <input th:field="*{cidade}" class="p" type="text" id="cidade_end" value="" readonly>
                             </div>
                             <div class="campo esp">
                                 <label for="estado_end">Estado</label>
-                                <input class="p" type="text" id="estado_end" value="" readonly>
+                                <input th:field="*{sigla}" class="p" type="text" id="estado_end" value="" readonly>
                             </div>
                             <div class="campo">
                                 <label for="pais_end">País</label>
-                                <input class="p" type="text" id="pais_end" value="" readonly>
+                                <input th:field="*{pais}" class="p" type="text" id="pais_end" value="" readonly>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo">
                                 <label for="obs_end">Observações</label>
-                                <input class="g" type="text" id="obs_end" value="" readonly>
+                                <input th:field="*{observacoes}" class="g" type="text" id="obs_end" value="" readonly>
                             </div>
                         </div>
                     </fieldset>
                     <fieldset>
                         <legend class="sub-categorias">Cartão de crédito</legend>
                         <div class="botao-editar">
-                            <a href="" class="editar">Editar</a>
+                            <a href="@{/clientes/update-cartao/{id}(id=${cliente.id})}" class="editar">Editar</a>
+                            <a href="@{/clientes/}" class="adicionar">Adicionar</a>
                         </div>
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="bandeira">Bandeira</label>
-                                <input class="g" type="text" id="bandeira" value="" readonly>
+                                <input th:field="*{bandeira}" class="g" type="text" id="bandeira" value="" readonly>
                             </div>
                             <div class="campo esp">
                                 <label for="num_card">Número</label>
-                                <input class="p" type="text" id="num_card" value="" readonly>
+                                <input th:field="*{numero}" class="p" type="text" id="num_card" value="" readonly>
                             </div>
                             <div class="campo">
                                 <label for="cod_seguranca">Código de segurança</label>
-                                <input class="p" type="text" id="cod_seguranca" value="" readonly>
+                                <input th:field="*{cvv}" class="p" type="text" id="cod_seguranca" value="" readonly>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo">
                                 <div class="campo">
                                     <label for="nome_card">Nome impresso no cartão</label>
-                                    <input class="p" type="text" id="nome_card" value="" readonly>
+                                    <input th:field="*{nomeImpresso}"class="p" type="text" id="nome_card" value="" readonly>
                                 </div>
                             </div>
                         </div>
@@ -222,7 +223,7 @@
                 <div class="div-botao">
                     <a href="/index/" class="botao">Voltar</a>
                 </div>
-            </div>
+            </form>
         </div>
     </main>
     <footer>

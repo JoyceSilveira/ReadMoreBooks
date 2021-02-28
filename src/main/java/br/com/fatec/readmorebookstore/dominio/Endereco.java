@@ -5,9 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -24,6 +22,7 @@ public class Endereco extends AbstractEntidade {
     private String bairro;
     private String cep;
     private String complemento;
+    @ManyToOne
     private Cidade cidade;
     // Preenchimento opcional
     private String observacoes;

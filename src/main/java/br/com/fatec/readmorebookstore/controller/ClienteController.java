@@ -1,45 +1,63 @@
 package br.com.fatec.readmorebookstore.controller;
 
+import br.com.fatec.readmorebookstore.dto.ClienteDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.ui.Model;
 
 @Controller
 @RequestMapping("/clientes")
 public class ClienteController {
 
     @GetMapping("/add-cliente")
-    public String mostraFormularioCadastro() {
+    public String mostraFormularioCadastro(ClienteDTO clienteDTO) {
         return "cadastro-cliente";
     }
 
-    @GetMapping("/salvar-cliente")
-    public String salvar() {
+    @PostMapping("/salvar-cliente")
+    public String salvarCliente(ClienteDTO clienteDTO) {
         return "perfil-cliente";
     }
 
-    @GetMapping("/update-senha")
+    @GetMapping("/list-cliente")
+    public String mostraListaClientes(Model model) {
+        return "lista-cliente";
+    }
+
+    @GetMapping("/update-senha/{id}")
     public String upSenha() {
         return "update-cliente-senha";
     }
 
-    @GetMapping("/update-endereco")
-    public String upEndereco() { return "update-cliente-end"; }
+    @GetMapping("/update-endereco-entrega/{id}")
+    public String upEndEntrega() { return "update-cliente-end-entrega"; }
 
-    @GetMapping("/update-dados")
+    @GetMapping("/update-endereco-cobranca/{id}")
+    public String upEndCobranca() { return "update-cliente-end-cobranca"; }
+
+    @GetMapping("/update-dados/{id}")
     public String upDadosPessoais() {
         return "update-cliente-dados";
     }
 
-    @GetMapping("/add-endereco-cobranca")
+    @GetMapping("/update-cartao/{id}")
+    public String upCartao() {
+        return "update-cartao";
+    }
+
+    @GetMapping("/add-endereco-cobranca/{id}")
     public String addEndCobranca() {
         return "perfil-cliente";
     }
 
-    @GetMapping("/add-endereco-entrega")
+    @GetMapping("/add-endereco-entrega/{id}")
     public String addEndEntrega() {
         return "perfil-cliente";
     }
+
+    @GetMapping("/add-cartao/{id}")
+    public String addCartao() { return ""; }
 
 }

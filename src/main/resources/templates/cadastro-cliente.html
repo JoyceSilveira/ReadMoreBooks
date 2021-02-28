@@ -26,7 +26,7 @@
                 <p class="cadastrar">Cadastrar-se</p>
                 <p class="red-entrar">Já possui uma conta? <a href="index.html">Entre</a></p>
             </div>
-            <form th:action="@{/clientes/salvar-cliente}" th:object="${cliente}" method="post">
+            <form th:action="@{/clientes/salvar-cliente}" th:object="${clienteDTO}" method="post">
                 <div class="dados-form">
                     <fieldset>
                         <legend class="sub-categorias">Dados pessoais</legend>
