@@ -49,15 +49,15 @@ public class ClienteController {
 
     @GetMapping("/add-endereco-cobranca/{id}")
     public String addEndCobranca() {
-        return "perfil-cliente";
+        return "add-cliente-end-cobranca";
     }
 
     @GetMapping("/add-endereco-entrega/{id}")
     public String addEndEntrega() {
-        return "perfil-cliente";
+        return "add-cliente-end-entrega";
     }
 
     @GetMapping("/add-cartao/{id}")
-    public String addCartao() { return ""; }
+    public String addCartao() { return "add-cartao"; }
 
 }
