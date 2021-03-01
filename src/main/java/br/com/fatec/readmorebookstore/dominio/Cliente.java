@@ -29,8 +29,19 @@ public class Cliente extends AbstractEntidade {
     private String telefone;
     private String email;
     private String senha;
-    @Transient
-    private List<Endereco> enderecos;
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "cliente")
-    private List<EnderecoCliente> enderecosVinculados = new ArrayList<>();
+    private List<Endereco> enderecosVinculados = new ArrayList<>();
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "cliente")
+    private List<Cartao> cartoesVinculados = new ArrayList<>();
+
+    @Transient
+    private Endereco enderecoEntrega;
+    @Transient
+    private Endereco enderecoCobranca;
+    @Transient
+    private Endereco enderecoResidencial;
+    @Transient
+    private List<Endereco> enderecos = new ArrayList<>();
+    @Transient
+    private Cartao cartao;
 }

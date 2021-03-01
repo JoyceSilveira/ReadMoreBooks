@@ -18,11 +18,10 @@ public class ClienteFacade implements IFachada {
 
     private final ClienteDAO clienteDAO;
     private final EnderecoDAO enderecoDAO;
-    private final EnderecoClienteDAO enderecoClienteDAO;
     private final CartaoDAO cartaoDAO;
-    private final CartaoClienteDAO cartaoClienteDAO;
     private final CidadeDAO cidadeDAO;
     private final ComplementarDtCadastro cDataCadastro;
+//    private final ComplementarCidade cCidade;
     private final ValidadorCpf vCpf;
     private final ValidadorDadosObrigatoriosCliente vCliente;
     private final ValidadorExistenciaClienteCpf vExistenciaClienteCpf;
@@ -31,27 +30,25 @@ public class ClienteFacade implements IFachada {
 
     @Autowired
     public ClienteFacade(
-            ClienteDAO clienteDAO, EnderecoDAO enderecoDAO, EnderecoClienteDAO enderecoClienteDAO,
-            CartaoDAO cartaoDAO, CartaoClienteDAO cartaoClienteDAO, CidadeDAO cidadeDAO,
+            ClienteDAO clienteDAO, EnderecoDAO enderecoDAO,
+            CartaoDAO cartaoDAO, CidadeDAO cidadeDAO,
             ComplementarDtCadastro cDataCadastro, ValidadorCpf vCpf,
             ValidadorDadosObrigatoriosCliente vCliente, ValidadorExistenciaClienteCpf vExistenciaClienteCpf) {
         this.clienteDAO = clienteDAO;
         this.enderecoDAO = enderecoDAO;
-        this.enderecoClienteDAO = enderecoClienteDAO;
         this.cartaoDAO = cartaoDAO;
-        this.cartaoClienteDAO = cartaoClienteDAO;
         this.cidadeDAO = cidadeDAO;
         this.cDataCadastro = cDataCadastro;
         this.vCpf = vCpf;
         this.vCliente = vCliente;
         this.vExistenciaClienteCpf = vExistenciaClienteCpf;
-        definirDAOS(clienteDAO, enderecoDAO, enderecoClienteDAO, cartaoDAO, cartaoClienteDAO, cidadeDAO);
+        definirDAOS(clienteDAO, enderecoDAO, cartaoDAO, cidadeDAO);
         definirRNS(cDataCadastro, vCpf, vCliente, vExistenciaClienteCpf);
     }
 
     private void definirRNS(
-            ComplementarDtCadastro cDataCadastro, ValidadorCpf vCpf,
-            ValidadorDadosObrigatoriosCliente vCliente, ValidadorExistenciaClienteCpf vExistenciaClienteCpf
+        ComplementarDtCadastro cDataCadastro, ValidadorCpf vCpf,
+        ValidadorDadosObrigatoriosCliente vCliente, ValidadorExistenciaClienteCpf vExistenciaClienteCpf
     ) {
         rns = new HashMap<>();
 
@@ -65,15 +62,13 @@ public class ClienteFacade implements IFachada {
     }
 
     private void definirDAOS(
-        ClienteDAO clienteDAO, EnderecoDAO enderecoDAO, EnderecoClienteDAO enderecoClienteDAO,
-        CartaoDAO cartaoDAO, CartaoClienteDAO cartaoClienteDAO, CidadeDAO cidadeDAO
+        ClienteDAO clienteDAO, EnderecoDAO enderecoDAO,
+        CartaoDAO cartaoDAO, CidadeDAO cidadeDAO
     ) {
         daos = new HashMap<>();
         daos.put(Cliente.class.getName(), clienteDAO);
         daos.put(Endereco.class.getName(), enderecoDAO);
-        daos.put(EnderecoCliente.class.getName(), enderecoClienteDAO);
         daos.put(Cartao.class.getName(), cartaoDAO);
-        daos.put(CartaoCliente.class.getName(), cartaoClienteDAO);
         daos.put(Cidade.class.getName(), cidadeDAO);
     }
 
@@ -81,8 +76,13 @@ public class ClienteFacade implements IFachada {
     public String cadastrar(AbstractEntidade entidade) {
         Cliente cliente = (Cliente) entidade;
         List<AbstractEntidade> entidades = new ArrayList<>();
+        List<Endereco> enderecos = getListaEnderecos(cliente);
+        cliente.setEnderecos(enderecos);
         entidades.add(cliente);
-        entidades.addAll(cliente.getEnderecos());
+        entidades.add(cliente.getCartao());
+        entidades.add(cliente.getEnderecoCobranca());
+        entidades.add(cliente.getEnderecoEntrega());
+        entidades.add(cliente.getEnderecoResidencial());
         StringBuilder msgRetorno = new StringBuilder();
         for (AbstractEntidade entidadeSalvar : entidades) {
             String nmClasse = entidadeSalvar.getClass().getName();
@@ -98,6 +98,14 @@ public class ClienteFacade implements IFachada {
             return msgRetorno.toString();
         }
         return null;
+    }
+
+    private List<Endereco> getListaEnderecos(Cliente cliente) {
+        List<Endereco> enderecos = new ArrayList<>();
+        enderecos.add(cliente.getEnderecoCobranca());
+        enderecos.add(cliente.getEnderecoEntrega());
+        enderecos.add(cliente.getEnderecoResidencial());
+        return enderecos;
     }
 
     private String executarRegras(AbstractEntidade entidade) {

@@ -13,6 +13,8 @@ import javax.persistence.*;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Endereco extends AbstractEntidade {
+    @ManyToOne
+    private Cliente cliente;
     @Enumerated(EnumType.STRING)
     private TipoEnderecoEnum tipoEndereco;
     private String tipoResidencia;
@@ -26,4 +28,7 @@ public class Endereco extends AbstractEntidade {
     private Cidade cidade;
     // Preenchimento opcional
     private String observacoes;
+
+    @Transient
+    private String nomeCidade;
 }

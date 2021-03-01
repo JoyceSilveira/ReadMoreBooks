@@ -17,4 +17,5 @@ public class Cartao extends AbstractEntidade {
     private String nomeImpresso;
     private BandeiraCartaoEnum bandeira;
     private Integer cvv;
+    private Cliente cliente;
 }

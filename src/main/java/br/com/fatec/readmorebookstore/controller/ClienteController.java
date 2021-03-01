@@ -1,24 +1,47 @@
 package br.com.fatec.readmorebookstore.controller;
 
+import br.com.fatec.readmorebookstore.dominio.Cliente;
 import br.com.fatec.readmorebookstore.dto.ClienteDTO;
+import br.com.fatec.readmorebookstore.facade.ClienteFacade;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/clientes")
 public class ClienteController {
 
+    @Autowired
+    private ClienteFacade clienteFacade;
+
     @GetMapping("/add-cliente")
-    public String mostraFormularioCadastro(ClienteDTO clienteDTO) {
+    public String mostraFormularioCadastro(Cliente cliente) {
         return "cadastro-cliente";
     }
 
     @PostMapping("/salvar-cliente")
-    public String salvarCliente(ClienteDTO clienteDTO) {
+    public String salvarCliente(Cliente cliente, Errors errors) {
+        String msgRetorno = clienteFacade.cadastrar(cliente);
+        if (msgRetorno != null && !msgRetorno.isEmpty()) {
+            errors.rejectValue("saveErrors", msgRetorno);
+            return "redirect:/clientes/?errors="+errors.getAllErrors();
+        }
+
         return "perfil-cliente";
+    }
+
+    @GetMapping("/")
+    public String erroSalvarCliente(Model model, @RequestParam("errors") List<ObjectError> errors) {
+        model.addAttribute("errors", errors);
+        return null;
     }
 
     @GetMapping("/list-cliente")
