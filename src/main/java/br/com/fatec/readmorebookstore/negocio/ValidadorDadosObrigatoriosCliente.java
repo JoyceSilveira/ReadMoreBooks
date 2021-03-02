@@ -37,7 +37,7 @@ public class ValidadorDadosObrigatoriosCliente implements IStrategy {
 				sb.append("Gênero, Data de nascimento, Nome, CPF, telefone, email, senha são de preenchimento obrigatório!\n");
 			}
 
-			sb.append(validarEnderecosObrigatórios(enderecos));
+			sb.append(validarEnderecosObrigatorios(enderecos));
 
 			for (Endereco endereco : enderecos) {
 				ValidadorEndereco vEnd = new ValidadorEndereco();
@@ -59,15 +59,17 @@ public class ValidadorDadosObrigatoriosCliente implements IStrategy {
 		}
 	}
 
-	private String validarEnderecosObrigatórios(List<Endereco> enderecos) {
+	private String validarEnderecosObrigatorios(List<Endereco> enderecos) {
 		StringBuilder msgRetorno = new StringBuilder();
 		boolean existeEnderecoResidencial = false;
 		boolean existeEnderecoCobranca = false;
 		boolean existeEnderecoEntrega = false;
 		for (Endereco endereco : enderecos) {
-			existeEnderecoResidencial = endereco.getTipoEndereco().equals(TipoEnderecoEnum.RESIDENCIAL);
-			existeEnderecoCobranca = endereco.getTipoEndereco().equals(TipoEnderecoEnum.COBRANCA);
-			existeEnderecoEntrega = endereco.getTipoEndereco().equals(TipoEnderecoEnum.ENTREGA);
+			if (endereco != null && endereco.getTipoEndereco() != null) {
+				existeEnderecoResidencial = endereco.getTipoEndereco().equals(TipoEnderecoEnum.RESIDENCIAL);
+				existeEnderecoCobranca = endereco.getTipoEndereco().equals(TipoEnderecoEnum.COBRANCA);
+				existeEnderecoEntrega = endereco.getTipoEndereco().equals(TipoEnderecoEnum.ENTREGA);
+			}
 		}
 		if (!existeEnderecoResidencial) {
 			msgRetorno.append("O preenchimento do endereço residencial é obrigatório\n");

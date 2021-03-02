@@ -21,7 +21,7 @@ public class ClienteFacade implements IFachada {
     private final CartaoDAO cartaoDAO;
     private final CidadeDAO cidadeDAO;
     private final ComplementarDtCadastro cDataCadastro;
-//    private final ComplementarCidade cCidade;
+    private final ComplementarCidade cCidade;
     private final ValidadorCpf vCpf;
     private final ValidadorDadosObrigatoriosCliente vCliente;
     private final ValidadorExistenciaClienteCpf vExistenciaClienteCpf;
@@ -32,22 +32,23 @@ public class ClienteFacade implements IFachada {
     public ClienteFacade(
             ClienteDAO clienteDAO, EnderecoDAO enderecoDAO,
             CartaoDAO cartaoDAO, CidadeDAO cidadeDAO,
-            ComplementarDtCadastro cDataCadastro, ValidadorCpf vCpf,
+            ComplementarDtCadastro cDataCadastro, ComplementarCidade cCidade, ValidadorCpf vCpf,
             ValidadorDadosObrigatoriosCliente vCliente, ValidadorExistenciaClienteCpf vExistenciaClienteCpf) {
         this.clienteDAO = clienteDAO;
         this.enderecoDAO = enderecoDAO;
         this.cartaoDAO = cartaoDAO;
         this.cidadeDAO = cidadeDAO;
         this.cDataCadastro = cDataCadastro;
+        this.cCidade = cCidade;
         this.vCpf = vCpf;
         this.vCliente = vCliente;
         this.vExistenciaClienteCpf = vExistenciaClienteCpf;
         definirDAOS(clienteDAO, enderecoDAO, cartaoDAO, cidadeDAO);
-        definirRNS(cDataCadastro, vCpf, vCliente, vExistenciaClienteCpf);
+        definirRNS(cDataCadastro, cCidade, vCpf, vCliente, vExistenciaClienteCpf);
     }
 
     private void definirRNS(
-        ComplementarDtCadastro cDataCadastro, ValidadorCpf vCpf,
+        ComplementarDtCadastro cDataCadastro, ComplementarCidade cCidade, ValidadorCpf vCpf,
         ValidadorDadosObrigatoriosCliente vCliente, ValidadorExistenciaClienteCpf vExistenciaClienteCpf
     ) {
         rns = new HashMap<>();
@@ -58,7 +59,11 @@ public class ClienteFacade implements IFachada {
         rnsAluno.add(vCliente);
         rnsAluno.add(vExistenciaClienteCpf);
 
+        List<IStrategy> rnsEndereco = new ArrayList<>();
+        rnsEndereco.add(cCidade);
+
         rns.put(Cliente.class.getName(), rnsAluno);
+        rns.put(Endereco.class.getName(), rnsEndereco);
     }
 
     private void definirDAOS(
@@ -79,10 +84,9 @@ public class ClienteFacade implements IFachada {
         List<Endereco> enderecos = getListaEnderecos(cliente);
         cliente.setEnderecos(enderecos);
         entidades.add(cliente);
-        entidades.add(cliente.getCartao());
-        entidades.add(cliente.getEnderecoCobranca());
-        entidades.add(cliente.getEnderecoEntrega());
-        entidades.add(cliente.getEnderecoResidencial());
+        entidades.add(getCartao(cliente));
+        entidades.add(getEnderecoCobranca(cliente));
+        entidades.add(getEnderecoEntrega(cliente));
         StringBuilder msgRetorno = new StringBuilder();
         for (AbstractEntidade entidadeSalvar : entidades) {
             String nmClasse = entidadeSalvar.getClass().getName();
@@ -104,8 +108,25 @@ public class ClienteFacade implements IFachada {
         List<Endereco> enderecos = new ArrayList<>();
         enderecos.add(cliente.getEnderecoCobranca());
         enderecos.add(cliente.getEnderecoEntrega());
-        enderecos.add(cliente.getEnderecoResidencial());
         return enderecos;
+    }
+
+    private Cartao getCartao(Cliente cliente) {
+        Cartao cartao = cliente.getCartao();
+        cartao.setCliente(cliente);
+        return cartao;
+    }
+
+    private Endereco getEnderecoCobranca(Cliente cliente) {
+        Endereco endereco = cliente.getEnderecoCobranca();
+        endereco.setCliente(cliente);
+        return endereco;
+    }
+
+    private Endereco getEnderecoEntrega(Cliente cliente) {
+        Endereco endereco = cliente.getEnderecoEntrega();
+        endereco.setCliente(cliente);
+        return endereco;
     }
 
     private String executarRegras(AbstractEntidade entidade) {
@@ -147,5 +168,11 @@ public class ClienteFacade implements IFachada {
     @Override
     public List<AbstractEntidade> consultar(AbstractEntidade entidade) {
         return null;
+    }
+
+    public List<Cliente> listarTodos() {
+        List<Cliente> clientes = new ArrayList<>();
+        clienteDAO.findAll().forEach(clientes::add);
+        return clientes;
     }
 }

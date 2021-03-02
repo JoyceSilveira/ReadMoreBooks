@@ -15,6 +15,32 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addViewController("/").setViewName("index");
     }
 
+//    @Bean
+//    public ViewResolver htmlViewResolver() {
+//        ThymeleafViewResolver resolver = new ThymeleafViewResolver();
+//        String[] viewNames = {"*.html"};
+//        resolver.setTemplateEngine(templateEngine(htmlTemplateResolver()));
+//        resolver.setContentType("text/html");
+//        resolver.setCharacterEncoding("UTF-8");
+//        resolver.setViewNames(viewNames);
+//        return resolver;
+//    }
+//
+//    private ISpringTemplateEngine templateEngine(ITemplateResolver templateResolver) {
+//        SpringTemplateEngine engine = new SpringTemplateEngine();
+//        engine.addDialect(new Java8TimeDialect());
+//        engine.setTemplateResolver(templateResolver);
+//        return engine;
+//    }
+//
+//    private ITemplateResolver htmlTemplateResolver() {
+//        SpringResourceTemplateResolver resolver = new SpringResourceTemplateResolver();
+//        resolver.setPrefix("/WEB-INF/views/");
+//        resolver.setCacheable(false);
+//        resolver.setTemplateMode(TemplateMode.HTML);
+//        return resolver;
+//    }
+
     @Bean
     public ClassLoaderTemplateResolver secondaryTemplateResolver() {
         ClassLoaderTemplateResolver secondaryTemplateResolver = new ClassLoaderTemplateResolver();
@@ -23,7 +49,6 @@ public class WebConfig implements WebMvcConfigurer {
         secondaryTemplateResolver.setCharacterEncoding("UTF-8");
         secondaryTemplateResolver.setOrder(1);
         secondaryTemplateResolver.setCheckExistence(true);
-
         return secondaryTemplateResolver;
     }
 

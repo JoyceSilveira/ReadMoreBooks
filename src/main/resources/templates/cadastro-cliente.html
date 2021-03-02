@@ -47,7 +47,7 @@
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="dt_nascimento">Data de nascimento</label>
-                                <input th:field="*{dataNascimento}" class="p" type="text" id="dt_nascimento">
+                                <input th:field="*{dataNascimento}" class="p" type="date" id="dt_nascimento">
                             </div>
                             <div class="campo esp">
                                 <label for="cpf">CPF</label>
@@ -67,11 +67,11 @@
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="senha">Senha</label>
-                                <input th:field="*{senha}" class="p" type="text" id="senha">
+                                <input th:field="*{senha}" class="p" type="password" id="senha">
                             </div>
                             <div class="campo">
                                 <label for="rep-senha">Digite a senha novamente</label>
-                                <input class="p" type="text" id="rep-senha">
+                                <input class="p" type="password" id="rep-senha">
                             </div>
                         </div>
                         <p class="info-senha">
@@ -85,6 +85,12 @@
                         <legend class="sub-categorias">Endereços</legend>
                         <p class="sub-legend">Entrega</p>
                         <div class="coluna">
+                            <div class="campo esp">
+                                <label for="tp_endereco">Tipo de endereço</label>
+                                <select th:field="*{enderecoEntrega.tipoEndereco}" class="p" name="tp_endereco" id="tp_endereco">
+                                    <option value="ENTREGA">Entrega</option>
+                                </select>
+                            </div>
                             <div class="campo esp">
                                 <label for="tp_residencia_end">Tipo de residência</label>
                                 <select th:field="*{enderecoEntrega.tipoResidencia}" class="p" name="tp_residencia" id="tp_residencia_end">
@@ -140,6 +146,12 @@
                         </div>
                         <p class="sub-legend">Cobrança</p>
                         <div class="coluna">
+                            <div class="campo esp">
+                                <label for="tp_endereco_cobranca">Tipo de endereço</label>
+                                <select th:field="*{enderecoCobranca.tipoEndereco}" class="p" name="tp_endereco_cobranca" id="tp_endereco_cobranca">
+                                    <option value="COBRANCA">Cobrança</option>
+                                </select>
+                            </div>
                             <div class="campo esp">
                                 <label for="tp_residencia">Tipo de residência</label>
                                 <select th:field="*{enderecoCobranca.tipoResidencia}" class="p" name="tp_residencia" id="tp_residencia">

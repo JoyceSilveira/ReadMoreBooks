@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -23,15 +24,16 @@ import java.util.List;
 public class Cliente extends AbstractEntidade {
     private String genero;
     private String nome;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataNascimento;
     private String cpf;
     // Deve ser composto pelo tipo, DDD e número
     private String telefone;
     private String email;
     private String senha;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "cliente")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente")
     private List<Endereco> enderecosVinculados = new ArrayList<>();
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "cliente")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente")
     private List<Cartao> cartoesVinculados = new ArrayList<>();
 
     @Transient

@@ -46,6 +46,7 @@ public class ClienteController {
 
     @GetMapping("/list-cliente")
     public String mostraListaClientes(Model model) {
+        model.addAttribute("clientes", clienteFacade.listarTodos());
         return "lista-cliente";
     }
 
