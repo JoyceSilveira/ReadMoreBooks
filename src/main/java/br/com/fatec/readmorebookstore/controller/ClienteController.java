@@ -48,15 +48,42 @@ public class ClienteController {
         return "lista-cliente";
     }
 
-    @GetMapping("/update-senha/{id}")
-    public String upSenha() {
+    @GetMapping("/editar-senha/{id}")
+    public String EditSenha(@PathVariable("id") Integer id, Model model) {
+        Cliente cliente = clienteFacade.mostrarPerfil(id);
+        model.addAttribute("cliente", cliente);
         return "update-cliente-senha";
+    }
+
+    @PostMapping("/atualizar-senha/{id}")
+    public String atualizarSenha(Cliente cliente, @PathVariable("id") Integer id) {
+        try {
+            cliente.setId(id);
+            clienteFacade.alterar(cliente);
+            return "redirect:/clientes/perfil-cliente/" + cliente.getId() + "";
+        } catch (Exception e) {
+            log.error("Falha ao salvar cliente.", e);
+            return "Falha ao salvar cliente.";
+        }
     }
 
     @GetMapping("/editar-endereco/{id}")
     public String EditEndereco(@PathVariable("id") Integer id, Model model) {
         Endereco endereco = clienteFacade.pegarEndereco(id);
+        model.addAttribute("endereco", endereco);
         return "update-cliente-endereco";
+    }
+
+    @PostMapping("/atualizar-endereco/{id}")
+    public String atualizarEndereco(Endereco endereco, @PathVariable("id") Integer id) {
+        try {
+            endereco.setId(id);
+            clienteFacade.alterar(endereco);
+            return "redirect:/clientes/perfil-cliente/" + endereco.getId() + "";
+        } catch (Exception e) {
+            log.error("Falha ao salvar cliente.", e);
+            return "Falha ao salvar cliente.";
+        }
     }
 
     @GetMapping("/editar-dados/{id}")

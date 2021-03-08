@@ -25,7 +25,7 @@
             <div class="titulo">
                 <p class="cadastrar">Alterar endereço</p>
             </div>
-            <form th:action="@{/clientes/atualizar-endereco/{id}(id=${cliente.id})}" th:object="${cliente}" method="post">
+            <form th:action="@{/clientes/atualizar-endereco/{id}(id=${endereco.id})}" th:object="${endereco}" method="post">
                 <div class="dados-form">
                     <fieldset>
                         <div class="coluna">
