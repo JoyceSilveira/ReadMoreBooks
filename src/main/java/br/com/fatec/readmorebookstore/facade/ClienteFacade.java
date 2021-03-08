@@ -189,7 +189,7 @@ public class ClienteFacade implements IFacade {
     }
 
     public String alterarCartao(AbstractEntidade entidade) {
-        CrudRepository dao = daos.get(entidade);
+        CrudRepository dao = daos.get(entidade.getClass().getName());
         dao.save(entidade);
         return null;
     }

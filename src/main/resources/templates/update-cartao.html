@@ -25,7 +25,7 @@
             <div class="titulo">
                 <p class="cadastrar">Atualizar cartão</p>
             </div>
-            <form method="post" th:action="@{/clientes/atualizar-dados/{id}(id=${cartao.id})}" th:object="${cartao}">
+            <form method="post" th:action="@{/clientes/atualizar-cartao/{id}(id=${cartao.id})}" th:object="${cartao}">
                 <div class="dados-form">
                     <fieldset>
                         <legend class="sub-categorias">Cartão de crédito</legend>
