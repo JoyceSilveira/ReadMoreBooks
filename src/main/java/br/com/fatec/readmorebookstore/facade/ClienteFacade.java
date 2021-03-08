@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class ClienteFacade implements IFachada {
+public class ClienteFacade implements IFacade {
 
 
     private final ClienteDAO clienteDAO;
@@ -25,6 +25,7 @@ public class ClienteFacade implements IFachada {
     private final ValidadorCpf vCpf;
     private final ValidadorDadosObrigatoriosCliente vCliente;
     private final ValidadorExistenciaClienteCpf vExistenciaClienteCpf;
+    private final ValidadorSenhaCliente vSenhaCliente;
     private Map<String, CrudRepository> daos;
     private Map<String, List<IStrategy>> rns;
 
@@ -33,7 +34,8 @@ public class ClienteFacade implements IFachada {
             ClienteDAO clienteDAO, EnderecoDAO enderecoDAO,
             CartaoDAO cartaoDAO, CidadeDAO cidadeDAO,
             ComplementarDtCadastro cDataCadastro, ComplementarCidade cCidade, ValidadorCpf vCpf,
-            ValidadorDadosObrigatoriosCliente vCliente, ValidadorExistenciaClienteCpf vExistenciaClienteCpf) {
+            ValidadorDadosObrigatoriosCliente vCliente, ValidadorExistenciaClienteCpf vExistenciaClienteCpf,
+            ValidadorSenhaCliente vSenhaCliente) {
         this.clienteDAO = clienteDAO;
         this.enderecoDAO = enderecoDAO;
         this.cartaoDAO = cartaoDAO;
@@ -43,26 +45,29 @@ public class ClienteFacade implements IFachada {
         this.vCpf = vCpf;
         this.vCliente = vCliente;
         this.vExistenciaClienteCpf = vExistenciaClienteCpf;
+        this.vSenhaCliente = vSenhaCliente;
         definirDAOS(clienteDAO, enderecoDAO, cartaoDAO, cidadeDAO);
-        definirRNS(cDataCadastro, cCidade, vCpf, vCliente, vExistenciaClienteCpf);
+        definirRNS(cDataCadastro, cCidade, vCpf, vCliente, vExistenciaClienteCpf, vSenhaCliente);
     }
 
     private void definirRNS(
         ComplementarDtCadastro cDataCadastro, ComplementarCidade cCidade, ValidadorCpf vCpf,
-        ValidadorDadosObrigatoriosCliente vCliente, ValidadorExistenciaClienteCpf vExistenciaClienteCpf
+        ValidadorDadosObrigatoriosCliente vCliente, ValidadorExistenciaClienteCpf vExistenciaClienteCpf,
+        ValidadorSenhaCliente vSenhaCliente
     ) {
         rns = new HashMap<>();
 
-        List<IStrategy> rnsAluno = new ArrayList<>();
-        rnsAluno.add(cDataCadastro);
-        rnsAluno.add(vCpf);
-        rnsAluno.add(vCliente);
-        rnsAluno.add(vExistenciaClienteCpf);
+        List<IStrategy> rnsCliente = new ArrayList<>();
+        rnsCliente.add(cDataCadastro);
+        rnsCliente.add(vCpf);
+        rnsCliente.add(vCliente);
+        rnsCliente.add(vExistenciaClienteCpf);
+        rnsCliente.add(vSenhaCliente);
 
         List<IStrategy> rnsEndereco = new ArrayList<>();
         rnsEndereco.add(cCidade);
 
-        rns.put(Cliente.class.getName(), rnsAluno);
+        rns.put(Cliente.class.getName(), rnsCliente);
         rns.put(Endereco.class.getName(), rnsEndereco);
     }
 
@@ -154,9 +159,14 @@ public class ClienteFacade implements IFachada {
 
     @Override
     public String excluir(AbstractEntidade entidade) {
-        String nmClasse = entidade.getClass().getName();
-        CrudRepository dao = daos.get(nmClasse);
-        dao.delete(entidade);
+        if (entidade instanceof Cliente) {
+            Cliente cliente = (Cliente) entidade;
+            cliente.setAtivo(false);
+            String nmClasse = entidade.getClass().getName();
+            CrudRepository dao = daos.get(nmClasse);
+            dao.save(cliente);
+            return "Cliente inativado com sucesso!";
+        }
         return null;
     }
 

@@ -12,7 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,10 +21,10 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Cliente extends AbstractEntidade {
+    private boolean ativo = true;
     private String genero;
     private String nome;
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private LocalDate dataNascimento;
+    private String dataNascimento;
     private String cpf;
     // Deve ser composto pelo tipo, DDD e número
     private String telefone;
@@ -46,4 +45,6 @@ public class Cliente extends AbstractEntidade {
     private List<Endereco> enderecos = new ArrayList<>();
     @Transient
     private Cartao cartao;
+    @Transient
+    private String senhaConfirmacao;
 }

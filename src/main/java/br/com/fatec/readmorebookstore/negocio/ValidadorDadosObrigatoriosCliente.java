@@ -20,7 +20,7 @@ public class ValidadorDadosObrigatoriosCliente implements IStrategy {
 
 			String genero = cliente.getGenero();
 			String nome = cliente.getNome();
-			LocalDate dataNascimento = cliente.getDataNascimento();
+			String dataNascimento = cliente.getDataNascimento();
 			String cpf = cliente.getCpf();
 			String telefone = cliente.getTelefone();
 			String email = cliente.getEmail();

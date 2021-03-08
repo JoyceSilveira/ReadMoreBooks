@@ -11,7 +11,7 @@ public class ComplementarDtCadastro implements IStrategy {
 	@Override
 	public String processar(AbstractEntidade entidade) {
 		
-		if (entidade !=null) {
+		if (entidade != null) {
 			LocalDate data = LocalDate.now();
 			entidade.setDataCadastro(data);
 		} else {

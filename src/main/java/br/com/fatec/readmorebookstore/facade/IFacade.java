@@ -5,7 +5,7 @@ import br.com.fatec.readmorebookstore.dominio.AbstractEntidade;
 
 import java.util.List;
 
-public interface IFachada {
+public interface IFacade {
 
     String cadastrar(AbstractEntidade entidade);
     String excluir(AbstractEntidade entidade);
