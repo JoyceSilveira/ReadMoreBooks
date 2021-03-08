@@ -13,7 +13,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Endereco extends AbstractEntidade {
-    @ManyToOne
+    @ManyToOne(cascade= CascadeType.PERSIST)
     private Cliente cliente;
     @Enumerated(EnumType.STRING)
     private TipoEnderecoEnum tipoEndereco;

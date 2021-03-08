@@ -77,7 +77,7 @@ public class ClienteController {
     public String atualizarEndereco(Endereco endereco, @PathVariable("id") Integer id) {
         try {
             endereco.setId(id);
-            clienteFacade.alterar(endereco);
+            clienteFacade.alterarEndereco(endereco);
             return "redirect:/clientes/perfil-cliente/" + endereco.getId() + "";
         } catch (Exception e) {
             log.error("Falha ao salvar cliente.", e);
@@ -116,7 +116,7 @@ public class ClienteController {
         try {
             cartao.setId(id);
             clienteFacade.alterarCartao(cartao);
-            return "redirect:/clientes/perfil-cliente/" + cartao.getId() + "";
+            return "redirect:/clientes/perfil-cliente/" + cartao.getCliente().getId() + "";
         } catch (Exception e) {
             log.error("Falha ao salvar cliente.", e);
             return "Falha ao salvar cliente.";

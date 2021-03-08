@@ -6,7 +6,6 @@ import br.com.fatec.readmorebookstore.dominio.Endereco;
 import br.com.fatec.readmorebookstore.dominio.TipoEnderecoEnum;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Service
