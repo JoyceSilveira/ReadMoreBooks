@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class ClienteFacade implements IFacade {
@@ -182,6 +179,12 @@ public class ClienteFacade implements IFacade {
 
     public Cliente mostrarPerfil(Integer id){
         Cliente cliente = clienteDAO.findById(id).orElse(null);
+        List<Endereco> enderecosVinculados = enderecoDAO.findAllByCliente(cliente).orElse(Collections.emptyList());
+        List<Cartao>  cartoesVinculados = cartaoDAO.findAllByCliente(cliente).orElse(Collections.emptyList());
+        if (cliente != null) {
+            cliente.setEnderecosVinculados(enderecosVinculados);
+            cliente.setCartoesVinculados(cartoesVinculados);
+        }
         return cliente;
     }
 
