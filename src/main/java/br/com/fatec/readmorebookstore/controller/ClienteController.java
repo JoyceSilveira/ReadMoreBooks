@@ -131,4 +131,15 @@ public class ClienteController {
     @GetMapping("/add-cartao/{id}")
     public String addCartao() { return "add-cartao"; }
 
+    @GetMapping("/inativar/{id}")
+    public String inativarCliente(Cliente cliente, @PathVariable("id") Integer id){
+        try {
+            cliente.setId(id);
+            clienteFacade.excluir(cliente);
+            return "redirect:/clientes/list-cliente";
+        } catch (Exception e) {
+            log.error("Falha ao inativar.", e);
+            return "Falha ao inativar cliente.";
+        }
+    }
 }
