@@ -9,8 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
-    <link href="../static/css/main.css" rel="stylesheet">
-    <link href="../static/css/cadastro-cliente.css" rel="stylesheet">
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/css/cadastro-cliente.css}" rel="stylesheet">
 </head>
 <body id="page-landing">
 <div id="container">
@@ -72,15 +72,7 @@
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="cidade">Cidade</label>
-                                <input th:field="*{cidade}" class="p" type="text" id="cidade" required>
-                            </div>
-                            <div class="campo esp">
-                                <label for="estado">Estado</label>
-                                <input th:field="*{sigla}" class="p" type="text" id="estado" required>
-                            </div>
-                            <div class="campo">
-                                <label for="pais">País</label>
-                                <input th:field="*{pais}" class="p" type="text" id="pais" required>
+                                <input th:field="*{nomeCidade}" class="p" type="text" id="cidade" required>
                             </div>
                         </div>
                         <div class="coluna">

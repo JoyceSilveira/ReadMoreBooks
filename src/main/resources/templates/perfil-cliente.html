@@ -92,7 +92,7 @@
                                 <td th:text="${end.numero}"></td>
                                 <td th:text="${end.complemento}"></td>
                                 <td th:text="${end.observacoes}"></td>
-                                <td><a th:href="@{/clientes/update-endereco/{id}(id=${end.id})}" class="editar">Editar</a></td>
+                                <td><a th:href="@{/clientes/editar-endereco/{id}(id=${end.id})}" class="editar">Editar</a></td>
                                 <td><a th:href="@{/clientes/add-endereco/{id}(id=${cliente.id})}" class="adicionar">Adicionar</a></td>
                             </tr>
                             </tbody>
