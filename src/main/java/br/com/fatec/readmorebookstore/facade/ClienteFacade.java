@@ -180,6 +180,11 @@ public class ClienteFacade implements IFacade {
         return null;
     }
 
+    public Cliente mostrarPerfil(Integer id){
+        Cliente cliente = clienteDAO.findById(id).orElse(null);
+        return cliente;
+    }
+
     public List<Cliente> listarTodos() {
         List<Cliente> clientes = new ArrayList<>();
         clienteDAO.findAll().forEach(clientes::add);

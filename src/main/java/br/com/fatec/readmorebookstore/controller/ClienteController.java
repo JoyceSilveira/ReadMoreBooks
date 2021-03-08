@@ -1,20 +1,17 @@
 package br.com.fatec.readmorebookstore.controller;
 
 import br.com.fatec.readmorebookstore.dominio.Cliente;
-import br.com.fatec.readmorebookstore.dto.ClienteDTO;
 import br.com.fatec.readmorebookstore.facade.ClienteFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.Errors;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
+@Log4j2
 @Controller
 @RequestMapping("/clientes")
 public class ClienteController {
@@ -28,20 +25,21 @@ public class ClienteController {
     }
 
     @PostMapping("/salvar-cliente")
-    public String salvarCliente(Cliente cliente, Errors errors) {
-        String msgRetorno = clienteFacade.cadastrar(cliente);
-        if (msgRetorno != null && !msgRetorno.isEmpty()) {
-            errors.rejectValue("saveErrors", msgRetorno);
-            return "redirect:/clientes/?errors="+errors.getAllErrors();
+    public String salvarCliente(Cliente cliente) {
+        try{
+            clienteFacade.cadastrar(cliente);
+            return "redirect:/clientes/perfil-cliente/" + cliente.getId() + "";
+        } catch (Exception e) {
+            log.error("Falha ao salvar cliente.", e);
+            return "Falha ao salvar cliente";
         }
-
-        return "perfil-cliente";
     }
 
-    @GetMapping("/")
-    public String erroSalvarCliente(Model model, @RequestParam("errors") List<ObjectError> errors) {
-        model.addAttribute("errors", errors);
-        return null;
+    @GetMapping("/perfil-cliente/{id}")
+    public String mostraPerfilCliente(@PathVariable("id") Integer id, Model model) {
+        Cliente cliente = clienteFacade.mostrarPerfil(id);
+        model.addAttribute("cliente", cliente);
+        return "perfil-cliente";
     }
 
     @GetMapping("/list-cliente")
