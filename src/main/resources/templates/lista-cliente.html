@@ -35,12 +35,12 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="cliente: ${clientes}">
+                    <tr th:each="cliente : ${clientes}">
                         <td th:text="${cliente.nome}" class="nome"></td>
                         <td th:text="${cliente.cpf}" class="cpf"></td>
                         <td th:text="${cliente.telefone}" class="telefone"></td>
                         <td th:text="${cliente.email}" class="email"></td>
-                        <td class="botao-excluir"><a th:href="" class="excluir">Inativar</a></td>
+                        <td class="botao-excluir"><a class="excluir">Inativar</a></td>
                     </tr>
                     </tbody>
                 </table>

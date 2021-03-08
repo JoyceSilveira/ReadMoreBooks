@@ -82,68 +82,68 @@
                         </p>
                     </fieldset>
                     <fieldset>
-                        <legend class="sub-categorias">Endereços</legend>
-                        <p class="sub-legend">Entrega</p>
-                        <div class="coluna">
-                            <div class="campo esp">
-                                <label for="tp_endereco">Tipo de endereço</label>
-                                <select th:field="*{enderecoEntrega.tipoEndereco}" class="p" name="tp_endereco" id="tp_endereco">
-                                    <option value="ENTREGA">Entrega</option>
-                                </select>
+                            <legend class="sub-categorias">Endereços</legend>
+                            <p class="sub-legend">Entrega</p>
+                            <div class="coluna">
+                                <div class="campo esp">
+                                    <label for="tp_endereco">Tipo de endereço</label>
+                                    <select th:field="*{enderecoEntrega.tipoEndereco}" class="p" name="tp_endereco" id="tp_endereco">
+                                        <option value="ENTREGA">Entrega</option>
+                                    </select>
+                                </div>
+                                <div class="campo esp">
+                                    <label for="tp_residencia_end">Tipo de residência</label>
+                                    <select th:field="*{enderecoEntrega.tipoResidencia}" class="p" name="tp_residencia" id="tp_residencia_end">
+                                        <option value="casa">Casa</option>
+                                        <option value="apto">Apartamento</option>
+                                        <option value="comercial">Comercial</option>
+                                    </select>
+                                </div>
+                                <div class="campo">
+                                    <label for="tp_logradouro_end">Tipo de logradouro</label>
+                                    <select th:field="*{enderecoEntrega.tipoLogradouro}" class="p" name="tp_logradouro" id="tp_logradouro_end">
+                                        <option value="rua">Rua</option>
+                                        <option value="av">Avenida</option>
+                                        <option value="est">Estrada</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div class="campo esp">
-                                <label for="tp_residencia_end">Tipo de residência</label>
-                                <select th:field="*{enderecoEntrega.tipoResidencia}" class="p" name="tp_residencia" id="tp_residencia_end">
-                                    <option value="casa">Casa</option>
-                                    <option value="apto">Apartamento</option>
-                                    <option value="comercial">Comercial</option>
-                                </select>
+                            <div class="coluna">
+                                <div class="campo esp">
+                                    <label for="logradouro_end">Logradouro</label>
+                                    <input th:field="*{enderecoEntrega.logradouro}" class="g" type="text" id="logradouro_end" required>
+                                </div>
+                                <div class="campo">
+                                    <label for="cep_end">CEP</label>
+                                    <input th:field="*{enderecoEntrega.cep}" class="p" type="text" id="cep_end" required>
+                                </div>
                             </div>
-                            <div class="campo">
-                                <label for="tp_logradouro_end">Tipo de logradouro</label>
-                                <select th:field="*{enderecoEntrega.tipoLogradouro}" class="p" name="tp_logradouro" id="tp_logradouro_end">
-                                    <option value="rua">Rua</option>
-                                    <option value="av">Avenida</option>
-                                    <option value="est">Estrada</option>
-                                </select>
+                            <div class="coluna">
+                                <div class="campo esp">
+                                    <label for="numero_end">Número</label>
+                                    <input th:field="*{enderecoEntrega.numero}" class="p" type="text" id="numero_end" required>
+                                </div>
+                                <div class="campo esp">
+                                    <label for="complemento_end">Complemento</label>
+                                    <input th:field="*{enderecoEntrega.complemento}" class="p" type="text" id="complemento_end">
+                                </div>
+                                <div class="campo">
+                                    <label for="bairro_end">Bairro</label>
+                                    <input th:field="*{enderecoEntrega.bairro}" class="p" type="text" id="bairro_end" required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="coluna">
-                            <div class="campo esp">
-                                <label for="logradouro_end">Logradouro</label>
-                                <input th:field="*{enderecoEntrega.logradouro}" class="g" type="text" id="logradouro_end" required>
+                            <div class="coluna">
+                                <div class="campo esp">
+                                    <label for="cidade_end">Cidade</label>
+                                    <input th:field="*{enderecoEntrega.nomeCidade}" class="p" type="text" id="cidade_end" required>
+                                </div>
                             </div>
-                            <div class="campo">
-                                <label for="cep_end">CEP</label>
-                                <input th:field="*{enderecoEntrega.cep}" class="p" type="text" id="cep_end" required>
+                            <div class="coluna">
+                                <div class="campo">
+                                    <label for="obs_end">Observações</label>
+                                    <input th:field="*{enderecoEntrega.observacoes}" class="g" type="text" id="obs_end">
+                                </div>
                             </div>
-                        </div>
-                        <div class="coluna">
-                            <div class="campo esp">
-                                <label for="numero_end">Número</label>
-                                <input th:field="*{enderecoEntrega.numero}" class="p" type="text" id="numero_end" required>
-                            </div>
-                            <div class="campo esp">
-                                <label for="complemento_end">Complemento</label>
-                                <input th:field="*{enderecoEntrega.complemento}" class="p" type="text" id="complemento_end">
-                            </div>
-                            <div class="campo">
-                                <label for="bairro_end">Bairro</label>
-                                <input th:field="*{enderecoEntrega.bairro}" class="p" type="text" id="bairro_end" required>
-                            </div>
-                        </div>
-                        <div class="coluna">
-                            <div class="campo esp">
-                                <label for="cidade_end">Cidade</label>
-                                <input th:field="*{enderecoEntrega.nomeCidade}" class="p" type="text" id="cidade_end" required>
-                            </div>
-                        </div>
-                        <div class="coluna">
-                            <div class="campo">
-                                <label for="obs_end">Observações</label>
-                                <input th:field="*{enderecoEntrega.observacoes}" class="g" type="text" id="obs_end">
-                            </div>
-                        </div>
                         <p class="sub-legend">Cobrança</p>
                         <div class="coluna">
                             <div class="campo esp">
@@ -206,33 +206,33 @@
                         </div>
                     </fieldset>
                     <fieldset>
-                        <legend class="sub-categorias">Cartão de crédito</legend>
-                        <div class="coluna">
-                            <div class="campo esp">
-                                <label for="bandeira">Bandeira</label>
-                                <select th:field="*{cartao.bandeira}" class="p" name="bandeira" id="bandeira">
-                                    <option value="mastercard">Mastercard</option>
-                                    <option value="visa">Visa</option>
-                                    <option value="elo">Elo</option>
-                                </select>
-                            </div>
-                            <div class="campo esp">
-                                <label for="num_card">Número</label>
-                                <input th:field="*{cartao.numero}" class="p" type="text" id="num_card">
-                            </div>
-                            <div class="campo">
-                                <label for="cod_seguranca">Código de segurança</label>
-                                <input th:field="*{cartao.cvv}" class="p" type="text" id="cod_seguranca">
-                            </div>
-                        </div>
-                        <div class="coluna">
-                            <div class="campo">
+                            <legend class="sub-categorias">Cartão de crédito</legend>
+                            <div class="coluna">
+                                <div class="campo esp">
+                                    <label for="bandeira">Bandeira</label>
+                                    <select th:field="*{cartao.bandeira}" class="p" name="bandeira" id="bandeira">
+                                        <option value="mastercard">Mastercard</option>
+                                        <option value="visa">Visa</option>
+                                        <option value="elo">Elo</option>
+                                    </select>
+                                </div>
+                                <div class="campo esp">
+                                    <label for="num_card">Número</label>
+                                    <input th:field="*{cartao.numero}" class="p" type="text" id="num_card">
+                                </div>
                                 <div class="campo">
-                                    <label for="nome_card">Nome impresso no cartão</label>
-                                    <input th:field="*{cartao.nomeImpresso}" class="p" type="text" id="nome_card">
+                                    <label for="cod_seguranca">Código de segurança</label>
+                                    <input th:field="*{cartao.cvv}" class="p" type="text" id="cod_seguranca">
                                 </div>
                             </div>
-                        </div>
+                            <div class="coluna">
+                                <div class="campo">
+                                    <div class="campo">
+                                        <label for="nome_card">Nome impresso no cartão</label>
+                                        <input th:field="*{cartao.nomeImpresso}" class="p" type="text" id="nome_card">
+                                    </div>
+                                </div>
+                            </div>
                     </fieldset>
                 </div>
                 <div class="div-botao">

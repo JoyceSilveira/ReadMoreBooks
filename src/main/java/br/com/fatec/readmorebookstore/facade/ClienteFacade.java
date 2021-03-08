@@ -6,9 +6,11 @@ import br.com.fatec.readmorebookstore.negocio.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
+import lombok.extern.log4j.Log4j2;
 
 import java.util.*;
 
+@Log4j2
 @Service
 public class ClienteFacade implements IFacade {
 
@@ -18,7 +20,6 @@ public class ClienteFacade implements IFacade {
     private final CartaoDAO cartaoDAO;
     private final CidadeDAO cidadeDAO;
     private final ComplementarDtCadastro cDataCadastro;
-    private final ComplementarCidade cCidade;
     private final ValidadorCpf vCpf;
     private final ValidadorDadosObrigatoriosCliente vCliente;
     private final ValidadorExistenciaClienteCpf vExistenciaClienteCpf;
@@ -30,7 +31,7 @@ public class ClienteFacade implements IFacade {
     public ClienteFacade(
             ClienteDAO clienteDAO, EnderecoDAO enderecoDAO,
             CartaoDAO cartaoDAO, CidadeDAO cidadeDAO,
-            ComplementarDtCadastro cDataCadastro, ComplementarCidade cCidade, ValidadorCpf vCpf,
+            ComplementarDtCadastro cDataCadastro, ValidadorCpf vCpf,
             ValidadorDadosObrigatoriosCliente vCliente, ValidadorExistenciaClienteCpf vExistenciaClienteCpf,
             ValidadorSenhaCliente vSenhaCliente) {
         this.clienteDAO = clienteDAO;
@@ -38,17 +39,16 @@ public class ClienteFacade implements IFacade {
         this.cartaoDAO = cartaoDAO;
         this.cidadeDAO = cidadeDAO;
         this.cDataCadastro = cDataCadastro;
-        this.cCidade = cCidade;
         this.vCpf = vCpf;
         this.vCliente = vCliente;
         this.vExistenciaClienteCpf = vExistenciaClienteCpf;
         this.vSenhaCliente = vSenhaCliente;
         definirDAOS(clienteDAO, enderecoDAO, cartaoDAO, cidadeDAO);
-        definirRNS(cDataCadastro, cCidade, vCpf, vCliente, vExistenciaClienteCpf, vSenhaCliente);
+        definirRNS(cDataCadastro, vCpf, vCliente, vExistenciaClienteCpf, vSenhaCliente);
     }
 
     private void definirRNS(
-        ComplementarDtCadastro cDataCadastro, ComplementarCidade cCidade, ValidadorCpf vCpf,
+        ComplementarDtCadastro cDataCadastro, ValidadorCpf vCpf,
         ValidadorDadosObrigatoriosCliente vCliente, ValidadorExistenciaClienteCpf vExistenciaClienteCpf,
         ValidadorSenhaCliente vSenhaCliente
     ) {
@@ -61,11 +61,7 @@ public class ClienteFacade implements IFacade {
         rnsCliente.add(vExistenciaClienteCpf);
         rnsCliente.add(vSenhaCliente);
 
-        List<IStrategy> rnsEndereco = new ArrayList<>();
-        rnsEndereco.add(cCidade);
-
         rns.put(Cliente.class.getName(), rnsCliente);
-        rns.put(Endereco.class.getName(), rnsEndereco);
     }
 
     private void definirDAOS(
@@ -179,13 +175,23 @@ public class ClienteFacade implements IFacade {
 
     public Cliente mostrarPerfil(Integer id){
         Cliente cliente = clienteDAO.findById(id).orElse(null);
-        List<Endereco> enderecosVinculados = enderecoDAO.findAllByCliente(cliente).orElse(Collections.emptyList());
-        List<Cartao>  cartoesVinculados = cartaoDAO.findAllByCliente(cliente).orElse(Collections.emptyList());
-        if (cliente != null) {
-            cliente.setEnderecosVinculados(enderecosVinculados);
-            cliente.setCartoesVinculados(cartoesVinculados);
-        }
         return cliente;
+    }
+
+    public Cartao pegarCartao(Integer id){
+        Cartao cartao = cartaoDAO.findById(id).orElse(null);
+        return cartao;
+    }
+
+    public Endereco pegarEndereco(Integer id){
+        Endereco endereco = enderecoDAO.findById(id).orElse(null);
+        return endereco;
+    }
+
+    public String alterarCartao(AbstractEntidade entidade) {
+        CrudRepository dao = daos.get(entidade);
+        dao.save(entidade);
+        return null;
     }
 
     public List<Cliente> listarTodos() {

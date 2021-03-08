@@ -29,6 +29,5 @@ public class Endereco extends AbstractEntidade {
     // Preenchimento opcional
     private String observacoes;
 
-    @Transient
     private String nomeCidade;
 }

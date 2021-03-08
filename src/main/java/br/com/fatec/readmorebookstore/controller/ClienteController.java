@@ -1,6 +1,6 @@
 package br.com.fatec.readmorebookstore.controller;
 
-import br.com.fatec.readmorebookstore.dominio.Cliente;
+import br.com.fatec.readmorebookstore.dominio.*;
 import br.com.fatec.readmorebookstore.facade.ClienteFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -53,30 +53,53 @@ public class ClienteController {
         return "update-cliente-senha";
     }
 
-    @GetMapping("/update-endereco-entrega/{id}")
-    public String upEndEntrega() { return "update-cliente-end-entrega"; }
+    @GetMapping("/editar-endereco/{id}")
+    public String EditEndereco(@PathVariable("id") Integer id, Model model) {
+        Endereco endereco = clienteFacade.pegarEndereco(id);
+        return "update-cliente-endereco";
+    }
 
-    @GetMapping("/update-endereco-cobranca/{id}")
-    public String upEndCobranca() { return "update-cliente-end-cobranca"; }
-
-    @GetMapping("/update-dados/{id}")
-    public String upDadosPessoais() {
+    @GetMapping("/editar-dados/{id}")
+    public String EditDadosPessoais(@PathVariable("id") Integer id, Model model) {
+        Cliente cliente = clienteFacade.mostrarPerfil(id);
+        model.addAttribute("cliente", cliente);
         return "update-cliente-dados";
     }
 
-    @GetMapping("/update-cartao/{id}")
-    public String upCartao() {
+    @PostMapping("/atualizar-dados/{id}")
+    public String atualizarDados(Cliente cliente, @PathVariable("id") Integer id) {
+        try {
+            cliente.setId(id);
+            clienteFacade.alterar(cliente);
+            return "redirect:/clientes/perfil-cliente/" + cliente.getId() + "";
+        } catch (Exception e) {
+            log.error("Falha ao salvar cliente.", e);
+            return "Falha ao salvar cliente.";
+        }
+    }
+
+    @GetMapping("/editar-cartao/{id}")
+    public String EditCartao(@PathVariable("id") Integer id, Model model) {
+        Cartao cartao = clienteFacade.pegarCartao(id);
+        model.addAttribute("cartao", cartao);
         return "update-cartao";
     }
 
-    @GetMapping("/add-endereco-cobranca/{id}")
-    public String addEndCobranca() {
-        return "add-cliente-end-cobranca";
+    @PostMapping("/atualizar-cartao/{id}")
+    public String atualizarCartao(Cartao cartao, @PathVariable("id") Integer id) {
+        try {
+            cartao.setId(id);
+            clienteFacade.alterarCartao(cartao);
+            return "redirect:/clientes/perfil-cliente/" + cartao.getId() + "";
+        } catch (Exception e) {
+            log.error("Falha ao salvar cliente.", e);
+            return "Falha ao salvar cliente.";
+        }
     }
 
-    @GetMapping("/add-endereco-entrega/{id}")
-    public String addEndEntrega() {
-        return "add-cliente-end-entrega";
+    @GetMapping("/add-endereco/{id}")
+    public String addEndCobranca() {
+        return "add-cliente-end-cobranca";
     }
 
     @GetMapping("/add-cartao/{id}")

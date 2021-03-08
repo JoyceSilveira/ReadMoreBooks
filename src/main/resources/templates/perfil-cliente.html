@@ -30,7 +30,7 @@
                     <fieldset>
                         <legend class="sub-categorias">Dados pessoais</legend>
                         <div class="botao-editar">
-                            <a href="@{/clientes/update-dados/' + cliente.getId() + ''" class="editar">Editar</a>
+                            <a th:href="@{/clientes/editar-dados/{id}(id=${cliente.id})}" class="editar">Editar</a>
                         </div>
                         <div class="coluna">
                             <div class="campo esp">
@@ -65,143 +65,61 @@
                         <div class="coluna">
                             <div class="campo esp">
                                 <label >Senha</label>
-                                <a href="@{/clientes/update-senha/' + cliente.getId() + ''" class="alt-senha">Alterar senha</a>
+                                <a th:href="@{/clientes/update-senha/{id}(id=${cliente.id})}" class="alt-senha">Alterar senha</a>
                             </div>
                         </div>
                     </fieldset>
                     <fieldset>
                         <legend class="sub-categorias">Endereços</legend>
-                        <p class="sub-legend">Entrega</p>
-                        <div class="botao-editar">
-                            <a href="@{/clientes/update-endereco-entrega/' + cliente.getId() + ''" class="editar">Editar</a>
-                            <a href="@{/clientes/add-endereco-entrega/' + cliente.getId() + ''}" class="adicionar">Adicionar</a>
-                        </div>
-                        <div class="coluna">
-                            <div class="campo esp">
-                                <label for="tp_residencia">Tipo de residência</label>
-                                <input th:field="*{enderecoEntrega.tipoResidencia}" type="text" class="p" id="tp_residencia" value="" readonly>
-                            </div>
-                            <div class="campo">
-                                <label for="tp_logradouro">Tipo de logradouro</label>
-                                <input th:field="*{enderecoEntrega.tipoLogradouro}" type="text" class="p" id="tp_logradouro" value="" readonly>
-                            </div>
-                        </div>
-                        <div class="coluna">
-                            <div class="campo esp">
-                                <label for="logradouro">Logradouro</label>
-                                <input th:field="*{enderecoEntrega.logradouro}" class="g" type="text" id="logradouro" value="" readonly>
-                            </div>
-                            <div class="campo">
-                                <label for="cep">CEP</label>
-                                <input th:field="*{enderecoEntrega.cep}" class="p" type="text" id="cep" value="" readonly>
-                            </div>
-                        </div>
-                        <div class="coluna">
-                            <div class="campo esp">
-                                <label for="numero">Número</label>
-                                <input th:field="*{enderecoEntrega.numero}" class="p" type="text" id="numero" value="" readonly>
-                            </div>
-                            <div class="campo esp">
-                                <label for="complemento">Complemento</label>
-                                <input th:field="*{enderecoEntrega.complemento}" class="p" type="text" id="complemento" value="" readonly>
-                            </div>
-                            <div class="campo">
-                                <label for="bairro">Bairro</label>
-                                <input th:field="*{enderecoEntrega.bairro}" class="p" type="text" id="bairro" value="" readonly>
-                            </div>
-                        </div>
-                        <div class="coluna">
-                            <div class="campo esp">
-                                <label for="cidade">Cidade</label>
-                                <input th:field="*{enderecoEntrega.nomeCidade}" class="p" type="text" id="cidade" value="" readonly>
-                            </div>
-                        </div>
-                        <div class="coluna">
-                            <div class="campo">
-                                <label for="obs">Observações</label>
-                                <input th:field="*{enderecoEntrega.observacoes}" class="g" type="text" id="obs" value="" readonly>
-                            </div>
-                        </div>
-                        <p class="sub-legend">Cobrança</p>
-                        <div class="botao-editar">
-                            <a href="@{/clientes/update-endereco-cobranca/' + cliente.getId() + ''" class="editar">Editar</a>
-                            <a href="@{/clientes/add-endereco-cobranca/' + cliente.getId() + ''}" class="adicionar">Adicionar</a>
-                        </div>
-                        <div class="coluna">
-                            <div class="campo esp">
-                                <label for="tp_residencia_end">Tipo de residência</label>
-                                <input th:field="*{enderecoCobranca.tipoResidencia}" type="text" class="p" id="tp_residencia_end" value="" readonly>
-                            </div>
-                            <div class="campo">
-                                <label for="tp_logradouro_end">Tipo de logradouro</label>
-                                <input th:field="*{enderecoCobranca.tipoLogradouro}" type="text" class="p" id="tp_logradouro_end" value="" readonly>
-                            </div>
-                        </div>
-                        <div class="coluna">
-                            <div class="campo esp">
-                                <label for="logradouro_end">Logradouro</label>
-                                <input th:field="*{enderecoCobranca.logradouro}" class="g" type="text" id="logradouro_end" value="" readonly>
-                            </div>
-                            <div class="campo">
-                                <label for="cep_end">CEP</label>
-                                <input th:field="*{enderecoCobranca.cep}" class="p" type="text" id="cep_end" value="" readonly>
-                            </div>
-                        </div>
-                        <div class="coluna">
-                            <div class="campo esp">
-                                <label for="numero_end">Número</label>
-                                <input th:field="*{enderecoCobranca.numero}" class="p" type="text" id="numero_end" value="" readonly>
-                            </div>
-                            <div class="campo esp">
-                                <label for="complemento_end">Complemento</label>
-                                <input th:field="*{enderecoCobranca.complemento}"class="p" type="text" id="complemento_end" value="" readonly>
-                            </div>
-                            <div class="campo">
-                                <label for="bairro_end">Bairro</label>
-                                <input th:field="*{enderecoCobranca.bairro}" class="p" type="text" id="bairro_end" value="" readonly>
-                            </div>
-                        </div>
-                        <div class="coluna">
-                            <div class="campo esp">
-                                <label for="cidade_end">Cidade</label>
-                                <input th:field="*{enderecoCobranca.cidade}" class="p" type="text" id="cidade_end" value="" readonly>
-                            </div>
-                        </div>
-                        <div class="coluna">
-                            <div class="campo">
-                                <label for="obs_end">Observações</label>
-                                <input th:field="*{enderecoCobranca.observacoes}" class="g" type="text" id="obs_end" value="" readonly>
-                            </div>
-                        </div>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Tipo de endereço</th>
+                                <th>Logradouro</th>
+                                <th>Bairro</th>
+                                <th>Cidade</th>
+                                <th>Número</th>
+                                <th>Complemento</th>
+                                <th>Observações</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="end : ${cliente.enderecosVinculados}">
+                                <td th:text="${end.tipoEndereco}"></td>
+                                <td th:text="${end.logradouro}"></td>
+                                <td th:text="${end.bairro}"></td>
+                                <td th:text="${end.nomeCidade}"></td>
+                                <td th:text="${end.numero}"></td>
+                                <td th:text="${end.complemento}"></td>
+                                <td th:text="${end.observacoes}"></td>
+                                <td><a th:href="@{/clientes/update-endereco/{id}(id=${end.id})}" class="editar">Editar</a></td>
+                                <td><a th:href="@{/clientes/add-endereco/{id}(id=${cliente.id})}" class="adicionar">Adicionar</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </fieldset>
                     <fieldset>
                         <legend class="sub-categorias">Cartão de crédito</legend>
-                        <div class="botao-editar">
-                            <a href="@{/clientes/update-cartao/' + cliente.getId() + ''" class="editar">Editar</a>
-                            <a href="@{/clientes/add-cartao/' + cliente.getId() + ''}" class="adicionar">Adicionar</a>
-                        </div>
-                        <div class="coluna">
-                            <div class="campo esp">
-                                <label for="bandeira">Bandeira</label>
-                                <input th:field="*{cartao.bandeira}" class="g" type="text" id="bandeira" value="" readonly>
-                            </div>
-                            <div class="campo esp">
-                                <label for="num_card">Número</label>
-                                <input th:field="*{cartao.numero}" class="p" type="text" id="num_card" value="" readonly>
-                            </div>
-                            <div class="campo">
-                                <label for="cod_seguranca">Código de segurança</label>
-                                <input th:field="*{cartao.cvv}" class="p" type="text" id="cod_seguranca" value="" readonly>
-                            </div>
-                        </div>
-                        <div class="coluna">
-                            <div class="campo">
-                                <div class="campo">
-                                    <label for="nome_card">Nome impresso no cartão</label>
-                                    <input th:field="*{cartao.nomeImpresso}"class="p" type="text" id="nome_card" value="" readonly>
-                                </div>
-                            </div>
-                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Bandeira</th>
+                                    <th>Número</th>
+                                    <th>Código de segurança</th>
+                                    <th>Nome impresso no cartão</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="cartaoC : ${cliente.cartoesVinculados}">
+                                <td th:text="${cartaoC.bandeira}" class="nome"></td>
+                                <td th:text="${cartaoC.numero}" class="cpf"></td>
+                                <td th:text="${cartaoC.cvv}" class="telefone"></td>
+                                <td th:text="${cartaoC.nomeImpresso}" class="email"></td>
+                                <td><a th:href="@{/clientes/editar-cartao/{id}(id=${cartaoC.id})}" class="editar">Editar</a></td>
+                                <td><a th:href="@{/clientes/add-cartao/{id}(id=${cliente.id})}" class="adicionar">Adicionar</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </fieldset>
                 </div>
                 <div class="div-botao">

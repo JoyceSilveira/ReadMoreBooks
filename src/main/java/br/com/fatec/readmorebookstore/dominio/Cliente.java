@@ -40,8 +40,6 @@ public class Cliente extends AbstractEntidade {
     @Transient
     private Endereco enderecoCobranca;
     @Transient
-    private Endereco enderecoResidencial;
-    @Transient
     private List<Endereco> enderecos = new ArrayList<>();
     @Transient
     private Cartao cartao;
