@@ -193,13 +193,9 @@ public class ClienteFacade implements IFacade {
         dao.save(entidade);
     }
 
-    public String alterarEndereco(AbstractEntidade entidade) {
-        String msg = executarRegras(entidade);
-        if (msg == null) {
-            CrudRepository dao = daos.get(entidade.getClass().getName());
-            dao.save(entidade);
-        }
-        return msg;
+    public void alterarEndereco(AbstractEntidade entidade) {
+        CrudRepository dao = daos.get(entidade.getClass().getName());
+        dao.save(entidade);
     }
 
     public List<Cliente> listarTodos() {

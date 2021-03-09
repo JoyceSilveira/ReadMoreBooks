@@ -157,3 +157,18 @@ main .caixa .titulo p{
 .dados-form .dados{
     font-size: 2rem;
 }
+
+.caixa table th{
+    padding: 1rem;
+    font-size: 1.7rem;
+    text-align: start;
+}
+
+.caixa table td{
+    font-size: 1.5rem;
+    padding: 1.8rem 1.2rem;
+}
+
+.caixa table tr{
+    border: #FCC06D solid 1px !important;
+}
