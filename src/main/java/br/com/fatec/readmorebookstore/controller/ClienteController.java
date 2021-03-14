@@ -8,8 +8,6 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
-import java.util.List;
-
 @Log4j2
 @Controller
 @RequestMapping("/clientes")
@@ -125,7 +123,7 @@ public class ClienteController {
 
     @GetMapping("/add-endereco/{id}")
     public String addEndCobranca() {
-        return "add-cliente-end-cobranca";
+        return "add-cliente-endereco";
     }
 
     @GetMapping("/add-cartao/{id}")

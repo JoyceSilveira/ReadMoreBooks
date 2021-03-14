@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>ReadMore Books</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/css/perfil-cliente.css}" rel="stylesheet">
+    <link th:href="@{/css/detalhes-livro.css}" rel="stylesheet">
+</head>
+<body id="page-landing">
+<div id="container">
+    <header class="page-header">
+        <div class="top-bar-container">
+            <div class="marca">
+                <div class="logo"></div>
+                <h2>ReadMore Books</h2>
+            </div>
+            <div class="user">
+                <p>Usuário</p>
+                <a><img src="/static/img/vista-lateral-vazia-do-carrinho-de-compras.png" alt="" class="carrinho"></a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="caixa">
+            <div class="titulo">
+                <p class="cadastrar">Detalhes do livro</p>
+            </div>
+            <form action="" class="perfil">
+                <div class="dados-form">
+                    <fieldset>
+                        <div class="coluna">
+                            <div class="campo esp">
+                                <label for="titulo">Título</label>
+                                <input class="g" type="text" id="titulo" readonly>
+                            </div>
+                            <div class="campo">
+                                <label for="editora">Editora</label>
+                                <input class="g" type="text" id="editora" readonly>
+                            </div>
+                        </div>
+                        <div class="coluna">
+                            <div class="campo esp">
+                                <label for="autor">Autor</label>
+                                <input class="g" type="text" id="autor" readonly>
+                            </div>
+                            <div class="campo esp">
+                                <label for="ano">Ano</label>
+                                <input class="p" type="text" id="ano" readonly>
+                            </div>
+                            <div class="campo">
+                                <label for="edicao">Edição</label>
+                                <input class="p" type="text" id="edicao" readonly>
+                            </div>
+                        </div>
+                        <div class="coluna">
+                            <div class="campo esp">
+                                <label for="isbn">ISBN</label>
+                                <input class="g" type="text" id="isbn" readonly>
+                            </div>
+                            <div class="campo esp">
+                                <label for="n_paginas">Número de páginas</label>
+                                <input class="p" type="text" id="n_paginas" readonly>
+                            </div>
+                        </div>
+                        <div class="coluna">
+                            <div class="campo esp">
+                                <label for="sinopse">Sinopse</label>
+                                <textarea name="" id="sinopse" cols="60" rows="5" readonly></textarea>
+                            </div>
+                            <div class="campo">
+                                <label for="romance" class="opcao">Categoria</label>
+                                <input type="text" id="categoria" readonly>
+                            </div>
+                        </div>
+                        <div class="coluna">
+                            <div class="campo esp">
+                                <label for="g_precificação">Grupo de precificação</label>
+                                <input class="p" type="text" id="g_precificação" readonly>
+                            </div>
+                            <div class="campo esp">
+                                <label for="preco">Preço</label>
+                                <input class="p" type="text" id="preco" readonly>
+                            </div>
+                            <div class="campo esp">
+                                <label for="cod_barras">Código de barras</label>
+                                <input class="g" type="text" id="cod_barras" readonly>
+                            </div>
+                        </div>
+                        <p class="sub-legend">Dimensões</p>
+                        <div class="coluna">
+                            <div class="campo esp">
+                                <label for="altura">Altura</label>
+                                <input class="p" type="text" id="altura" readonly>
+                            </div>
+                            <div class="campo esp">
+                                <label for="largura">Largura</label>
+                                <input class="p" type="text" id="largura" readonly>
+                            </div>
+                            <div class="campo esp">
+                                <label for="peso">Peso</label>
+                                <input class="p" type="text" id="peso" readonly>
+                            </div>
+                            <div class="campo">
+                                <label for="profundidade">Profundidade</label>
+                                <input class="p" type="text" id="profundidade" readonly>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="compra">
+                        <div class="campo">
+                            <label for="quantidade">Quantidade</label>
+                            <input class="quant" type="text" id="quantidade" required>
+                        </div>
+                        <div class="div-botao">
+                            <input type="submit" class="botao" value="Adicionar ao carrinho">
+                        </div>
+                    </fieldset>
+                </div>
+            </form>
+            <div class="div-botao">
+                <a href="" class="botao">Voltar</a>
+            </div>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+</div>
+</body>
+</html>

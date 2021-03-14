@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>ReadMore Books</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/css/lista-livros.css}" rel="stylesheet">
+    <link th:href="@{/css/carrinho.css}" rel="stylesheet">
+</head>
+<body id="page-landing">
+<div id="container">
+    <header class="page-header">
+        <div class="top-bar-container">
+            <div class="marca">
+                <div class="logo"></div>
+                <h2>ReadMore Books</h2>
+            </div>
+            <div class="user">
+                <p>Usuário</p>
+                <a><img src="/static/img/vista-lateral-vazia-do-carrinho-de-compras.png" alt="" class="carrinho"></a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="caixa">
+            <div th:switch="${clientes}" class="listagem">
+                <h2 th:case="null" class="alerta">Carrinho vazio!</h2>
+                <div th:case="*" class="div-tabela">
+                    <h2 class="titulo-tabela">Itens do carrinho</h2>
+                    <form action="">
+                        <table class="tabela">
+                            <tr th:each="cliente : ${clientes}">
+                                <td th:text="${cliente.nome}" class="nome">Titulo</td>
+                                <td th:text="${cliente.cpf}" class="cpf">Edição</td>
+                                <td th:text="${cliente.telefone}" class="telefone">Preço</td>
+                                <td class="botao-excluir"><input type="text" class="quantidade" value="5"></td>
+                                <td class="botao-excluir"><a th:href="@{/clientes/inativar/{id}(id=${cliente.id})}" class="botao">Excluir</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="div-botao">
+                            <input type="submit" class="botao" value="Continuar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+</div>
+</body>
+</html>

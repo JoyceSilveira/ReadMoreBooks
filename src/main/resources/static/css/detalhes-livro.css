@@ -1,0 +1,16 @@
+.quant{
+    padding: 0.5rem 1rem;
+    border: #4B4C4D solid 1px !important;
+    width: 8.5rem;
+    text-align: center;
+}
+
+.compra{
+    display: flex;
+    justify-content: space-between;
+}
+
+textarea {
+    border: none;
+    padding: 0.5rem 1rem;
+}

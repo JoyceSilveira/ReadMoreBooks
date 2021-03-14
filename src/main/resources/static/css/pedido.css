@@ -1,0 +1,271 @@
+#page-landing #container{
+    max-width: 100vw;
+    height: 100vh;
+}
+
+.page-header .top-bar-container .marca{
+    display: flex;
+}
+
+.page-header .top-bar-container h2{
+    font-family: 'Roboto', 'sans-serif';
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: #000000;
+}
+
+.page-header .top-bar-container .logo{
+    background-color: #FCC06D;
+    width: 40px;
+    height: 40px;
+
+    margin-right: 1.5rem;
+}
+
+.page-header .top-bar-container .user{
+    display: flex;
+    align-items: center;
+}
+
+.page-header .top-bar-container .user p{
+    font-size: 2rem;
+    color:#FCC06D;
+    margin-right: 2rem;
+}
+
+.page-header .top-bar-container .user a{
+    background-color: #FCC06D;
+    padding: 0.5rem;
+    border-radius: 0.9rem;
+}
+
+.page-header .top-bar-container .carrinho{
+    width: 20px;
+    height: 18px;
+}
+
+#page-landing main{
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    background-color: #FAFAFA;
+}
+
+main .caixa{
+    margin: 0 auto;
+    width: 1000px;
+    padding: 3rem 5rem;
+    border: #FCC06D solid 1.5px;
+    border-radius: 0.8rem;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+}
+
+.caixa form fieldset{
+    border: none;
+    margin-top: 2rem;
+}
+
+main .caixa .titulo {
+    font-family: 'Roboto', 'sans serif';
+    font-size: 3rem;
+    color: #000000;
+
+    margin-bottom: 2rem;
+    margin-right: 2rem;
+}
+
+.caixa form fieldset .coluna{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.caixa form fieldset .campo{
+    margin-top: 1.3rem
+}
+
+.caixa form fieldset label{
+    display: block;
+    font-family: 'Roboto', 'Sans serief';
+    font-size: 1.7rem;
+    margin-bottom: 0.8rem;
+    color: #4B4C4D;
+}
+
+.caixa form fieldset input{
+    padding: 0.5rem 1rem;
+    border: #4B4C4D solid 1px;
+}
+
+.caixa form fieldset select{
+    padding: 0.5rem 1rem;
+    border: #4B4C4D solid 1px;
+}
+
+.caixa form fieldset .esp{
+    margin-right: 2.5rem;
+}
+
+.caixa form fieldset .p{
+    width: 20rem;
+}
+
+.caixa form fieldset .m{
+    width: 30rem;
+}
+
+.caixa form fieldset .g{
+    width: 40rem;
+}
+
+.caixa form .div-botao {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
+    margin-top: 2rem;
+}
+
+.caixa form .div-botao .botao{
+    background-color: #FCC06D;
+    padding: 0.8rem 2rem;
+    color:#ffffff;
+    font-size: 1.5rem;
+    font-family: 'Roboto', 'sans serief';
+    border: none;
+}
+
+.opcao_bloco {
+    display: flex;
+    align-items: center;
+}
+
+.opcao {
+    margin-bottom: 0 !important;
+    margin-right: 1rem;
+    margin-left: 0.5rem;
+}
+
+.titulo_opcao {
+    font-family: 'Roboto', 'Sans serief';
+    font-size: 1.7rem;
+    color: #4B4C4D;
+    margin-bottom: 0.8rem;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.tabela {
+    margin-bottom: 5rem;
+}
+
+main .listagem{
+    margin: 0 auto;
+    margin-top: 2rem;
+}
+
+main .listagem .titulo-tabela{
+    font-size: 2.5rem;
+}
+
+main .listagem .tabela th{
+    padding: 1rem;
+    color: white;
+    background-color: #FCC06D;
+    font-size: 1.8rem;
+    text-align: start;
+}
+
+main .listagem .tabela tr{
+    border-top: #FCC06D solid 1.5px;
+    border-bottom: #FCC06D solid 1.5px;
+}
+
+main .listagem .tabela td{
+    font-size: 1.7rem;
+    padding: 1.8rem 1.2rem;
+}
+
+main .listagem .tabela tr .nome{
+    width: 40rem;
+}
+
+main .listagem .tabela tr .cpf{
+    width: 16rem;
+}
+
+main .listagem .tabela tr .telefone{
+    width: 14rem;
+}
+
+main .listagem .tabela tr .email{
+    width: 40rem;
+}
+
+main .listagem .tabela .botao{
+    padding: 1.2rem;
+    color: white;
+    background-color: #FCC06D;
+    font-size: 1.5rem;
+}
+
+.caixa .sub-categorias{
+    color: #FCC06D;
+    font-size: 1.8rem;
+    font-weight: bold;
+
+    margin-bottom: 1rem;
+}
+
+.caixa .info-cliente {
+    margin-bottom: 2rem;
+}
+
+.caixa .info-cliente th{
+    padding: 1rem;
+    font-size: 1.7rem;
+    text-align: start;
+}
+
+.caixa .info-cliente td{
+    font-size: 1.5rem;
+    padding: 1.8rem 1.2rem;
+}
+
+.caixa .info-cliente tbody tr{
+    border: #FCC06D solid 1px;
+}
+
+.quantidade{
+    width: 5rem;
+    text-align: center;
+    border: none;
+}
+
+.caixa .cupom-label{
+    display: block;
+    font-family: 'Roboto', 'Sans serief';
+    font-size: 1.7rem;
+    margin-bottom: 0.8rem;
+    color: #FCC06D;
+    font-weight: bold;
+}
+
+.caixa .cupom{
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+}
+
+.explicacao{
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.categoria-info {
+    border-bottom: #FCC06D 1.5px solid;
+    padding: 2rem 0;
+}

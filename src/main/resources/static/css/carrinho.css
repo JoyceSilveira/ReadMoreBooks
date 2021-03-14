@@ -1,0 +1,12 @@
+.quantidade {
+    width: 5rem;
+    text-align: center;
+}
+
+.div-botao{
+    justify-content: flex-end !important;
+}
+
+.listagem{
+    width: 900px !important;
+}

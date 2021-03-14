@@ -1,0 +1,21 @@
+.opcao_bloco {
+    display: flex;
+    align-items: center;
+}
+
+.opcao {
+    margin-bottom: 0 !important;
+    margin-right: 1rem;
+    margin-left: 0.5rem;
+}
+
+.titulo_opcao {
+    font-family: 'Roboto', 'Sans serief';
+    font-size: 1.7rem;
+    color: #4B4C4D;
+    margin-bottom: 0.8rem;
+}
+
+.sub-legend{
+    margin-top: 1rem;
+}
