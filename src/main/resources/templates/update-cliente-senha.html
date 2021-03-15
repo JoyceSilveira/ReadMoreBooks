@@ -13,11 +13,20 @@
     <link th:href="@{/css/cadastro-cliente.css}" rel="stylesheet">
 </head>
 <body id="page-landing">
-<div id="container">
+<div id="container" class="cliente">
     <header class="page-header">
         <div class="top-bar-container">
-            <div class="logo"></div>
-            <h2>ReadMore Books</h2>
+            <div class="marca">
+                <div class="logo"></div>
+                <h2><a th:href="@{/clientes/principal}">ReadMore Books</a></h2>
+            </div>
+            <div class="user">
+                <p><a th:href="@{/clientes/perfil-cliente/{id}(id=${cliente.id})}">Usuário</a></p>
+                <p>
+                    <a th:href="@{/clientes/lista-compras}"><img th:src="@{/img/sacolas-compras.png}" alt="" class="carrinho"></a>
+                </p>
+                <a th:href="@{/clientes/carrinho-compras}"><img th:src="@{/img/carrinho-compras.png}" alt="" class="carrinho"></a>
+            </div>
         </div>
     </header>
     <main>
@@ -25,17 +34,17 @@
             <div class="titulo">
                 <p class="cadastrar">Alteração de senha</p>
             </div>
-            <form th:action="@{/clientes/atualizar-dados/{id}(id=${cliente.id})}" th:object="${cliente}" method="post">
+            <form th:action="@{/clientes/atualizar-senha/{id}(id=${cliente.id})}" th:object="${cliente}" method="post">
                 <div class="dados-form">
                     <fieldset>
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="senha">Nova senha</label>
-                                <input th:field="*{senha}" class="p" type="text" id="senha" required>
+                                <input th:field="*{senha}" class="p" type="password" id="senha" value=" " required>
                             </div>
                             <div class="campo">
                                 <label for="rep-senha">Digite a nova senha novamente</label>
-                                <input th:field="*{senhaConfirmacao}" class="p" type="text" id="rep-senha" required>
+                                <input th:field="*{senhaConfirmacao}" class="p" type="password" id="rep-senha" required>
                             </div>
                         </div>
                         <p class="info-senha">

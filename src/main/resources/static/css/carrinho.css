@@ -4,7 +4,7 @@
 }
 
 .div-botao{
-    justify-content: flex-end !important;
+    justify-content: space-between !important;
 }
 
 .listagem{

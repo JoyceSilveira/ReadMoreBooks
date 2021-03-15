@@ -3,47 +3,6 @@
     height: 100vh;
 }
 
-.page-header .top-bar-container .marca{
-    display: flex;
-}
-
-.page-header .top-bar-container h2{
-    font-family: 'Roboto', 'sans-serif';
-    font-size: 3.5rem;
-    font-weight: bold;
-    color: #000000;
-}
-
-.page-header .top-bar-container .logo{
-    background-color: #FCC06D;
-    width: 40px;
-    height: 40px;
-
-    margin-right: 1.5rem;
-}
-
-.page-header .top-bar-container .user{
-    display: flex;
-    align-items: center;
-}
-
-.page-header .top-bar-container .user p{
-    font-size: 2rem;
-    color:#FCC06D;
-    margin-right: 2rem;
-}
-
-.page-header .top-bar-container .user a{
-    background-color: #FCC06D;
-    padding: 0.5rem;
-    border-radius: 0.9rem;
-}
-
-.page-header .top-bar-container .carrinho{
-    width: 20px;
-    height: 18px;
-}
-
 #page-landing main{
     width: 100%;
     margin: 0 auto;
@@ -188,6 +147,10 @@ main .listagem .tabela tr{
 main .listagem .tabela td{
     font-size: 1.7rem;
     padding: 1.8rem 1.2rem;
+}
+
+main .listagem .tabela td a{
+    color: black;
 }
 
 main .listagem .tabela tr .nome{

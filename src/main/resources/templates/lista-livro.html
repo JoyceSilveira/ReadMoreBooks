@@ -13,23 +13,91 @@
     <link th:href="@{/css/lista-livros.css}" rel="stylesheet">
 </head>
 <body id="page-landing">
-<div id="container">
+<div id="container" class="admin">
     <header class="page-header">
         <div class="top-bar-container">
-            <div class="marca">
-                <div class="logo"></div>
-                <h2>ReadMore Books</h2>
-            </div>
-            <div class="user">
-                <p>Usuário</p>
-                <a><img src="/static/img/vista-lateral-vazia-do-carrinho-de-compras.png" alt="" class="carrinho"></a>
-            </div>
+            <div class="logo"></div>
+            <h2>ReadMore Books</h2>
         </div>
     </header>
     <main>
-        <div th:switch="${clientes}" class="listagem">
-            <h2 th:case="null" class="alerta">Nenhum livro cadastrado ainda!</h2>
-            <div th:case="*" class="div-tabela">
+        <div class="caixa">
+            <div class="titulo">
+                <p>Filtros de pesquisa</p>
+            </div>
+            <form>
+                <div class="dados-form">
+                    <fieldset>
+                        <div class="coluna">
+                            <div class="campo esp">
+                                <label for="titulo">Título</label>
+                                <input class="g" type="text" id="titulo">
+                            </div>
+                            <div class="campo">
+                                <label for="editora">Editora</label>
+                                <input class="g" type="text" id="editora">
+                            </div>
+                        </div>
+                        <div class="coluna">
+                            <div class="campo esp">
+                                <label for="autor">Autor</label>
+                                <input class="g" type="text" id="autor">
+                            </div>
+                            <div class="campo esp">
+                                <label for="ano">Ano</label>
+                                <input class="p" type="text" id="ano">
+                            </div>
+                            <div class="campo">
+                                <label for="edicao">Edição</label>
+                                <input class="p" type="text" id="edicao">
+                            </div>
+                        </div>
+                        <div class="coluna">
+                            <div class="campo esp">
+                                <label for="isbn">ISBN</label>
+                                <input class="g" type="text" id="isbn">
+                            </div>
+                            <div class="campo esp">
+                                <label for="n_paginas">Número de páginas</label>
+                                <input class="p" type="text" id="n_paginas">
+                            </div>
+                        </div>
+                        <div class="coluna">
+                            <div class="campo">
+                                <p class="titulo_opcao">Categoria</p>
+                                <div class="opcao_bloco">
+                                    <input type="checkbox" id="romance" name="categoria" value="romance" class="opcao_input">
+                                    <label for="romance" class="opcao">Romance</label>
+                                    <input type="checkbox" id="aventura" name="categoria" value="aventura" class="opcao_input">
+                                    <label for="aventura" class="opcao">Aventura</label>
+                                    <input type="checkbox" id="suspense" name="categoria" value="suspense" class="opcao_input">
+                                    <label for="suspense" class="opcao">Suspense</label>
+                                    <input type="checkbox" id="terror" name="categoria" value="terror" class="opcao_input">
+                                    <label for="terror" class="opcao">Terror</label>
+                                    <input type="checkbox" id="ficcao" name="categoria" value="ficcao" class="opcao_input">
+                                    <label for="ficcao" class="opcao">Ficção científica</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="coluna">
+                            <div class="campo esp">
+                                <label for="preco">Preço</label>
+                                <input class="p" type="text" id="preco">
+                            </div>
+                            <div class="campo esp">
+                                <label for="cod_barras">Código de barras</label>
+                                <input class="g" type="text" id="cod_barras">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="div-botao">
+                    <input type="submit" class="botao" value="Pesquisar">
+                </div>
+            </form>
+        </div>
+        <div class="listagem">
+            <div class="div-tabela">
                 <h2 class="titulo-tabela">Livros</h2>
                 <table class="tabela">
                     <thead>
@@ -38,16 +106,27 @@
                             <th>Edição</th>
                             <th>Preço</th>
                             <th>Estoque</th>
+                            <th>Ativo</th>
                         </tr>
                         </thead>
                     <tbody>
-                    <tr th:each="cliente : ${clientes}">
-                        <td th:text="${cliente.nome}" class="nome">Titulo</td>
-                        <td th:text="${cliente.cpf}" class="cpf">Edição</td>
-                        <td th:text="${cliente.telefone}" class="telefone">Preço</td>
-                        <td th:text="${cliente.telefone}" class="telefone"><input type="text" readonly></td>
-                        <td class="botao-excluir"><a th:href="@{/clientes/inativar/{id}(id=${cliente.id})}" class="botao">Detalhes</a></td>
-                        <td class="botao-excluir"><a th:href="@{/clientes/inativar/{id}(id=${cliente.id})}" class="botao">Inativar</a></td>
+                    <tr>
+                        <td class="nome">Harry Potter e a Pedra Filosofal</td>
+                        <td class="cpf">1ª Edição</td>
+                        <td class="telefone">R$ 30,00</td>
+                        <td class="botao-excluir">Quant:<input type="text" class="quantidade" value="30"></td>
+                        <td class="cpf">Ativo</td>
+                        <td class="botao-excluir"><a th:href="@{/clientes/detalhes-livro-admin}" class="botao">Detalhes</a></td>
+                        <td class="botao-excluir"><a class="botao">Inativar/Ativar</a></td>
+                    </tr>
+                    <tr>
+                        <td class="nome">Harry Potter E A Câmara Secreta</td>
+                        <td class="cpf">2ª Edição</td>
+                        <td class="telefone">R$ 41,00</td>
+                        <td class="botao-excluir">Quant:<input type="text" class="quantidade" value="20"></td>
+                        <td class="cpf">Ativo</td>
+                        <td class="botao-excluir"><a th:href="@{/clientes/detalhes-livro-admin}" class="botao">Detalhes</a></td>
+                        <td class="botao-excluir"><a class="botao">Inativar/Ativar</a></td>
                     </tr>
                     </tbody>
                 </table>

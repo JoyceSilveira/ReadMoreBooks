@@ -13,23 +13,25 @@
     <link th:href="@{/css/lista-livros.css}" rel="stylesheet">
 </head>
 <body id="page-landing">
-<div id="container">
+<div id="container" class="cliente">
     <header class="page-header">
         <div class="top-bar-container">
             <div class="marca">
                 <div class="logo"></div>
-                <h2>ReadMore Books</h2>
+                <h2><a th:href="@{/clientes/principal}">ReadMore Books</a></h2>
             </div>
             <div class="user">
-                <p>Usuário</p>
-                <a><img src="/static/img/vista-lateral-vazia-do-carrinho-de-compras.png" alt="" class="carrinho"></a>
+                <p><a>Usuário</a></p>
+                <p>
+                    <a th:href="@{/clientes/lista-compras}"><img th:src="@{/img/sacolas-compras.png}" alt="" class="carrinho"></a>
+                </p>
+                <a th:href="@{/clientes/carrinho-compras}"><img th:src="@{/img/carrinho-compras.png}" alt="" class="carrinho"></a>
             </div>
         </div>
     </header>
     <main>
-        <div th:switch="${clientes}" class="listagem">
-            <h2 th:case="null" class="alerta">Nenhuma compra feita ainda!</h2>
-            <div th:case="*" class="div-tabela">
+        <div class="listagem">
+            <div class="div-tabela">
                 <h2 class="titulo-tabela">Compras</h2>
                 <table class="tabela">
                     <thead>
@@ -37,16 +39,27 @@
                             <th>Título</th>
                             <th>Edição</th>
                             <th>Preço</th>
+                            <th>Quantidade</th>
                             <th>Status</th>
                         </tr>
                         </thead>
                     <tbody>
-                    <tr th:each="cliente : ${clientes}">
-                        <td th:text="${cliente.nome}" class="nome">Titulo</td>
-                        <td th:text="${cliente.cpf}" class="cpf">Edição</td>
-                        <td th:text="${cliente.telefone}" class="telefone">Preço</td>
+                    <tr>
+                        <td class="nome">Harry Potter e a Pedra Filosofal</td>
+                        <td class="cpf">1ª Edição</td>
+                        <td class="telefone">R$ 30,00</td>
+                        <td class="botao-excluir">Quant:<input type="text" class="quantidade" value="3"></td>
                         <td>
-                            <input type="text" id="status" readonly>
+                            <input type="text" class="status" value="Aprovada" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="nome">Harry Potter E A Câmara Secreta</td>
+                        <td class="cpf">2ª Edição</td>
+                        <td class="telefone">R$ 41,00</td>
+                        <td class="botao-excluir">Quant:<input type="text" class="quantidade" value="2"></td>
+                        <td>
+                            <input type="text" class="status" value="Em trânsito" readonly>
                         </td>
                     </tr>
                     </tbody>

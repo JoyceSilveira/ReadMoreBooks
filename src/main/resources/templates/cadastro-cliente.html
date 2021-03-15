@@ -13,7 +13,7 @@
     <link th:href="@{/css/cadastro-cliente.css}" rel="stylesheet">
 </head>
 <body id="page-landing">
-<div id="container">
+<div id="container" class="admin">
     <header class="page-header">
         <div class="top-bar-container">
             <div class="logo"></div>
@@ -26,18 +26,18 @@
                 <p class="cadastrar">Cadastrar-se</p>
                 <p class="red-entrar">Já possui uma conta? <a href="index.html">Entre</a></p>
             </div>
-            <form th:action="@{/clientes/salvar-cliente}" th:object="${cliente}" method="post">
+            <form th:action="@{/clientes/salvar-cliente}" th:object="${cliente}" method="post" onsubmit="verificaSenha()">
                 <div class="dados-form">
                     <fieldset>
                         <legend class="sub-categorias">Dados pessoais</legend>
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="nome">Nome completo</label>
-                                <input th:field="*{nome}" class="g" type="text" id="nome">
+                                <input th:field="*{nome}" class="g" type="text" id="nome" required >
                             </div>
                             <div class="campo">
                                 <label for="genero">Gênero</label>
-                                <select th:field="*{genero}" class="p" name="genero" id="genero">
+                                <select th:field="*{genero}" class="p" name="genero" id="genero" required>
                                     <option value="m">Masculino</option>
                                     <option value="f">Feminino</option>
                                     <option value="o">Outros</option>
@@ -47,31 +47,31 @@
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="dt_nascimento">Data de nascimento</label>
-                                <input th:field="*{dataNascimento}" class="p" type="date" id="dt_nascimento">
+                                <input th:field="*{dataNascimento}" class="p" type="date" id="dt_nascimento" required>
                             </div>
                             <div class="campo esp">
                                 <label for="cpf">CPF</label>
-                                <input th:field="*{cpf}" class="p" type="text" id="cpf">
+                                <input th:field="*{cpf}" class="p" type="text" id="cpf" pattern=".{11}" required>
                             </div>
                             <div class="campo">
                                 <label for="tel">Telefone</label>
-                                <input th:field="*{telefone}" class="p" type="text" id="tel">
+                                <input th:field="*{telefone}" class="p" type="tel" id="tel" required>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo">
                                 <label for="email">E-mail</label>
-                                <input th:field="*{email}" class="g" type="text" id="email">
+                                <input th:field="*{email}" class="g" type="email" id="email" required>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="senha">Senha</label>
-                                <input th:field="*{senha}" class="p" type="password" id="senha">
+                                <input th:field="*{senha}" class="p" type="password" id="senha" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
                             </div>
                             <div class="campo">
                                 <label for="rep-senha">Digite a senha novamente</label>
-                                <input th:field="*{senhaConfirmacao}" class="p" type="password" id="rep-senha">
+                                <input th:field="*{senhaConfirmacao}" class="p" type="password" id="rep-senha" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
                             </div>
                         </div>
                         <p class="info-senha">
@@ -87,13 +87,13 @@
                             <div class="coluna">
                                 <div class="campo esp">
                                     <label for="tp_endereco">Tipo de endereço</label>
-                                    <select th:field="*{enderecoEntrega.tipoEndereco}" class="p" name="tp_endereco" id="tp_endereco">
+                                    <select th:field="*{enderecoEntrega.tipoEndereco}" class="p" name="tp_endereco" id="tp_endereco" required>
                                         <option value="ENTREGA">Entrega</option>
                                     </select>
                                 </div>
                                 <div class="campo esp">
                                     <label for="tp_residencia_end">Tipo de residência</label>
-                                    <select th:field="*{enderecoEntrega.tipoResidencia}" class="p" name="tp_residencia" id="tp_residencia_end">
+                                    <select th:field="*{enderecoEntrega.tipoResidencia}" class="p" name="tp_residencia" id="tp_residencia_end" required>
                                         <option value="casa">Casa</option>
                                         <option value="apto">Apartamento</option>
                                         <option value="comercial">Comercial</option>
@@ -101,7 +101,7 @@
                                 </div>
                                 <div class="campo">
                                     <label for="tp_logradouro_end">Tipo de logradouro</label>
-                                    <select th:field="*{enderecoEntrega.tipoLogradouro}" class="p" name="tp_logradouro" id="tp_logradouro_end">
+                                    <select th:field="*{enderecoEntrega.tipoLogradouro}" class="p" name="tp_logradouro" id="tp_logradouro_end" required>
                                         <option value="rua">Rua</option>
                                         <option value="av">Avenida</option>
                                         <option value="est">Estrada</option>
@@ -148,20 +148,20 @@
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="tp_endereco_cobranca">Tipo de endereço</label>
-                                <select th:field="*{enderecoCobranca.tipoEndereco}" class="p" name="tp_endereco_cobranca" id="tp_endereco_cobranca">
+                                <select th:field="*{enderecoCobranca.tipoEndereco}" class="p" name="tp_endereco_cobranca" id="tp_endereco_cobranca" required>
                                     <option value="COBRANCA">Cobrança</option>
                                 </select>
                             </div>
                             <div class="campo esp">
                                 <label for="tp_residencia">Tipo de residência</label>
-                                <select th:field="*{enderecoCobranca.tipoResidencia}" class="p" name="tp_residencia" id="tp_residencia">
+                                <select th:field="*{enderecoCobranca.tipoResidencia}" class="p" name="tp_residencia" id="tp_residencia" required>
                                     <option value="casa">Casa</option>
                                     <option value="apto">Apartamento</option>
                                 </select>
                             </div>
                             <div class="campo">
                                 <label for="tp_logradouro">Tipo de logradouro</label>
-                                <select th:field="*{enderecoCobranca.tipoLogradouro}" class="p" name="tp_logradouro" id="tp_logradouro">
+                                <select th:field="*{enderecoCobranca.tipoLogradouro}" class="p" name="tp_logradouro" id="tp_logradouro" required>
                                     <option value="rua">Rua</option>
                                     <option value="av">Avenida</option>
                                     <option value="est">Estrada</option>
@@ -210,7 +210,7 @@
                             <div class="coluna">
                                 <div class="campo esp">
                                     <label for="bandeira">Bandeira</label>
-                                    <select th:field="*{cartao.bandeira}" class="p" name="bandeira" id="bandeira">
+                                    <select th:field="*{cartao.bandeira}" class="p" name="bandeira" id="bandeira" required>
                                         <option value="mastercard">Mastercard</option>
                                         <option value="visa">Visa</option>
                                         <option value="elo">Elo</option>
@@ -218,18 +218,18 @@
                                 </div>
                                 <div class="campo esp">
                                     <label for="num_card">Número</label>
-                                    <input th:field="*{cartao.numero}" class="p" type="text" id="num_card">
+                                    <input th:field="*{cartao.numero}" class="p" type="text" id="num_card" required>
                                 </div>
                                 <div class="campo">
                                     <label for="cod_seguranca">Código de segurança</label>
-                                    <input th:field="*{cartao.cvv}" class="p" type="text" id="cod_seguranca">
+                                    <input th:field="*{cartao.cvv}" class="p" type="text" id="cod_seguranca" required>
                                 </div>
                             </div>
                             <div class="coluna">
                                 <div class="campo">
                                     <div class="campo">
                                         <label for="nome_card">Nome impresso no cartão</label>
-                                        <input th:field="*{cartao.nomeImpresso}" class="p" type="text" id="nome_card">
+                                        <input th:field="*{cartao.nomeImpresso}" class="p" type="text" id="nome_card" required>
                                     </div>
                                 </div>
                             </div>
@@ -241,9 +241,21 @@
             </form>
         </div>
     </main>
-    <footer>
-
-    </footer>
 </div>
+<script>
+    function verificaSenha(){
+        var senha = document.getElementById("senha").value;
+        var repSenha = document.getElementById("rep-senha").value;
+
+        if(senha != repSenha){
+            event.preventDefault();
+            console.log(senha);
+            console.log(repSenha);
+            alert("As senhas não coincidem!");
+            return false;
+        }
+        return true;
+    }
+</script>
 </body>
 </html>

@@ -34,15 +34,65 @@ textarea {
 .page-header .top-bar-container{
     width: 100%;
     margin: 0 auto;
-    padding-left: 2.5rem;
-    padding-bottom: 1.8rem;
-    padding-top: 1.8rem;
+    padding: 1.8rem 2.5rem;
 
     display: flex;
-    align-items: center;
 
     background-color: #ffffff;
-    border-bottom: 3px solid var(--cor-principal-3);
+}
+
+.cliente .page-header .top-bar-container{
+    justify-content: space-between;
+}
+
+.cliente .page-header .top-bar-container .marca{
+    display: flex;
+}
+
+.page-header .top-bar-container h2{
+    font-family: 'Roboto', 'sans-serif';
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: #000000;
+}
+
+.page-header .top-bar-container .logo{
+    background-color: #FCC06D;
+    width: 40px;
+    height: 40px;
+
+    margin-right: 1.5rem;
+}
+
+.cliente .page-header .top-bar-container .user{
+    display: flex;
+    align-items: center;
+}
+
+.cliente .page-header .top-bar-container .user p{
+    font-size: 2rem;
+    color:#FCC06D;
+    margin-right: 2rem;
+}
+
+.cliente .page-header .top-bar-container .user a{
+    background-color: #FCC06D;
+    padding: 0.5rem;
+    border-radius: 0.9rem;
+    color: white;
+}
+
+.cliente .page-header .top-bar-container .carrinho{
+    width: 20px;
+    height: 18px;
+}
+
+.admin .page-header .top-bar-container{
+    align-items: center;
+}
+
+a{
+    text-decoration: none;
 }
 
 @media (min-width: 700px) {

@@ -154,7 +154,11 @@ public class ClienteFacade implements IFacade {
     public String excluir(AbstractEntidade entidade) {
         if (entidade instanceof Cliente) {
             Cliente cliente = (Cliente) entidade;
-            cliente.setAtivo(false);
+            if(cliente.isAtivo()){
+                cliente.setAtivo(false);
+            }else {
+                cliente.setAtivo(true);
+            }
             String nmClasse = entidade.getClass().getName();
             CrudRepository dao = daos.get(nmClasse);
             dao.save(cliente);
@@ -173,7 +177,7 @@ public class ClienteFacade implements IFacade {
         return null;
     }
 
-    public Cliente mostrarPerfil(Integer id){
+    public Cliente getCliente(Integer id){
         Cliente cliente = clienteDAO.findById(id).orElse(null);
         return cliente;
     }
@@ -188,14 +192,18 @@ public class ClienteFacade implements IFacade {
         return endereco;
     }
 
-    public void alterarCartao(AbstractEntidade entidade) {
+    public void alterarDados(AbstractEntidade entidade) {
         CrudRepository dao = daos.get(entidade.getClass().getName());
         dao.save(entidade);
     }
 
-    public void alterarEndereco(AbstractEntidade entidade) {
-        CrudRepository dao = daos.get(entidade.getClass().getName());
-        dao.save(entidade);
+    public String alterarSenha(AbstractEntidade entidade, String senha) {
+        Cliente cliente = (Cliente) entidade;
+        cliente.setSenha(senha);
+        String nmClasse = entidade.getClass().getName();
+        CrudRepository dao = daos.get(nmClasse);
+        dao.save(cliente);
+        return "Senha alterada com sucesso!";
     }
 
     public List<Cliente> listarTodos() {

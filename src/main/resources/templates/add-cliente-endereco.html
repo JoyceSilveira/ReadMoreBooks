@@ -13,11 +13,20 @@
     <link th:href="@{/css/cadastro-cliente.css}" rel="stylesheet">
 </head>
 <body id="page-landing">
-<div id="container">
+<div id="container" class="cliente">
     <header class="page-header">
         <div class="top-bar-container">
-            <div class="logo"></div>
-            <h2>ReadMore Books</h2>
+            <div class="marca">
+                <div class="logo"></div>
+                <h2><a th:href="@{/clientes/principal}">ReadMore Books</a></h2>
+            </div>
+            <div class="user">
+                <p><a>Usuário</a></p>
+                <p>
+                    <a th:href="@{/clientes/lista-compras}"><img th:src="@{/img/sacolas-compras.png}" alt="" class="carrinho"></a>
+                </p>
+                <a th:href="@{/clientes/carrinho-compras}"><img th:src="@{/img/carrinho-compras.png}" alt="" class="carrinho"></a>
+            </div>
         </div>
     </header>
     <main>
@@ -25,7 +34,7 @@
             <div class="titulo">
                 <p class="cadastrar">Adicionar endereço cobrança</p>
             </div>
-            <form th:action="@{/clientes/}" th:object="${cliente}" method="post">
+            <form th:object="${endereco}" method="post">
                 <div class="dados-form">
                     <fieldset>
                         <div class="coluna">

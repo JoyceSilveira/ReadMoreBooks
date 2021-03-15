@@ -9,20 +9,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
-    <link th:href="@{css/main.css}" rel="stylesheet">
+    <link th:href="@{/css/main.css}" rel="stylesheet">
     <link th:href="@{/css/lista-livros.css}" rel="stylesheet">
 </head>
 <body id="page-landing">
-<div id="container">
+<div id="container" class="cliente">
     <header class="page-header">
         <div class="top-bar-container">
             <div class="marca">
                 <div class="logo"></div>
-                <h2>ReadMore Books</h2>
+                <h2><a th:href="@{/clientes/principal}">ReadMore Books</a></h2>
             </div>
             <div class="user">
-                <p>Usuário</p>
-                <a><img src="/static/img/vista-lateral-vazia-do-carrinho-de-compras.png" alt="" class="carrinho"></a>
+                <p><a>Usuário</a></p>
+                <p>
+                    <a th:href="@{/clientes/lista-compras}"><img th:src="@{/img/sacolas-compras.png}" alt="" class="carrinho"></a>
+                </p>
+                <a th:href="@{/clientes/carrinho-compras}"><img th:src="@{/img/carrinho-compras.png}" alt="" class="carrinho"></a>
             </div>
         </div>
     </header>
@@ -102,17 +105,23 @@
                 </div>
             </form>
         </div>
-        <div th:switch="${clientes}" class="listagem">
-            <h2 th:case="null" class="alerta">Nenhum livro cadastrado ainda!</h2>
-            <div th:case="*" class="div-tabela">
+        <div class="listagem">
+            <div class="div-tabela">
                 <table class="tabela">
                     <tbody>
-                    <tr th:each="cliente : ${clientes}">
-                        <td th:text="${cliente.nome}" class="nome">Titulo</td>
-                        <td th:text="${cliente.cpf}" class="cpf">Edição</td>
-                        <td th:text="${cliente.telefone}" class="telefone">Preço</td>
-                        <td class="botao-excluir"><a th:href="@{/clientes/inativar/{id}(id=${cliente.id})}" class="botao">Detalhes</a></td>
-                        <td class="botao-excluir"><a th:href="@{/clientes/inativar/{id}(id=${cliente.id})}" class="botao">Adicionar ao carrinho</a></td>
+                    <tr>
+                        <td class="nome">Harry Potter e a Pedra Filosofal</td>
+                        <td class="cpf">1ª Edição</td>
+                        <td class="telefone">R$ 30,00</td>
+                        <td class="botao-excluir"><a th:href="@{/clientes/detalhes-livro}" class="botao">Detalhes</a></td>
+                        <td class="botao-excluir"><a class="botao">Adicionar ao carrinho</a></td>
+                    </tr>
+                    <tr>
+                        <td class="nome">Harry Potter E A Câmara Secreta</td>
+                        <td class="cpf">2ª Edição</td>
+                        <td class="telefone">R$ 41,00</td>
+                        <td class="botao-excluir"><a th:href="@{/clientes/detalhes-livro}" class="botao">Detalhes</a></td>
+                        <td class="botao-excluir"><a class="botao">Adicionar ao carrinho</a></td>
                     </tr>
                     </tbody>
                 </table>

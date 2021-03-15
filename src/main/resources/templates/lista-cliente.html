@@ -10,10 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
     <link th:href="@{/css/main.css}" rel="stylesheet">
-    <link th:href="@{/css/lista-cliente.css}" rel="stylesheet">
+    <link th:href="@{/css/lista-livros.css}" rel="stylesheet">
 </head>
 <body id="page-landing">
-<div id="container">
+<div id="container" class="admin">
     <header class="page-header">
         <div class="top-bar-container">
             <div class="logo"></div>
@@ -21,6 +21,54 @@
         </div>
     </header>
     <main>
+        <div class="caixa">
+            <div class="titulo">
+                <p>Filtros de pesquisa</p>
+            </div>
+            <form method="post">
+                <div class="dados-form">
+                    <fieldset>
+                        <div class="coluna">
+                            <div class="campo esp">
+                                <label for="nome">Nome completo</label>
+                                <input class="g" type="text" id="nome">
+                            </div>
+                            <div class="campo">
+                                <label for="genero">Gênero</label>
+                                <select class="p" name="genero" id="genero">
+                                    <option value="m">Masculino</option>
+                                    <option value="f">Feminino</option>
+                                    <option value="o">Outros</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="coluna">
+                            <div class="campo esp">
+                                <label for="dt_nascimento">Data de nascimento</label>
+                                <input class="p" type="date" id="dt_nascimento">
+                            </div>
+                            <div class="campo esp">
+                                <label for="cpf">CPF</label>
+                                <input class="p" type="text" id="cpf">
+                            </div>
+                            <div class="campo">
+                                <label for="tel">Telefone</label>
+                                <input class="p" type="text" id="tel">
+                            </div>
+                        </div>
+                        <div class="coluna">
+                            <div class="campo">
+                                <label for="email">E-mail</label>
+                                <input class="g" type="text" id="email">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="div-botao">
+                    <input type="submit" class="botao" value="Pesquisar">
+                </div>
+            </form>
+        </div>
         <div th:switch="${clientes}" class="listagem">
             <h2 th:case="null" class="alerta">Nenhum cliente cadastrado ainda!</h2>
             <div th:case="*" class="div-tabela">
@@ -32,6 +80,8 @@
                         <th>CPF</th>
                         <th>Telefone</th>
                         <th>E-mail</th>
+                        <th>Compras</th>
+                        <th>Ativo</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -40,7 +90,9 @@
                         <td th:text="${cliente.cpf}" class="cpf"></td>
                         <td th:text="${cliente.telefone}" class="telefone"></td>
                         <td th:text="${cliente.email}" class="email"></td>
-                        <td class="botao-excluir"><a th:href="@{/clientes/inativar/{id}(id=${cliente.id})}" class="excluir">Inativar</a></td>
+                        <td class="cpf"><a th:href="@{/clientes/lista-compras-admin}">Ver compras</a></td>
+                        <td th:text="${cliente.ativo}" class="status"></td>
+                        <td class="botao-excluir"><a th:href="@{/clientes/inativar-ativar/{id}(id=${cliente.id})}" class="excluir">Ativar/Inativar</a></td>
                     </tr>
                     </tbody>
                 </table>

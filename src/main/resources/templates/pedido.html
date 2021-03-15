@@ -14,16 +14,19 @@
 
 </head>
 <body id="page-landing">
-<div id="container">
+<div id="container" class="cliente">
     <header class="page-header">
         <div class="top-bar-container">
             <div class="marca">
                 <div class="logo"></div>
-                <h2>ReadMore Books</h2>
+                <h2><a th:href="@{/clientes/principal}">ReadMore Books</a></h2>
             </div>
             <div class="user">
-                <p>Usuário</p>
-                <a><img src="/static/img/vista-lateral-vazia-do-carrinho-de-compras.png" alt="" class="carrinho"></a>
+                <p><a>Usuário</a></p>
+                <p>
+                    <a th:href="@{/clientes/lista-compras}"><img th:src="@{/img/sacolas-compras.png}" alt="" class="carrinho"></a>
+                </p>
+                <a th:href="@{/clientes/carrinho-compras}"><img th:src="@{/img/carrinho-compras.png}" alt="" class="carrinho"></a>
             </div>
         </div>
     </header>
@@ -37,17 +40,26 @@
                     <h2 class="titulo-tabela">Itens da compra</h2>
                     <form action="">
                         <table class="tabela">
-                            <tr th:each="cliente : ${clientes}">
-                                <td th:text="${cliente.nome}" class="nome">Titulo</td>
-                                <td th:text="${cliente.cpf}" class="cpf">Edição</td>
-                                <td th:text="${cliente.telefone}" class="telefone">Preço</td>
-                                <td class="botao-excluir"><input type="text" class="quantidade" value="5"></td>
+                            <tr>
+                                <td class="nome">Harry Potter e a Pedra Filosofal</td>
+                                <td class="cpf">1ª Edição</td>
+                                <td class="telefone">R$ 30,00</td>
+                                <td class="botao-excluir">Quant:<input type="text" class="quantidade" value="3"></td>
+                            </tr>
+                            <tr>
+                                <td class="nome">Harry Potter E A Câmara Secreta</td>
+                                <td class="cpf">2ª Edição</td>
+                                <td class="telefone">R$ 41,00</td>
+                                <td class="botao-excluir">Quant:<input type="text" class="quantidade" value="2"></td>
                             </tr>
                             </tbody>
                         </table>
                         <div class="categoria-info">
                             <p class="explicacao">Selecionar endereço para entrega:</p>
                             <legend class="sub-categorias">Endereços</legend>
+                            <div class="botao-editar">
+                                <a th:href="@{/clientes/add-endereco}" class="editar">Adicionar novo endereço</a>
+                            </div>
                             <table class="info-cliente">
                                 <thead>
                                 <tr>
@@ -60,21 +72,37 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="end : ${cliente.enderecosVinculados}">
-                                    <td th:text="${end.logradouro}"></td>
-                                    <td th:text="${end.bairro}"></td>
-                                    <td th:text="${end.nomeCidade}"></td>
-                                    <td th:text="${end.numero}"></td>
-                                    <td th:text="${end.complemento}"></td>
-                                    <td th:text="${end.observacoes}"></td>
+                                <tr>
+                                    <td>R. Doutor Deodato</td>
+                                    <td>Centro</td>
+                                    <td>Mogi das Cruzes</td>
+                                    <td>1000</td>
+                                    <td>fundos</td>
+                                    <td>Próximo a padaria</td>
+                                    <td><input type="radio" name="endereco"></td>
+                                </tr>
+                                <tr>
+                                    <td>R. Carlos Barattino</td>
+                                    <td>Vila Mogilar</td>
+                                    <td>Mogi das Cruzes</td>
+                                    <td>908</td>
+                                    <td></td>
+                                    <td>Fatec</td>
                                     <td><input type="radio" name="endereco"></td>
                                 </tr>
                                 </tbody>
                             </table>
+                            <div class="campo">
+                                <label for="frete" class="cupom-label">Valor Frete:</label>
+                                <input class="frete" type="frete" id="frete" value="R$ 43,50">
+                            </div>
                         </div>
                         <div class="categoria-info">
                             <p class="explicacao">Selecionar cartão de crédito para cobrança:</p>
                             <legend class="sub-categorias">Cartão de crédito</legend>
+                            <div class="botao-editar">
+                                <a th:href="@{/clientes/add-cartao}" class="editar">Adicionar novo cartão</a>
+                            </div>
                             <table class="info-cliente">
                                 <thead>
                                     <tr>
@@ -84,10 +112,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="cartaoC : ${cliente.cartoesVinculados}">
-                                    <td th:text="${cartaoC.bandeira}" class="nome"></td>
-                                    <td th:text="${cartaoC.numero}" class="cpf"></td>
-                                    <td th:text="${cartaoC.nomeImpresso}" class="email"></td>
+                                <tr>
+                                    <td class="nome">Mastercard</td>
+                                    <td class="cpf">999.999.999</td>
+                                    <td class="email">Maria Silva Santos</td>
                                     <td><input type="radio" name="cartao"></td>
                                 </tr>
                                 </tbody>
@@ -95,10 +123,10 @@
                         </div>
                         <div class="campo">
                             <label for="cupom" class="cupom-label">Cupom</label>
-                            <input th:field="*{telefone}" class="cupom" type="cupom" id="cupom">
+                            <input class="cupom" type="cupom" id="cupom">
                         </div>
                         <div class="div-botao">
-                            <input type="submit" class="botao" value="Salvar">
+                            <a class="botao" th:href="@{/clientes/lista-compras}">Finalizar compra</a>
                         </div>
                     </form>
                 </div>

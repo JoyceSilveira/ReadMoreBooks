@@ -34,7 +34,7 @@ public class ClienteController {
 
     @GetMapping("/perfil-cliente/{id}")
     public String mostraPerfilCliente(@PathVariable("id") Integer id, Model model) {
-        Cliente cliente = clienteFacade.mostrarPerfil(id);
+        Cliente cliente = clienteFacade.getCliente(id);
         model.addAttribute("cliente", cliente);
         return "perfil-cliente";
     }
@@ -47,20 +47,21 @@ public class ClienteController {
 
     @GetMapping("/editar-senha/{id}")
     public String EditSenha(@PathVariable("id") Integer id, Model model) {
-        Cliente cliente = clienteFacade.mostrarPerfil(id);
+        Cliente cliente = clienteFacade.getCliente(id);
         model.addAttribute("cliente", cliente);
         return "update-cliente-senha";
     }
 
     @PostMapping("/atualizar-senha/{id}")
-    public String atualizarSenha(Cliente cliente, @PathVariable("id") Integer id) {
+    public String atualizarSenha(Cliente clienteForm, @PathVariable("id") Integer id) {
         try {
-            cliente.setId(id);
-            clienteFacade.alterar(cliente);
+            String senha = clienteForm.getSenha();
+            Cliente cliente = clienteFacade.getCliente(id);
+            clienteFacade.alterarSenha(cliente, senha);
             return "redirect:/clientes/perfil-cliente/" + cliente.getId() + "";
         } catch (Exception e) {
-            log.error("Falha ao salvar cliente.", e);
-            return "Falha ao salvar cliente.";
+            log.error("Falha ao alterar senha.", e);
+            return "Falha ao alterar senha.";
         }
     }
 
@@ -71,31 +72,36 @@ public class ClienteController {
         return "update-cliente-endereco";
     }
 
-    @PostMapping("/atualizar-endereco/{id}")
-    public String atualizarEndereco(Endereco endereco, @PathVariable("id") Integer id) {
+    @PostMapping("/atualizar-endereco/{id}/{clienteId}")
+    public String atualizarEndereco(Endereco endereco, @PathVariable("id") Integer id, @PathVariable("clienteId") Integer clienteId) {
         try {
+            Cliente cliente = clienteFacade.getCliente(clienteId);
             endereco.setId(id);
-            clienteFacade.alterarEndereco(endereco);
+            endereco.setCliente(cliente);
+            clienteFacade.alterarDados(endereco);
             return "redirect:/clientes/perfil-cliente/" + endereco.getId() + "";
         } catch (Exception e) {
-            log.error("Falha ao salvar cliente.", e);
-            return "Falha ao salvar cliente.";
+            log.error("Falha ao atualizar endereco.", e);
+            return "Falha ao atualizar endereco.";
         }
     }
 
     @GetMapping("/editar-dados/{id}")
     public String EditDadosPessoais(@PathVariable("id") Integer id, Model model) {
-        Cliente cliente = clienteFacade.mostrarPerfil(id);
+        Cliente cliente = clienteFacade.getCliente(id);
         model.addAttribute("cliente", cliente);
         return "update-cliente-dados";
     }
 
     @PostMapping("/atualizar-dados/{id}")
-    public String atualizarDados(Cliente cliente, @PathVariable("id") Integer id) {
+    public String atualizarDados(Cliente clienteForm, @PathVariable("id") Integer id) {
         try {
-            cliente.setId(id);
-            clienteFacade.alterar(cliente);
-            return "redirect:/clientes/perfil-cliente/" + cliente.getId() + "";
+            Cliente cliente = clienteFacade.getCliente(id);
+            clienteForm.setId(id);
+            clienteForm.setDataCadastro(cliente.getDataCadastro());
+            clienteForm.setSenha(cliente.getSenha());
+            clienteFacade.alterarDados(clienteForm);
+            return "redirect:/clientes/perfil-cliente/" + clienteForm.getId() + "";
         } catch (Exception e) {
             log.error("Falha ao salvar cliente.", e);
             return "Falha ao salvar cliente.";
@@ -109,30 +115,24 @@ public class ClienteController {
         return "update-cartao";
     }
 
-    @PostMapping("/atualizar-cartao/{id}")
-    public String atualizarCartao(Cartao cartao, @PathVariable("id") Integer id) {
+    @PostMapping("/atualizar-cartao/{id}/{clienteId}")
+    public String atualizarCartao(Cartao cartao, @PathVariable("id") Integer id, @PathVariable("clienteId") Integer clienteId) {
         try {
+            Cliente cliente = clienteFacade.getCliente(clienteId);
             cartao.setId(id);
-            clienteFacade.alterarCartao(cartao);
+            cartao.setCliente(cliente);
+            clienteFacade.alterarDados(cartao);
             return "redirect:/clientes/perfil-cliente/" + cartao.getCliente().getId() + "";
         } catch (Exception e) {
-            log.error("Falha ao salvar cliente.", e);
-            return "Falha ao salvar cliente.";
+            log.error("Falha ao atualizar cartão.", e);
+            return "Falha ao atualizar cartão.";
         }
     }
 
-    @GetMapping("/add-endereco/{id}")
-    public String addEndCobranca() {
-        return "add-cliente-endereco";
-    }
-
-    @GetMapping("/add-cartao/{id}")
-    public String addCartao() { return "add-cartao"; }
-
-    @GetMapping("/inativar/{id}")
-    public String inativarCliente(Cliente cliente, @PathVariable("id") Integer id){
+    @GetMapping("/inativar-ativar/{id}")
+    public String inativarCliente(@PathVariable("id") Integer id){
         try {
-            cliente.setId(id);
+            Cliente cliente = clienteFacade.getCliente(id);
             clienteFacade.excluir(cliente);
             return "redirect:/clientes/list-cliente";
         } catch (Exception e) {
@@ -140,4 +140,45 @@ public class ClienteController {
             return "Falha ao inativar cliente.";
         }
     }
+
+    @GetMapping("/add-endereco/{id}")
+    public String addEndCobranca(Endereco endereco) {
+        return "add-cliente-endereco";
+    }
+
+    @GetMapping("/add-cartao/{id}")
+    public String addCartao(Cartao cartao) { return "add-cartao"; }
+
+    @GetMapping("/principal")
+    public String principal(){ return "busca-livro"; }
+
+    @GetMapping("/add-livro")
+    public String mostraFormularioLivro(){ return "cadastro-livro"; }
+
+    @GetMapping("/carrinho-compras")
+    public String carrinhoCompras(){ return "carrinho"; }
+
+    @GetMapping("/detalhes-livro")
+    public String detalhesLivro(){ return "detalhes-livro"; }
+
+    @GetMapping("/detalhes-livro-admin")
+    public String detalhesLivroAdmin(){ return "detalhes-livro-admin"; }
+
+    @GetMapping("/lista-compras")
+    public String listaCompras(){ return "list-compras-cliente"; }
+
+    @GetMapping("/lista-compras-admin")
+    public String listaComprasAdmin(){ return "list-compras"; }
+
+    @GetMapping("/lista-livro")
+    public String listaLivro(){ return "lista-livro"; }
+
+    @GetMapping("/pedido")
+    public String pedido(){ return "pedido"; }
+
+    @GetMapping("/editar-livro")
+    public String EditLivro(){ return "update-livro"; }
+
+    @GetMapping("/menu-admin")
+    public String menuAdmin(){ return "menu-admin"; }
 }
