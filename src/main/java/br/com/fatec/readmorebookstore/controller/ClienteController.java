@@ -39,12 +39,6 @@ public class ClienteController {
         return "perfil-cliente";
     }
 
-    @GetMapping("/list-cliente")
-    public String mostraListaClientes(Model model) {
-        model.addAttribute("clientes", clienteFacade.listarTodos());
-        return "lista-cliente";
-    }
-
     @GetMapping("/editar-senha/{id}")
     public String EditSenha(@PathVariable("id") Integer id, Model model) {
         Cliente cliente = clienteFacade.getCliente(id);
@@ -129,6 +123,12 @@ public class ClienteController {
         }
     }
 
+    @GetMapping("/list-cliente")
+    public String mostraListaClientes(Model model) {
+        model.addAttribute("clientes", clienteFacade.listarTodos());
+        return "lista-cliente";
+    }
+
     @GetMapping("/inativar-ativar/{id}")
     public String inativarCliente(@PathVariable("id") Integer id){
         try {
@@ -141,6 +141,9 @@ public class ClienteController {
         }
     }
 
+    @GetMapping("/lista-compras-admin")
+    public String listaComprasAdmin(){ return "list-compras"; }
+
     @GetMapping("/add-endereco/{id}")
     public String addEndCobranca(Endereco endereco) {
         return "add-cliente-endereco";
@@ -149,36 +152,13 @@ public class ClienteController {
     @GetMapping("/add-cartao/{id}")
     public String addCartao(Cartao cartao) { return "add-cartao"; }
 
-    @GetMapping("/principal")
-    public String principal(){ return "busca-livro"; }
-
-    @GetMapping("/add-livro")
-    public String mostraFormularioLivro(){ return "cadastro-livro"; }
-
     @GetMapping("/carrinho-compras")
     public String carrinhoCompras(){ return "carrinho"; }
-
-    @GetMapping("/detalhes-livro")
-    public String detalhesLivro(){ return "detalhes-livro"; }
-
-    @GetMapping("/detalhes-livro-admin")
-    public String detalhesLivroAdmin(){ return "detalhes-livro-admin"; }
 
     @GetMapping("/lista-compras")
     public String listaCompras(){ return "list-compras-cliente"; }
 
-    @GetMapping("/lista-compras-admin")
-    public String listaComprasAdmin(){ return "list-compras"; }
-
-    @GetMapping("/lista-livro")
-    public String listaLivro(){ return "lista-livro"; }
-
     @GetMapping("/pedido")
     public String pedido(){ return "pedido"; }
 
-    @GetMapping("/editar-livro")
-    public String EditLivro(){ return "update-livro"; }
-
-    @GetMapping("/menu-admin")
-    public String menuAdmin(){ return "menu-admin"; }
 }

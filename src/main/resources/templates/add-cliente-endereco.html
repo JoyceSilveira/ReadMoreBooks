@@ -18,7 +18,7 @@
         <div class="top-bar-container">
             <div class="marca">
                 <div class="logo"></div>
-                <h2><a th:href="@{/clientes/principal}">ReadMore Books</a></h2>
+                <h2><a th:href="@{/livros/principal}">ReadMore Books</a></h2>
             </div>
             <div class="user">
                 <p><a>Usuário</a></p>
@@ -32,22 +32,22 @@
     <main>
         <div class="caixa">
             <div class="titulo">
-                <p class="cadastrar">Adicionar endereço cobrança</p>
+                <p class="cadastrar">Adicionar endereço</p>
             </div>
-            <form th:object="${endereco}" method="post">
+            <form method="post">
                 <div class="dados-form">
                     <fieldset>
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="tp_residencia">Tipo de residência</label>
-                                <select th:field="*{tipoResidencia}" class="p" name="tp_residencia" id="tp_residencia">
+                                <select class="p" name="tp_residencia" id="tp_residencia">
                                     <option value="casa">Casa</option>
                                     <option value="apto">Apartamento</option>
                                 </select>
                             </div>
                             <div class="campo">
                                 <label for="tp_logradouro">Tipo de logradouro</label>
-                                <select th:field="*{tipoLogradouro}" class="p" name="tp_logradouro" id="tp_logradouro">
+                                <select class="p" name="tp_logradouro" id="tp_logradouro">
                                     <option value="rua">Rua</option>
                                     <option value="av">Avenida</option>
                                     <option value="est">Estrada</option>
@@ -57,45 +57,45 @@
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="logradouro">Logradouro</label>
-                                <input th:field="*{logradouro}" class="g" type="text" id="logradouro" required>
+                                <input class="g" type="text" id="logradouro" required>
                             </div>
                             <div class="campo">
                                 <label for="cep">CEP</label>
-                                <input th:field="*{cep}" class="p" type="text" id="cep" required>
+                                <input class="p" type="text" id="cep" required>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="numero">Número</label>
-                                <input th:field="*{numero}" class="p" type="text" id="numero" required>
+                                <input class="p" type="text" id="numero" required>
                             </div>
                             <div class="campo esp">
                                 <label for="complemento">Complemento</label>
-                                <input th:field="*{complemento}" class="p" type="text" id="complemento">
+                                <input class="p" type="text" id="complemento">
                             </div>
                             <div class="campo">
                                 <label for="bairro">Bairro</label>
-                                <input th:field="*{bairro}" class="p" type="text" id="bairro" required>
+                                <input class="p" type="text" id="bairro" required>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="cidade">Cidade</label>
-                                <input th:field="*{cidade}" class="p" type="text" id="cidade" required>
+                                <input class="p" type="text" id="cidade" required>
                             </div>
                             <div class="campo esp">
                                 <label for="estado">Estado</label>
-                                <input th:field="*{sigla}" class="p" type="text" id="estado" required>
+                                <input class="p" type="text" id="estado" required>
                             </div>
                             <div class="campo">
                                 <label for="pais">País</label>
-                                <input th:field="*{pais}" class="p" type="text" id="pais" required>
+                                <input class="p" type="text" id="pais" required>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo">
                                 <label for="obs">Observações</label>
-                                <input th:field="*{observacoes}" class="g" type="text" id="obs">
+                                <input class="g" type="text" id="obs">
                             </div>
                         </div>
                     </fieldset>
