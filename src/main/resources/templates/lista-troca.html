@@ -10,14 +10,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
     <link th:href="@{/css/main.css}" rel="stylesheet">
-    <link th:href="@{/css/menu-admin.css}" rel="stylesheet">
+    <link th:href="@{/css/lista-troca.css}" rel="stylesheet">
 </head>
 <body id="page-landing">
-<div id="container" class="admin">
+<div id="container" class="cliente">
     <header class="page-header">
         <div class="top-bar-container">
-            <div class="logo"></div>
-            <h2>ReadMore Books</h2>
+            <div class="marca">
+                <div class="logo"></div>
+                <h2><a th:href="@{/livros/principal}">ReadMore Books</a></h2>
+            </div>
+            <div class="user">
+                <p><a>Usuário</a></p>
+                <p>
+                    <a th:href="@{/clientes/lista-compras}"><img th:src="@{/img/sacolas-compras.png}" alt="" class="carrinho"></a>
+                </p>
+                <a th:href="@{/clientes/carrinho-compras}"><img th:src="@{/img/carrinho-compras.png}" alt="" class="carrinho"></a>
+            </div>
         </div>
     </header>
     <main>
@@ -80,7 +89,37 @@
             </div>
         </div>
         <div class="conteudo">
-            <p>Ola</p>
+            <div class="listagem">
+                <div class="div-tabela">
+                    <h2 class="titulo-tabela">Itens para troca</h2>
+                    <table class="tabela">
+                        <thead>
+                        <tr>
+                            <th>Título</th>
+                            <th>Edição</th>
+                            <th>Quantidade</th>
+                            <th>Valor</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="nome">Harry Potter e a Pedra Filosofal</td>
+                            <td class="edicao">1ª Edição</td>
+                            <td class="botao-acao">Quant:<input type="text" class="quantidade" value="3"></td>
+                            <td class="valor">R$ 30,00</td>
+                            <td class="botao-acao"><a class="botao">Autorizar</a></td>
+                        </tr>
+                        <tr>
+                            <td class="nome">Harry Potter E A Câmara Secreta</td>
+                            <td class="edicao">2ª Edição</td>
+                            <td class="botao-acao">Quant:<input type="text" class="quantidade" value="2"></td>
+                            <td class="valor">R$ 41,00</td>
+                            <td class="botao-acao"><a class="botao">Autorizar</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </main>
 </div>

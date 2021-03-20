@@ -3,32 +3,16 @@
     height: 100vh;
 }
 
-.page-header .top-bar-container h2{
-    font-family: 'Roboto', 'sans-serif';
-    font-size: 3.5rem;
-    font-weight: bold;
-    color: #000000;
-}
-
-.page-header .top-bar-container .logo{
-    background-color: #FCC06D;
-    padding: 1.5rem;
-
-    margin-right: 1.5rem;
-}
-
 #page-landing main{
     width: 100%;
     margin: 0 auto;
     background-color: #FAFAFA;
 
     display: flex;
-    align-items: center;
-    justify-items: center;
 }
 
 main .caixa{
-    margin: 7rem auto;
+    margin: 0 auto;
 
     padding: 3rem 5rem;
     border: #FCC06D solid 1.5px;
@@ -170,5 +154,5 @@ main .caixa .titulo p{
 }
 
 .caixa table tr{
-    border: #FCC06D solid 1px !important;
+    border: #FCC06D solid 1px;
 }

@@ -5,51 +5,10 @@
 
 #page-landing main{
     width: 100%;
-    margin: 0 auto;
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+    display: flex;
     background-color: #FAFAFA;
 }
 
-table {
-    border-collapse: collapse;
-
-}
-
-main .listagem{
-    margin: 0 auto;
-    width: 1000px;
-    margin-top: 5rem;
-}
-
-main .listagem .alerta{
-    color: #FCC06D;
-    font-size: 4rem;
-}
-
-main .listagem .titulo-tabela{
-    font-size: 3.5rem;
-    margin-bottom: 2rem;
-}
-
-main .listagem .tabela th{
-    padding: 1rem;
-    color: white;
-    background-color: #FCC06D;
-    font-size: 1.8rem;
-    text-align: start;
-}
-
-main .listagem .tabela tr{
-    border-top: #FCC06D solid 1.5px;
-    border-bottom: #FCC06D solid 1.5px;
-}
-
-main .listagem .tabela td{
-    font-size: 1.7rem;
-    padding: 1.8rem 1.2rem;
-}
-
-main .listagem .tabela tr .nome{
-    width: 100rem;
+.admin .conteudo{
+    padding: 5rem 3rem;
 }

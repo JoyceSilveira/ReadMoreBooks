@@ -5,8 +5,9 @@
 
 #page-landing main{
     width: 100%;
-    display: flex;
     margin: 0 auto;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
     background-color: #FAFAFA;
 }
 
@@ -89,6 +90,24 @@ main .caixa .titulo {
     border: none;
 }
 
+.opcao_bloco {
+    display: flex;
+    align-items: center;
+}
+
+.opcao {
+    margin-bottom: 0 !important;
+    margin-right: 1rem;
+    margin-left: 0.5rem;
+}
+
+.titulo_opcao {
+    font-family: 'Roboto', 'Sans serief';
+    font-size: 1.7rem;
+    color: #4B4C4D;
+    margin-bottom: 0.8rem;
+}
+
 table {
     border-collapse: collapse;
 }
@@ -97,15 +116,6 @@ main .listagem{
     margin: 0 auto;
     width: 1000px;
     margin-top: 5rem;
-}
-
-main .listagem .alerta{
-    color: #FCC06D;
-    font-size: 4rem;
-}
-
-main .listagem .titulo-tabela{
-    font-size: 2.5rem;
 }
 
 main .listagem .tabela th{
@@ -134,16 +144,12 @@ main .listagem .tabela tr .nome{
     width: 40rem;
 }
 
-main .listagem .tabela tr .cpf{
+main .listagem .tabela tr .edicao{
     width: 16rem;
 }
 
-main .listagem .tabela tr .telefone{
+main .listagem .tabela tr .preco{
     width: 14rem;
-}
-
-main .listagem .tabela tr .email{
-    width: 40rem;
 }
 
 main .listagem .tabela .botao-acao{

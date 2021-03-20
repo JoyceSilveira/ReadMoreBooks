@@ -1,4 +1,4 @@
-#page-landing #container{
+#page-landing #container {
     max-width: 100vw;
     height: 100vh;
 }
@@ -9,10 +9,12 @@
     background-color: #FAFAFA;
 
     display: flex;
+    align-items: center;
+    justify-items: center;
 }
 
 main .caixa{
-    margin: 0 auto;
+    margin: 7rem auto;
 
     padding: 3rem 5rem;
     border: #FCC06D solid 1.5px;
@@ -24,36 +26,30 @@ main .caixa .titulo{
     display: flex;
 }
 
-main .caixa .titulo .detalhe{
+main .caixa .titulo .update{
     font-family: 'Roboto', 'sans serif';
     font-size: 3rem;
     color: #000000;
 
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+    margin-right: 2rem;
 }
 
-.caixa .perfil fieldset{
+.caixa form fieldset{
     border: none;
     margin-top: 2rem;
-    border-bottom: #FCC06D solid 1px;
-    padding-bottom: 2rem;
 }
 
-.caixa .perfil fieldset .sub-legend{
-    color: #FCC06D;
-    font-size: 1.7rem;
-}
-
-.caixa .perfil fieldset .coluna{
+.caixa form fieldset .coluna{
     display: flex;
     justify-content: flex-start;
 }
 
-.caixa .perfil fieldset .campo{
+.caixa form fieldset .campo{
     margin-top: 1.3rem
 }
 
-.caixa .perfil fieldset label{
+.caixa form fieldset label{
     display: block;
     font-family: 'Roboto', 'Sans serief';
     font-size: 1.7rem;
@@ -61,24 +57,29 @@ main .caixa .titulo .detalhe{
     color: #4B4C4D;
 }
 
-.caixa .perfil fieldset input{
-    font-size: 1.5rem;
-    border: none;
+.caixa form fieldset input{
+    padding: 0.5rem 1rem;
+    border: #4B4C4D solid 1px;
 }
 
-.caixa .perfil fieldset .esp{
+.caixa form fieldset select{
+    padding: 0.5rem 1rem;
+    border: #4B4C4D solid 1px;
+}
+
+.caixa form fieldset .esp{
     margin-right: 2.5rem;
 }
 
-.caixa .perfil fieldset .p{
+.caixa form fieldset .p{
     width: 20rem;
 }
 
-.caixa .perfil fieldset .g{
+.caixa form fieldset .g{
     width: 40rem;
 }
 
-.caixa .div-botao {
+.caixa form .div-botao {
     display: flex;
     align-content: center;
     justify-content: center;
@@ -86,29 +87,11 @@ main .caixa .titulo .detalhe{
     margin-top: 2rem;
 }
 
-.caixa .botao{
+.caixa form .div-botao .botao{
     background-color: #FCC06D;
     padding: 0.8rem 2rem;
     color:#ffffff;
     font-size: 1.5rem;
     font-family: 'Roboto', 'sans serief';
     border: none;
-    text-decoration: none;
-}
-
-.quant{
-    padding: 0.5rem 1rem;
-    border: #4B4C4D solid 1px !important;
-    width: 8.5rem;
-    text-align: center;
-}
-
-.compra{
-    display: flex;
-    justify-content: space-between;
-}
-
-textarea {
-    border: none;
-    padding: 0.5rem 1rem;
 }

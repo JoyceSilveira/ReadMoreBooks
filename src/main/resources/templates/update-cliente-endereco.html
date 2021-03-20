@@ -10,7 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
     <link th:href="@{/css/main.css}" rel="stylesheet">
-    <link th:href="@{/css/cadastro-cliente.css}" rel="stylesheet">
+    <!--<link th:href="@{/css/cadastro-cliente.css}" rel="stylesheet">-->
+    <link th:href="@{/css/update-endereco.css}" rel="stylesheet">
 </head>
 <body id="page-landing">
 <div id="container" class="cliente">
@@ -32,7 +33,7 @@
     <main>
         <div class="caixa">
             <div class="titulo">
-                <p class="cadastrar">Alterar endereço</p>
+                <p class="update">Alterar endereço</p>
             </div>
             <form th:action="@{/clientes/atualizar-endereco/{id}/{clienteId}(id=${endereco.id}, clienteId = ${endereco.cliente.id})}" th:object="${endereco}" method="post">
                 <div class="dados-form">

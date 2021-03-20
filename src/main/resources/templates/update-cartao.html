@@ -10,7 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
     <link th:href="@{/css/main.css}" rel="stylesheet">
-    <link th:href="@{/css/cadastro-cliente.css}" rel="stylesheet">
+    <!--<link th:href="@{/css/cadastro-cliente.css}" rel="stylesheet">-->
+    <link th:href="@{/css/update-cartao.css}" rel="stylesheet">
 </head>
 <body id="page-landing">
 <div id="container" class="cliente">
@@ -32,12 +33,11 @@
     <main>
         <div class="caixa">
             <div class="titulo">
-                <p class="cadastrar">Atualizar cartão</p>
+                <p class="update">Atualizar cartão</p>
             </div>
             <form method="post" th:action="@{/clientes/atualizar-cartao/{id}/{clienteId}(id=${cartao.id}, clienteId = ${cartao.cliente.id})}" th:object="${cartao}">
                 <div class="dados-form">
                     <fieldset>
-                        <legend class="sub-categorias">Cartão de crédito</legend>
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="bandeira">Bandeira</label>
@@ -72,9 +72,6 @@
             </form>
         </div>
     </main>
-    <footer>
-
-    </footer>
 </div>
 </body>
 </html>

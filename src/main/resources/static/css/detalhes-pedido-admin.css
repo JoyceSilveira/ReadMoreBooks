@@ -5,14 +5,13 @@
 
 #page-landing main{
     width: 100%;
-    display: flex;
     margin: 0 auto;
+    display: flex;
     background-color: #FAFAFA;
 }
 
 main .caixa{
     margin: 0 auto;
-    width: 1000px;
     padding: 3rem 5rem;
     border: #FCC06D solid 1.5px;
     border-radius: 0.8rem;
@@ -24,58 +23,15 @@ main .caixa{
     margin-top: 2rem;
 }
 
-main .caixa .titulo {
-    font-family: 'Roboto', 'sans serif';
-    font-size: 3rem;
-    color: #000000;
-
-    margin-bottom: 2rem;
-    margin-right: 2rem;
-}
-
 .caixa form fieldset .coluna{
     display: flex;
     justify-content: flex-start;
 }
 
-.caixa form fieldset .campo{
-    margin-top: 1.3rem
-}
-
-.caixa form fieldset label{
-    display: block;
-    font-family: 'Roboto', 'Sans serief';
-    font-size: 1.7rem;
-    margin-bottom: 0.8rem;
-    color: #4B4C4D;
-}
-
-.caixa form fieldset input{
-    padding: 0.5rem 1rem;
-    border: #4B4C4D solid 1px;
-}
-
-.caixa form fieldset select{
-    padding: 0.5rem 1rem;
-    border: #4B4C4D solid 1px;
-}
-
-.caixa form fieldset .esp{
-    margin-right: 2.5rem;
-}
-
-.caixa form fieldset .p{
-    width: 20rem;
-}
-
-.caixa form fieldset .g{
-    width: 40rem;
-}
-
 .caixa form .div-botao {
     display: flex;
     align-content: center;
-    justify-content: center;
+    justify-content: flex-end;
 
     margin-top: 2rem;
 }
@@ -95,17 +51,12 @@ table {
 
 main .listagem{
     margin: 0 auto;
-    width: 1000px;
     margin-top: 5rem;
-}
-
-main .listagem .alerta{
-    color: #FCC06D;
-    font-size: 4rem;
 }
 
 main .listagem .titulo-tabela{
     font-size: 2.5rem;
+    margin-bottom: 2rem;
 }
 
 main .listagem .tabela th{
@@ -134,25 +85,31 @@ main .listagem .tabela tr .nome{
     width: 40rem;
 }
 
-main .listagem .tabela tr .cpf{
+main .listagem .tabela tr .edicao{
     width: 16rem;
 }
 
-main .listagem .tabela tr .telefone{
+main .listagem .tabela tr .preco{
     width: 14rem;
 }
 
-main .listagem .tabela tr .email{
-    width: 40rem;
+.quantidade {
+    width: 5rem;
+    text-align: center;
+    border: none;
 }
 
-main .listagem .tabela .botao-acao{
-    margin-left: 2rem;
+.caixa .status-label{
+    display: block;
+    font-family: 'Roboto', 'Sans serief';
+    font-size: 1.7rem;
+    margin-bottom: 0.5rem;
+    color: #FCC06D;
+    font-weight: bold;
 }
 
-main .listagem .tabela .botao{
-    padding: 1.2rem;
-    color: white;
-    background-color: #FCC06D;
-    font-size: 1.5rem;
+
+
+.caixa form .campo{
+    margin-top: 2.3rem
 }

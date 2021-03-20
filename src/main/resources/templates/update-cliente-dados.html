@@ -10,7 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
     <link th:href="@{/css/main.css}" rel="stylesheet">
-    <link th:href="@{/css/cadastro-cliente.css}" rel="stylesheet">
+    <!--<link th:href="@{/css/cadastro-cliente.css}" rel="stylesheet">-->
+    <link th:href="@{/css/update-dados-pessoais.css}" rel="stylesheet">
 </head>
 <body id="page-landing">
 <div id="container" class="cliente">
@@ -32,7 +33,7 @@
     <main>
         <div class="caixa">
             <div class="titulo">
-                <p class="cadastrar">Alterar dados pessoais</p>
+                <p class="update">Alterar dados pessoais</p>
             </div>
             <form th:action="@{/clientes/atualizar-dados/{id}(id=${cliente.id})}" th:object="${cliente}" method="post">
                 <div class="dados-form">
@@ -79,9 +80,6 @@
             </form>
         </div>
     </main>
-    <footer>
-
-    </footer>
 </div>
 </body>
 </html>

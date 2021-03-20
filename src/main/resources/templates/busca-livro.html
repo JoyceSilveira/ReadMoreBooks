@@ -10,7 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
     <link th:href="@{/css/main.css}" rel="stylesheet">
-    <link th:href="@{/css/lista-livros.css}" rel="stylesheet">
+    <!--<link th:href="@{/css/lista-livros.css}" rel="stylesheet">-->
+    <link th:href="@{/css/busca-livro.css}" rel="stylesheet">
 </head>
 <body id="page-landing">
 <div id="container" class="cliente">
@@ -30,107 +31,164 @@
         </div>
     </header>
     <main>
-        <div class="caixa">
-            <div class="titulo">
-                <p>Filtros de pesquisa</p>
+        <div class="menu">
+            <div class="listagem">
+                <div class="div-tabela">
+                    <table class="tabela">
+                        <thead>
+                        <tr>
+                            <th>Clientes</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><a th:href="@{/clientes/list-cliente}">Lista de clientes</a></td>
+                        </tr>
+                        <tr>
+                            <td><a th:href="@{/clientes/lista-compras-admin}">Lista de vendas</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="div-tabela">
+                    <table class="tabela">
+                        <thead>
+                        <tr>
+                            <th>Livros</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><a th:href="@{/livros/lista-livro}">Lista de livros</a></td>
+                        </tr>
+                        <tr>
+                            <td><a th:href="@{/livros/add-livro}">Cadastrar livro</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="div-tabela">
+                    <table class="tabela">
+                        <thead>
+                        <tr>
+                            <th>Gerenciamento</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><a th:href="@{/livros/lista-livro}">Dashboard</a></td>
+                        </tr>
+                        <tr>
+                            <td><a th:href="@{/livros/lista-livro}">Cupons</a></td>
+                        </tr>
+                        <tr>
+                            <td><a th:href="@{/livros/lista-livro}">Grupo de precificação</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <form>
-                <div class="dados-form">
-                    <fieldset>
-                        <div class="coluna">
-                            <div class="campo esp">
-                                <label for="titulo">Título</label>
-                                <input class="g" type="text" id="titulo">
-                            </div>
-                            <div class="campo">
-                                <label for="editora">Editora</label>
-                                <input class="g" type="text" id="editora">
-                            </div>
-                        </div>
-                        <div class="coluna">
-                            <div class="campo esp">
-                                <label for="autor">Autor</label>
-                                <input class="g" type="text" id="autor">
-                            </div>
-                            <div class="campo esp">
-                                <label for="ano">Ano</label>
-                                <input class="p" type="text" id="ano">
-                            </div>
-                            <div class="campo">
-                                <label for="edicao">Edição</label>
-                                <input class="p" type="text" id="edicao">
-                            </div>
-                        </div>
-                        <div class="coluna">
-                            <div class="campo esp">
-                                <label for="isbn">ISBN</label>
-                                <input class="g" type="text" id="isbn">
-                            </div>
-                            <div class="campo esp">
-                                <label for="n_paginas">Número de páginas</label>
-                                <input class="p" type="text" id="n_paginas">
-                            </div>
-                        </div>
-                        <div class="coluna">
-                            <div class="campo">
-                                <p class="titulo_opcao">Categoria</p>
-                                <div class="opcao_bloco">
-                                    <input type="checkbox" id="romance" name="categoria" value="romance" class="opcao_input">
-                                    <label for="romance" class="opcao">Romance</label>
-                                    <input type="checkbox" id="aventura" name="categoria" value="aventura" class="opcao_input">
-                                    <label for="aventura" class="opcao">Aventura</label>
-                                    <input type="checkbox" id="suspense" name="categoria" value="suspense" class="opcao_input">
-                                    <label for="suspense" class="opcao">Suspense</label>
-                                    <input type="checkbox" id="terror" name="categoria" value="terror" class="opcao_input">
-                                    <label for="terror" class="opcao">Terror</label>
-                                    <input type="checkbox" id="ficcao" name="categoria" value="ficcao" class="opcao_input">
-                                    <label for="ficcao" class="opcao">Ficção científica</label>
+        </div>
+        <div class="conteudo">
+            <div class="caixa">
+                <div class="titulo">
+                    <p>Filtros de pesquisa</p>
+                </div>
+                <form>
+                    <div class="dados-form">
+                        <fieldset>
+                            <div class="coluna">
+                                <div class="campo esp">
+                                    <label for="titulo">Título</label>
+                                    <input class="g" type="text" id="titulo">
+                                </div>
+                                <div class="campo">
+                                    <label for="editora">Editora</label>
+                                    <input class="g" type="text" id="editora">
                                 </div>
                             </div>
-                        </div>
-                        <div class="coluna">
-                            <div class="campo esp">
-                                <label for="preco">Preço</label>
-                                <input class="p" type="text" id="preco">
+                            <div class="coluna">
+                                <div class="campo esp">
+                                    <label for="autor">Autor</label>
+                                    <input class="g" type="text" id="autor">
+                                </div>
+                                <div class="campo esp">
+                                    <label for="ano">Ano</label>
+                                    <input class="p" type="text" id="ano">
+                                </div>
+                                <div class="campo">
+                                    <label for="edicao">Edição</label>
+                                    <input class="p" type="text" id="edicao">
+                                </div>
                             </div>
-                            <div class="campo esp">
-                                <label for="cod_barras">Código de barras</label>
-                                <input class="g" type="text" id="cod_barras">
+                            <div class="coluna">
+                                <div class="campo esp">
+                                    <label for="isbn">ISBN</label>
+                                    <input class="g" type="text" id="isbn">
+                                </div>
+                                <div class="campo esp">
+                                    <label for="n_paginas">Número de páginas</label>
+                                    <input class="p" type="text" id="n_paginas">
+                                </div>
                             </div>
-                        </div>
-                    </fieldset>
+                            <div class="coluna">
+                                <div class="campo">
+                                    <p class="titulo_opcao">Categoria</p>
+                                    <div class="opcao_bloco">
+                                        <input type="checkbox" id="romance" name="categoria" value="romance" class="opcao_input">
+                                        <label for="romance" class="opcao">Romance</label>
+                                        <input type="checkbox" id="aventura" name="categoria" value="aventura" class="opcao_input">
+                                        <label for="aventura" class="opcao">Aventura</label>
+                                        <input type="checkbox" id="suspense" name="categoria" value="suspense" class="opcao_input">
+                                        <label for="suspense" class="opcao">Suspense</label>
+                                        <input type="checkbox" id="terror" name="categoria" value="terror" class="opcao_input">
+                                        <label for="terror" class="opcao">Terror</label>
+                                        <input type="checkbox" id="ficcao" name="categoria" value="ficcao" class="opcao_input">
+                                        <label for="ficcao" class="opcao">Ficção científica</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="coluna">
+                                <div class="campo esp">
+                                    <label for="preco">Preço</label>
+                                    <input class="p" type="text" id="preco">
+                                </div>
+                                <div class="campo esp">
+                                    <label for="cod_barras">Código de barras</label>
+                                    <input class="g" type="text" id="cod_barras">
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="div-botao">
+                        <input type="submit" class="botao" value="Pesquisar">
+                    </div>
+                </form>
+            </div>
+            <div class="listagem">
+                <div class="div-tabela">
+                    <table class="tabela">
+                        <tbody>
+                        <tr>
+                            <td class="nome">Harry Potter e a Pedra Filosofal</td>
+                            <td class="edicao">1ª Edição</td>
+                            <td class="preco">R$ 30,00</td>
+                            <td class="botao-acao"><a th:href="@{/livros/detalhes-livro}" class="botao">Detalhes</a></td>
+                            <td class="botao-acao"><a class="botao">Adicionar ao carrinho</a></td>
+                        </tr>
+                        <tr>
+                            <td class="nome">Harry Potter E A Câmara Secreta</td>
+                            <td class="edicao">2ª Edição</td>
+                            <td class="preco">R$ 41,00</td>
+                            <td class="botao-acao"><a th:href="@{/livros/detalhes-livro}" class="botao">Detalhes</a></td>
+                            <td class="botao-acao"><a class="botao">Adicionar ao carrinho</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="div-botao">
-                    <input type="submit" class="botao" value="Pesquisar">
-                </div>
-            </form>
-        </div>
-        <div class="listagem">
-            <div class="div-tabela">
-                <table class="tabela">
-                    <tbody>
-                    <tr>
-                        <td class="nome">Harry Potter e a Pedra Filosofal</td>
-                        <td class="cpf">1ª Edição</td>
-                        <td class="telefone">R$ 30,00</td>
-                        <td class="botao-excluir"><a th:href="@{/livros/detalhes-livro}" class="botao">Detalhes</a></td>
-                        <td class="botao-excluir"><a class="botao">Adicionar ao carrinho</a></td>
-                    </tr>
-                    <tr>
-                        <td class="nome">Harry Potter E A Câmara Secreta</td>
-                        <td class="cpf">2ª Edição</td>
-                        <td class="telefone">R$ 41,00</td>
-                        <td class="botao-excluir"><a th:href="@{/livros/detalhes-livro}" class="botao">Detalhes</a></td>
-                        <td class="botao-excluir"><a class="botao">Adicionar ao carrinho</a></td>
-                    </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
     </main>
-    <footer>
-
-    </footer>
 </div>
 </body>
 </html>

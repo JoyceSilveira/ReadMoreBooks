@@ -5,8 +5,8 @@
 
 #page-landing main{
     width: 100%;
-    display: flex;
     margin: 0 auto;
+    display: flex;
     background-color: #FAFAFA;
 }
 
@@ -19,74 +19,12 @@ main .caixa{
     background-color: #ffffff;
 }
 
-.caixa form fieldset{
-    border: none;
-    margin-top: 2rem;
-}
-
-main .caixa .titulo {
-    font-family: 'Roboto', 'sans serif';
-    font-size: 3rem;
-    color: #000000;
-
-    margin-bottom: 2rem;
-    margin-right: 2rem;
-}
-
-.caixa form fieldset .coluna{
-    display: flex;
-    justify-content: flex-start;
-}
-
-.caixa form fieldset .campo{
-    margin-top: 1.3rem
-}
-
-.caixa form fieldset label{
-    display: block;
-    font-family: 'Roboto', 'Sans serief';
-    font-size: 1.7rem;
-    margin-bottom: 0.8rem;
-    color: #4B4C4D;
-}
-
-.caixa form fieldset input{
-    padding: 0.5rem 1rem;
-    border: #4B4C4D solid 1px;
-}
-
-.caixa form fieldset select{
-    padding: 0.5rem 1rem;
-    border: #4B4C4D solid 1px;
-}
-
-.caixa form fieldset .esp{
-    margin-right: 2.5rem;
-}
-
-.caixa form fieldset .p{
-    width: 20rem;
-}
-
-.caixa form fieldset .g{
-    width: 40rem;
-}
-
 .caixa form .div-botao {
     display: flex;
     align-content: center;
     justify-content: center;
 
     margin-top: 2rem;
-}
-
-.caixa form .div-botao .botao{
-    background-color: #FCC06D;
-    padding: 0.8rem 2rem;
-    color:#ffffff;
-    font-size: 1.5rem;
-    font-family: 'Roboto', 'sans serief';
-    border: none;
 }
 
 table {
@@ -134,16 +72,12 @@ main .listagem .tabela tr .nome{
     width: 40rem;
 }
 
-main .listagem .tabela tr .cpf{
+main .listagem .tabela tr .edicao{
     width: 16rem;
 }
 
-main .listagem .tabela tr .telefone{
+main .listagem .tabela tr .preco{
     width: 14rem;
-}
-
-main .listagem .tabela tr .email{
-    width: 40rem;
 }
 
 main .listagem .tabela .botao-acao{

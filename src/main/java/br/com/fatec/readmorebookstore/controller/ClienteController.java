@@ -142,7 +142,7 @@ public class ClienteController {
     }
 
     @GetMapping("/lista-compras-admin")
-    public String listaComprasAdmin(){ return "list-compras"; }
+    public String listaComprasAdmin(){ return "lista-vendas"; }
 
     @GetMapping("/add-endereco/{id}")
     public String addEndCobranca(Endereco endereco) {
@@ -156,7 +156,7 @@ public class ClienteController {
     public String carrinhoCompras(){ return "carrinho"; }
 
     @GetMapping("/lista-compras")
-    public String listaCompras(){ return "list-compras-cliente"; }
+    public String listaCompras(){ return "lista-compras"; }
 
     @GetMapping("/pedido")
     public String pedido(){ return "pedido"; }

@@ -93,6 +93,47 @@ textarea {
 
 a{
     text-decoration: none;
+    color: inherit;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.menu .listagem{
+    margin: 0 auto;
+    width: 200px;
+}
+
+.menu .listagem .alerta{
+    color: #FCC06D;
+    font-size: 4rem;
+}
+
+.menu .listagem .tabela th{
+    width: 200px;
+    padding: 1rem;
+    color: white;
+    background-color: #FCC06D;
+    font-size: 1.8rem;
+    text-align: start;
+}
+
+.menu .listagem .tabela tr{
+    border-top: #FCC06D solid 1.5px;
+    border-bottom: #FCC06D solid 1.5px;
+}
+
+.menu .listagem .tabela td{
+    font-size: 1.7rem;
+    padding: 1.8rem 1.2rem;
+}
+
+.conteudo{
+    padding: 5rem 3rem;
+    display: flex;
+    justify-items: center;
+    margin: 0 auto;
 }
 
 @media (min-width: 700px) {

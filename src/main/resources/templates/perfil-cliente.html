@@ -30,116 +30,173 @@
         </div>
     </header>
     <main>
-        <div class="caixa">
-            <div class="titulo">
-                <p>Dados do usuário</p>
+        <div class="menu">
+            <div class="listagem">
+                <div class="div-tabela">
+                    <table class="tabela">
+                        <thead>
+                        <tr>
+                            <th>Clientes</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><a th:href="@{/clientes/list-cliente}">Lista de clientes</a></td>
+                        </tr>
+                        <tr>
+                            <td><a th:href="@{/clientes/lista-compras-admin}">Lista de vendas</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="div-tabela">
+                    <table class="tabela">
+                        <thead>
+                        <tr>
+                            <th>Livros</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><a th:href="@{/livros/lista-livro}">Lista de livros</a></td>
+                        </tr>
+                        <tr>
+                            <td><a th:href="@{/livros/add-livro}">Cadastrar livro</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="div-tabela">
+                    <table class="tabela">
+                        <thead>
+                        <tr>
+                            <th>Gerenciamento</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><a th:href="@{/livros/lista-livro}">Dashboard</a></td>
+                        </tr>
+                        <tr>
+                            <td><a th:href="@{/livros/lista-livro}">Cupons</a></td>
+                        </tr>
+                        <tr>
+                            <td><a th:href="@{/livros/lista-livro}">Grupo de precificação</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <form class="perfil" th:object="${cliente}">
-                <div class="dados-form">
-                    <fieldset>
-                        <legend class="sub-categorias">Dados pessoais</legend>
-                        <div class="botao-editar">
-                            <a th:href="@{/clientes/editar-dados/{id}(id=${cliente.id})}" class="editar">Editar</a>
-                        </div>
-                        <div class="coluna">
-                            <div class="campo esp">
-                                <label for="nome">Nome completo</label>
-                                <input th:field="*{nome}" class="g" type="text" id="nome" readonly>
+        </div>
+        <div class="conteudo">
+            <div class="caixa">
+                <div class="titulo">
+                    <p>Dados do usuário</p>
+                </div>
+                <form class="perfil" th:object="${cliente}">
+                    <div class="dados-form">
+                        <fieldset>
+                            <legend class="sub-categorias">Dados pessoais</legend>
+                            <div class="botao-editar">
+                                <a th:href="@{/clientes/editar-dados/{id}(id=${cliente.id})}" class="editar">Editar</a>
                             </div>
-                            <div class="campo">
-                                <label for="genero">Gênero</label>
-                                <input th:field="*{genero}" type="text" class="p" id="genero" value="" readonly>
+                            <div class="coluna">
+                                <div class="campo esp">
+                                    <label for="nome">Nome completo</label>
+                                    <input th:field="*{nome}" class="g" type="text" id="nome" readonly>
+                                </div>
+                                <div class="campo">
+                                    <label for="genero">Gênero</label>
+                                    <input th:field="*{genero}" type="text" class="p" id="genero" value="" readonly>
+                                </div>
                             </div>
-                        </div>
-                        <div class="coluna">
-                            <div class="campo esp">
-                                <label for="dt_nascimento">Data de nascimento</label>
-                                <input th:field="*{dataNascimento}" class="p" type="text" id="dt_nascimento" value="" readonly>
+                            <div class="coluna">
+                                <div class="campo esp">
+                                    <label for="dt_nascimento">Data de nascimento</label>
+                                    <input th:field="*{dataNascimento}" class="p" type="text" id="dt_nascimento" value="" readonly>
+                                </div>
+                                <div class="campo esp">
+                                    <label for="cpf">CPF</label>
+                                    <input th:field="*{cpf}" class="p" type="text" id="cpf" value="" readonly>
+                                </div>
+                                <div class="campo">
+                                    <label for="tel">Telefone</label>
+                                    <input th:field="*{telefone}" class="p" type="text" id="tel" value="" readonly>
+                                </div>
                             </div>
-                            <div class="campo esp">
-                                <label for="cpf">CPF</label>
-                                <input th:field="*{cpf}" class="p" type="text" id="cpf" value="" readonly>
+                            <div class="coluna">
+                                <div class="campo">
+                                    <label for="email">E-mail</label>
+                                    <input th:field="*{email}" class="g" type="text" id="email" value="" readonly>
+                                </div>
                             </div>
-                            <div class="campo">
-                                <label for="tel">Telefone</label>
-                                <input th:field="*{telefone}" class="p" type="text" id="tel" value="" readonly>
+                            <div class="coluna">
+                                <div class="campo esp">
+                                    <label >Senha</label>
+                                    <a th:href="@{/clientes/editar-senha/{id}(id=${cliente.id})}" class="alt-senha">Alterar senha</a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="coluna">
-                            <div class="campo">
-                                <label for="email">E-mail</label>
-                                <input th:field="*{email}" class="g" type="text" id="email" value="" readonly>
-                            </div>
-                        </div>
-                        <div class="coluna">
-                            <div class="campo esp">
-                                <label >Senha</label>
-                                <a th:href="@{/clientes/editar-senha/{id}(id=${cliente.id})}" class="alt-senha">Alterar senha</a>
-                            </div>
-                        </div>
-                    </fieldset>
-                    <fieldset>
-                        <legend class="sub-categorias">Endereços</legend>
-                        <table>
-                            <thead>
-                            <tr>
-                                <th>Tipo de endereço</th>
-                                <th>Logradouro</th>
-                                <th>Bairro</th>
-                                <th>Cidade</th>
-                                <th>Número</th>
-                                <th>Complemento</th>
-                                <th>Observações</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="end : ${cliente.enderecosVinculados}">
-                                <td th:text="${end.tipoEndereco}"></td>
-                                <td th:text="${end.logradouro}"></td>
-                                <td th:text="${end.bairro}"></td>
-                                <td th:text="${end.nomeCidade}"></td>
-                                <td th:text="${end.numero}"></td>
-                                <td th:text="${end.complemento}"></td>
-                                <td th:text="${end.observacoes}"></td>
-                                <td><a th:href="@{/clientes/editar-endereco/{id}(id=${end.id})}" class="editar">Editar</a></td>
-                                <td><a th:href="@{/clientes/add-endereco/{id}(id=${cliente.id})}" class="adicionar">Adicionar</a></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </fieldset>
-                    <fieldset>
-                        <legend class="sub-categorias">Cartão de crédito</legend>
-                        <table>
-                            <thead>
+                        </fieldset>
+                        <fieldset>
+                            <legend class="sub-categorias">Endereços</legend>
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>Tipo de endereço</th>
+                                    <th>Logradouro</th>
+                                    <th>Bairro</th>
+                                    <th>Cidade</th>
+                                    <th>Número</th>
+                                    <th>Complemento</th>
+                                    <th>Observações</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="end : ${cliente.enderecosVinculados}">
+                                    <td th:text="${end.tipoEndereco}"></td>
+                                    <td th:text="${end.logradouro}"></td>
+                                    <td th:text="${end.bairro}"></td>
+                                    <td th:text="${end.nomeCidade}"></td>
+                                    <td th:text="${end.numero}"></td>
+                                    <td th:text="${end.complemento}"></td>
+                                    <td th:text="${end.observacoes}"></td>
+                                    <td><a th:href="@{/clientes/editar-endereco/{id}(id=${end.id})}" class="editar">Editar</a></td>
+                                    <td><a th:href="@{/clientes/add-endereco/{id}(id=${cliente.id})}" class="adicionar">Adicionar</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </fieldset>
+                        <fieldset>
+                            <legend class="sub-categorias">Cartão de crédito</legend>
+                            <table>
+                                <thead>
                                 <tr>
                                     <th>Bandeira</th>
                                     <th>Número</th>
                                     <th>Código de segurança</th>
                                     <th>Nome impresso no cartão</th>
                                 </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="cartaoC : ${cliente.cartoesVinculados}">
-                                <td th:text="${cartaoC.bandeira}" class="nome"></td>
-                                <td th:text="${cartaoC.numero}" class="cpf"></td>
-                                <td th:text="${cartaoC.cvv}" class="telefone"></td>
-                                <td th:text="${cartaoC.nomeImpresso}" class="email"></td>
-                                <td><a th:href="@{/clientes/editar-cartao/{id}(id=${cartaoC.id})}" class="editar">Editar</a></td>
-                                <td><a th:href="@{/clientes/add-cartao/{id}(id=${cliente.id})}" class="adicionar">Adicionar</a></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </fieldset>
-                </div>
-                <div class="div-botao">
-                    <a th:href="@{/livros/principal}" class="botao">Voltar</a>
-                </div>
-            </form>
+                                </thead>
+                                <tbody>
+                                <tr th:each="cartaoC : ${cliente.cartoesVinculados}">
+                                    <td th:text="${cartaoC.bandeira}" class="nome"></td>
+                                    <td th:text="${cartaoC.numero}" class="cpf"></td>
+                                    <td th:text="${cartaoC.cvv}" class="telefone"></td>
+                                    <td th:text="${cartaoC.nomeImpresso}" class="email"></td>
+                                    <td><a th:href="@{/clientes/editar-cartao/{id}(id=${cartaoC.id})}" class="editar">Editar</a></td>
+                                    <td><a th:href="@{/clientes/add-cartao/{id}(id=${cliente.id})}" class="adicionar">Adicionar</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </fieldset>
+                    </div>
+                    <div class="div-botao">
+                        <a th:href="@{/livros/principal}" class="botao">Voltar</a>
+                    </div>
+                </form>
+            </div>
         </div>
     </main>
-    <footer>
-
-    </footer>
 </div>
 </body>
 </html>

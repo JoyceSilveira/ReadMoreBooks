@@ -10,7 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
     <link th:href="@{/css/main.css}" rel="stylesheet">
-    <link th:href="@{/css/cadastro-cliente.css}" rel="stylesheet">
+    <!--<link th:href="@{/css/cadastro-cliente.css}" rel="stylesheet">-->
+    <link th:href="@{/css/update-senha.css}" rel="stylesheet">
 </head>
 <body id="page-landing">
 <div id="container" class="cliente">
@@ -32,7 +33,7 @@
     <main>
         <div class="caixa">
             <div class="titulo">
-                <p class="cadastrar">Alteração de senha</p>
+                <p class="update">Alteração de senha</p>
             </div>
             <form th:action="@{/clientes/atualizar-senha/{id}(id=${cliente.id})}" th:object="${cliente}" method="post">
                 <div class="dados-form">
@@ -61,9 +62,6 @@
             </form>
         </div>
     </main>
-    <footer>
-
-    </footer>
 </div>
 </body>
 </html>

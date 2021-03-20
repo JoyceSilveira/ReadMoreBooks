@@ -1,0 +1,71 @@
+#page-landing #container{
+    max-width: 100vw;
+    height: 100vh;
+}
+
+#page-landing main{
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    background-color: #FAFAFA;
+}
+
+main .caixa{
+    margin: 0 auto;
+    padding: 3rem 5rem;
+    border: #FCC06D solid 1.5px;
+    border-radius: 0.8rem;
+    background-color: #ffffff;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+main .listagem{
+    margin: 0 auto;
+    margin-top: 5rem;
+}
+
+main .listagem .alerta{
+    color: #FCC06D;
+    font-size: 4rem;
+}
+
+main .listagem .titulo-tabela{
+    font-size: 2.5rem;
+}
+
+main .listagem .tabela th{
+    padding: 1rem;
+    color: white;
+    background-color: #FCC06D;
+    font-size: 1.8rem;
+    text-align: start;
+}
+
+main .listagem .tabela tr{
+    border-top: #FCC06D solid 1.5px;
+    border-bottom: #FCC06D solid 1.5px;
+}
+
+main .listagem .tabela td{
+    font-size: 1.7rem;
+    padding: 1.8rem 1.2rem;
+}
+
+main .listagem .tabela td a{
+    color: black;
+}
+
+main .listagem .tabela tr .nome{
+    width: 40rem;
+}
+
+main .listagem .tabela tr .valor{
+    width: 25rem;
+}
+
+main .listagem .tabela tr .tipo{
+    width: 20rem;
+}
