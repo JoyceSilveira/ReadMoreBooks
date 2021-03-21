@@ -43,7 +43,7 @@ public class ClienteController {
     public String EditSenha(@PathVariable("id") Integer id, Model model) {
         Cliente cliente = clienteFacade.getCliente(id);
         model.addAttribute("cliente", cliente);
-        return "update-cliente-senha";
+        return "update-senha";
     }
 
     @PostMapping("/atualizar-senha/{id}")
@@ -63,7 +63,7 @@ public class ClienteController {
     public String EditEndereco(@PathVariable("id") Integer id, Model model) {
         Endereco endereco = clienteFacade.pegarEndereco(id);
         model.addAttribute("endereco", endereco);
-        return "update-cliente-endereco";
+        return "update-endereco";
     }
 
     @PostMapping("/atualizar-endereco/{id}/{clienteId}")
@@ -84,7 +84,7 @@ public class ClienteController {
     public String EditDadosPessoais(@PathVariable("id") Integer id, Model model) {
         Cliente cliente = clienteFacade.getCliente(id);
         model.addAttribute("cliente", cliente);
-        return "update-cliente-dados";
+        return "update-dados-pessoais";
     }
 
     @PostMapping("/atualizar-dados/{id}")
@@ -123,7 +123,7 @@ public class ClienteController {
         }
     }
 
-    @GetMapping("/list-cliente")
+    @GetMapping("/lista-cliente")
     public String mostraListaClientes(Model model) {
         model.addAttribute("clientes", clienteFacade.listarTodos());
         return "lista-cliente";
@@ -142,23 +142,14 @@ public class ClienteController {
     }
 
     @GetMapping("/lista-compras-admin")
-    public String listaComprasAdmin(){ return "lista-vendas"; }
+    public String listaComprasAdmin(){ return "lista-venda"; }
 
     @GetMapping("/add-endereco/{id}")
     public String addEndCobranca(Endereco endereco) {
-        return "add-cliente-endereco";
+        return "add-endereco";
     }
 
     @GetMapping("/add-cartao/{id}")
     public String addCartao(Cartao cartao) { return "add-cartao"; }
-
-    @GetMapping("/carrinho-compras")
-    public String carrinhoCompras(){ return "carrinho"; }
-
-    @GetMapping("/lista-compras")
-    public String listaCompras(){ return "lista-compras"; }
-
-    @GetMapping("/pedido")
-    public String pedido(){ return "pedido"; }
 
 }

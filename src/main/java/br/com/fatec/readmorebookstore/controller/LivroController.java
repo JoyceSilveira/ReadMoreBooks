@@ -19,14 +19,14 @@ public class LivroController {
     @GetMapping("/lista-livro")
     public String listaLivro(){ return "lista-livro"; }
 
-    @GetMapping("/detalhes-livro")
-    public String detalhesLivro(){ return "detalhes-livro"; }
-
     @GetMapping("/add-livro")
     public String mostraFormularioLivro(){ return "cadastro-livro"; }
 
     @GetMapping("/principal")
     public String principal(){ return "busca-livro"; }
+
+    @GetMapping("/detalhes-livro")
+    public String detalhesLivro(){ return "detalhes-livro"; }
 
     @GetMapping("/detalhes-livro-admin")
     public String detalhesLivroAdmin(){ return "detalhes-livro-admin"; }

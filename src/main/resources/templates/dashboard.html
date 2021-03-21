@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>ReadMore Books</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/css/dashboard.css}" rel="stylesheet">
+</head>
+<body id="page-landing">
+<div id="container" class="admin">
+    <header class="page-header">
+        <div class="top-bar-container">
+            <div class="logo"></div>
+            <h2>ReadMore Books</h2>
+        </div>
+    </header>
+    <main>
+        <div class="menu">
+            <div class="listagem">
+                <div class="div-tabela">
+                    <table class="tabela">
+                        <thead>
+                        <tr>
+                            <th>Clientes</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><a th:href="@{/clientes/list-cliente}">Lista de clientes</a></td>
+                        </tr>
+                        <tr>
+                            <td><a th:href="@{/clientes/lista-compras-admin}">Lista de vendas</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="div-tabela">
+                    <table class="tabela">
+                        <thead>
+                        <tr>
+                            <th>Livros</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><a th:href="@{/livros/lista-livro}">Lista de livros</a></td>
+                        </tr>
+                        <tr>
+                            <td><a th:href="@{/livros/add-livro}">Cadastrar livro</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="div-tabela">
+                    <table class="tabela">
+                        <thead>
+                        <tr>
+                            <th>Gerenciamento</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><a th:href="@{/livros/lista-livro}">Dashboard</a></td>
+                        </tr>
+                        <tr>
+                            <td><a th:href="@{/livros/lista-livro}">Cupons</a></td>
+                        </tr>
+                        <tr>
+                            <td><a th:href="@{/livros/lista-livro}">Grupo de precificação</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="conteudo">
+            <p>Ola</p>
+        </div>
+    </main>
+</div>
+</body>
+</html>
