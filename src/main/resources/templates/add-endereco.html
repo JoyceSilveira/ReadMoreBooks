@@ -40,6 +40,13 @@
                     <fieldset>
                         <div class="coluna">
                             <div class="campo esp">
+                                <label for="tp_endereco">Tipo de endereço</label>
+                                <select class="p" name="tp_endereco" id="tp_endereco">
+                                    <option value="ENTREGA">Entrega</option>
+                                    <option value="COBRANCA">Cobrança</option>
+                                </select>
+                            </div>
+                            <div class="campo esp">
                                 <label for="tp_residencia">Tipo de residência</label>
                                 <select class="p" name="tp_residencia" id="tp_residencia">
                                     <option value="casa">Casa</option>
@@ -84,13 +91,9 @@
                                 <label for="cidade">Cidade</label>
                                 <input class="p" type="text" id="cidade" required>
                             </div>
-                            <div class="campo esp">
-                                <label for="estado">Estado</label>
-                                <input class="p" type="text" id="estado" required>
-                            </div>
                             <div class="campo">
-                                <label for="pais">País</label>
-                                <input class="p" type="text" id="pais" required>
+                                <label for="identificacao">Nome de identificação</label>
+                                <input class="g" type="text" id="identificacao" required>
                             </div>
                         </div>
                         <div class="coluna">

@@ -1,7 +1,5 @@
 package br.com.fatec.readmorebookstore.dominio;
 
-
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -26,7 +24,6 @@ public class Cliente extends AbstractEntidade {
     private String nome;
     private String dataNascimento;
     private String cpf;
-    // Deve ser composto pelo tipo, DDD e número
     private String telefone;
     private String email;
     private String senha;

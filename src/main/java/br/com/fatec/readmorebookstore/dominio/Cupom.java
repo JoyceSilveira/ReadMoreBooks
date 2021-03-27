@@ -12,12 +12,11 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class Cartao extends AbstractEntidade {
-    private String numero;
-    private String nomeImpresso;
-    private String bandeira;
-    private Integer cvv;
+public class Cupom extends AbstractEntidade{
     @ManyToOne(cascade= CascadeType.PERSIST)
-    private Cliente cliente;
-    private boolean preferencial = true;
+    private Compra compra;
+    private double valor;
+    private String nome;
+    @Enumerated(EnumType.STRING)
+    private TipoCupomEnum tipoCupom;
 }

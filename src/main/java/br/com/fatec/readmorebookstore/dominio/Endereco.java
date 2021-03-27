@@ -29,4 +29,5 @@ public class Endereco extends AbstractEntidade {
     // Preenchimento opcional
     private String observacoes;
     private String nomeCidade;
+    private String identificacao;
 }

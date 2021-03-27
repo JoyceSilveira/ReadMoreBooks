@@ -87,13 +87,13 @@
                             <div class="coluna">
                                 <div class="campo esp">
                                     <label for="tp_endereco">Tipo de endereço</label>
-                                    <select th:field="*{enderecoEntrega.tipoEndereco}" class="p" name="tp_endereco" id="tp_endereco" required>
+                                    <select th:field="*{enderecoEntrega.tipoEndereco}" class="p" name="tp_endereco_entrega" id="tp_endereco" required>
                                         <option value="ENTREGA">Entrega</option>
                                     </select>
                                 </div>
                                 <div class="campo esp">
                                     <label for="tp_residencia_end">Tipo de residência</label>
-                                    <select th:field="*{enderecoEntrega.tipoResidencia}" class="p" name="tp_residencia" id="tp_residencia_end" required>
+                                    <select th:field="*{enderecoEntrega.tipoResidencia}" class="p" name="tp_residencia_entrega" id="tp_residencia_end" required>
                                         <option value="casa">Casa</option>
                                         <option value="apto">Apartamento</option>
                                         <option value="comercial">Comercial</option>
@@ -101,7 +101,7 @@
                                 </div>
                                 <div class="campo">
                                     <label for="tp_logradouro_end">Tipo de logradouro</label>
-                                    <select th:field="*{enderecoEntrega.tipoLogradouro}" class="p" name="tp_logradouro" id="tp_logradouro_end" required>
+                                    <select th:field="*{enderecoEntrega.tipoLogradouro}" class="p" name="tp_logradouro_entrega" id="tp_logradouro_end" required>
                                         <option value="rua">Rua</option>
                                         <option value="av">Avenida</option>
                                         <option value="est">Estrada</option>
@@ -136,6 +136,10 @@
                                 <div class="campo esp">
                                     <label for="cidade_end">Cidade</label>
                                     <input th:field="*{enderecoEntrega.nomeCidade}" class="p" type="text" id="cidade_end" required>
+                                </div>
+                                <div class="campo">
+                                    <label for="identificacao">Nome de identificação</label>
+                                    <input th:field="*{enderecoEntrega.identificacao}" class="g" type="text" id="identificacao" required>
                                 </div>
                             </div>
                             <div class="coluna">
@@ -196,6 +200,10 @@
                             <div class="campo esp">
                                 <label for="cidade">Cidade</label>
                                 <input th:field="*{enderecoCobranca.nomeCidade}" class="p" type="text" id="cidade" required>
+                            </div>
+                            <div class="campo">
+                                <label for="identificacao">Nome de identificação</label>
+                                <input th:field="*{enderecoCobranca.identificacao}" class="g" type="text" id="identificacao" required>
                             </div>
                         </div>
                         <div class="coluna">

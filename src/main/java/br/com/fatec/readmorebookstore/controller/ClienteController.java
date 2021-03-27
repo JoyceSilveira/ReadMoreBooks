@@ -73,7 +73,7 @@ public class ClienteController {
             endereco.setId(id);
             endereco.setCliente(cliente);
             clienteFacade.alterarDados(endereco);
-            return "redirect:/clientes/perfil-cliente/" + endereco.getId() + "";
+            return "redirect:/clientes/perfil-cliente/" + endereco.getCliente().getId() + "";
         } catch (Exception e) {
             log.error("Falha ao atualizar endereco.", e);
             return "Falha ao atualizar endereco.";
@@ -140,9 +140,6 @@ public class ClienteController {
             return "Falha ao inativar cliente.";
         }
     }
-
-    @GetMapping("/lista-compras-admin")
-    public String listaComprasAdmin(){ return "lista-venda"; }
 
     @GetMapping("/add-endereco/{id}")
     public String addEndCobranca(Endereco endereco) {

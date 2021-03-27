@@ -41,16 +41,16 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><a th:href="@{/clientes/list-cliente}">Início</a></td>
+                            <td><a th:href="@{/livros/principal}">Início</a></td>
                         </tr>
                         <tr>
-                            <td><a th:href="@{/clientes/lista-compras-admin}">Perfil de usuário</a></td>
+                            <td><a th:href="@{/clientes/perfil-cliente/{id}(id=${cliente.id})}">Perfil de usuário</a></td>
                         </tr>
                         <tr>
-                            <td><a th:href="@{/clientes/lista-compras-admin}">Cupons disponíveis</a></td>
+                            <td><a th:href="@{/compras/cupons}">Cupons disponíveis</a></td>
                         </tr>
                         <tr>
-                            <td><a th:href="@{/clientes/lista-compras-admin}">Histórico de pedidos</a></td>
+                            <td><a th:href="@{/compras/lista-compra}">Histórico de pedidos</a></td>
                         </tr>
                         </tbody>
                     </table>
@@ -108,6 +108,9 @@
                         </fieldset>
                         <fieldset>
                             <legend class="sub-categorias">Endereços</legend>
+                            <div class="botao-editar">
+                                <a th:href="@{/clientes/add-endereco/{id}(id=${cliente.id})}" class="editar">Adicionar</a>
+                            </div>
                             <table>
                                 <thead>
                                 <tr>
@@ -130,13 +133,15 @@
                                     <td th:text="${end.complemento}"></td>
                                     <td th:text="${end.observacoes}"></td>
                                     <td><a th:href="@{/clientes/editar-endereco/{id}(id=${end.id})}" class="editar">Editar</a></td>
-                                    <td><a th:href="@{/clientes/add-endereco/{id}(id=${cliente.id})}" class="adicionar">Adicionar</a></td>
                                 </tr>
                                 </tbody>
                             </table>
                         </fieldset>
                         <fieldset>
                             <legend class="sub-categorias">Cartão de crédito</legend>
+                            <div class="botao-editar">
+                                <a th:href="@{/clientes/add-cartao/{id}(id=${cliente.id})}" class="editar">Adicionar</a>
+                            </div>
                             <table>
                                 <thead>
                                 <tr>
@@ -144,6 +149,7 @@
                                     <th>Número</th>
                                     <th>Código de segurança</th>
                                     <th>Nome impresso no cartão</th>
+                                    <th>Preferencial</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -153,7 +159,6 @@
                                     <td th:text="${cartaoC.cvv}" class="telefone"></td>
                                     <td th:text="${cartaoC.nomeImpresso}" class="email"></td>
                                     <td><a th:href="@{/clientes/editar-cartao/{id}(id=${cartaoC.id})}" class="editar">Editar</a></td>
-                                    <td><a th:href="@{/clientes/add-cartao/{id}(id=${cliente.id})}" class="adicionar">Adicionar</a></td>
                                 </tr>
                                 </tbody>
                             </table>

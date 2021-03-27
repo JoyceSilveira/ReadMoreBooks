@@ -36,18 +36,17 @@ main .listagem .alerta{
 
 main .listagem .titulo-tabela{
     font-size: 2.5rem;
+    margin-bottom: 2rem;
 }
 
 main .listagem .tabela th{
     padding: 1rem;
-    color: white;
-    background-color: #FCC06D;
+    color: black;
     font-size: 1.8rem;
     text-align: start;
 }
 
 main .listagem .tabela tr{
-    border-top: #FCC06D solid 1.5px;
     border-bottom: #FCC06D solid 1.5px;
 }
 
@@ -79,7 +78,7 @@ main .listagem .tabela .botao-acao{
 main .listagem .tabela .botao{
     padding: 1.2rem;
     color: white;
-    background-color: #FCC06D;
+    background-color: #0C6FF9;
     font-size: 1.5rem;
 }
 

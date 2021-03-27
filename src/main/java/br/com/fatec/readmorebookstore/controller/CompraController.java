@@ -2,6 +2,7 @@ package br.com.fatec.readmorebookstore.controller;
 
 import br.com.fatec.readmorebookstore.dominio.*;
 import br.com.fatec.readmorebookstore.facade.ClienteFacade;
+import br.com.fatec.readmorebookstore.facade.LivroFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import lombok.extern.log4j.Log4j2;
@@ -13,8 +14,15 @@ import org.springframework.ui.Model;
 @RequestMapping("/compras")
 public class CompraController {
 
-    @GetMapping("/carrinho-compras")
-    public String carrinhoCompras(){ return "carrinho"; }
+    @Autowired
+    private LivroFacade livroFacade;
+
+    @GetMapping("/carrinho-compras/{id}")
+    public String carrinhoCompras(@PathVariable("id") Integer id, Model model){
+        Livro livro = livroFacade.getLivro(id);
+        model.addAttribute("livro", livro);
+        return "carrinho";
+    }
 
     @GetMapping("/cupons")
     public String listaCupom(){ return "cupom"; }
@@ -39,4 +47,9 @@ public class CompraController {
 
     @GetMapping("/troca")
     public String troca(){ return "troca"; }
+
+    @GetMapping("/add-carrinho/{id}")
+    public String addCarrinho(Livro livro, @PathVariable("id") Integer id){
+        return "redirect:/compras/detalhes-livro/" + livro.getId() + "";
+    }
 }

@@ -3,13 +3,14 @@ package br.com.fatec.readmorebookstore.dominio;
 import lombok.Getter;
 
 @Getter
-public enum TipoEnderecoEnum {
-    ENTREGA("Entrega"),
-    COBRANCA("Cobrança");
+public enum TipoDocumentoEnum {
+    CPF("CPF"),
+    RG("RG");
 
     private String descricao;
 
-    TipoEnderecoEnum(String descricao) {
+    TipoDocumentoEnum(String descricao) {
         this.descricao = descricao;
     }
 }
+

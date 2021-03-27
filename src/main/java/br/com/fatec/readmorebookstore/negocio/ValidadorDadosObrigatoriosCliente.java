@@ -65,7 +65,6 @@ public class ValidadorDadosObrigatoriosCliente implements IStrategy {
 		boolean existeEnderecoEntrega = false;
 		for (Endereco endereco : enderecos) {
 			if (endereco != null && endereco.getTipoEndereco() != null) {
-				existeEnderecoResidencial = endereco.getTipoEndereco().equals(TipoEnderecoEnum.RESIDENCIAL);
 				existeEnderecoCobranca = endereco.getTipoEndereco().equals(TipoEnderecoEnum.COBRANCA);
 				existeEnderecoEntrega = endereco.getTipoEndereco().equals(TipoEnderecoEnum.ENTREGA);
 			}

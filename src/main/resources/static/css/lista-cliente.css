@@ -12,11 +12,11 @@
 
 main .caixa{
     margin: 0 auto;
-    width: 1000px;
-    padding: 3rem 5rem;
-    border: #FCC06D solid 1.5px;
+    width: 850px;
+    padding: 2rem 2rem;
     border-radius: 0.8rem;
     background-color: #ffffff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .caixa form fieldset{
@@ -26,7 +26,7 @@ main .caixa{
 
 main .caixa .titulo {
     font-family: 'Roboto', 'sans serif';
-    font-size: 3rem;
+    font-size: 2rem;
     color: #000000;
 
     margin-bottom: 2rem;
@@ -36,16 +36,13 @@ main .caixa .titulo {
 .caixa form fieldset .coluna{
     display: flex;
     justify-content: flex-start;
-}
-
-.caixa form fieldset .campo{
-    margin-top: 1.3rem
+    height: 6rem;
 }
 
 .caixa form fieldset label{
     display: block;
     font-family: 'Roboto', 'Sans serief';
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     margin-bottom: 0.8rem;
     color: #4B4C4D;
 }
@@ -61,7 +58,7 @@ main .caixa .titulo {
 }
 
 .caixa form fieldset .esp{
-    margin-right: 2.5rem;
+    margin-right: 2rem;
 }
 
 .caixa form fieldset .p{
@@ -81,7 +78,7 @@ main .caixa .titulo {
 }
 
 .caixa form .div-botao .botao{
-    background-color: #FCC06D;
+    background-color: #0C6FF9;
     padding: 0.8rem 2rem;
     color:#ffffff;
     font-size: 1.5rem;
@@ -110,13 +107,12 @@ main .listagem .titulo-tabela{
 
 main .listagem .tabela th{
     padding: 1rem;
-    color: white;
-    background-color: #FCC06D;
+    color: black;
     font-size: 1.8rem;
     text-align: start;
 }
 
-main .listagem .tabela tr{
+main .listagem .tabela tbody tr{
     border-top: #FCC06D solid 1.5px;
     border-bottom: #FCC06D solid 1.5px;
 }
@@ -155,4 +151,10 @@ main .listagem .tabela .botao{
     color: white;
     background-color: #FCC06D;
     font-size: 1.5rem;
+}
+
+main .excluir {
+    padding: 1rem;
+    background-color: #0C6FF9;
+    color: white;
 }

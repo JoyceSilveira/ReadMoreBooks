@@ -42,16 +42,16 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><a th:href="@{/clientes/list-cliente}">Início</a></td>
+                            <td><a th:href="@{/livros/principal}">Início</a></td>
                         </tr>
                         <tr>
-                            <td><a th:href="@{/clientes/lista-compras-admin}">Perfil de usuário</a></td>
+                            <td><a>Perfil de usuário</a></td>
                         </tr>
                         <tr>
-                            <td><a th:href="@{/clientes/lista-compras-admin}">Cupons disponíveis</a></td>
+                            <td><a th:href="@{/compras/cupons}">Cupons disponíveis</a></td>
                         </tr>
                         <tr>
-                            <td><a th:href="@{/clientes/lista-compras-admin}">Histórico de pedidos</a></td>
+                            <td><a th:href="@{/compras/lista-compra}">Histórico de pedidos</a></td>
                         </tr>
                         </tbody>
                     </table>
@@ -63,93 +63,92 @@
                 <div class="titulo">
                     <p class="detalhe">Detalhes do livro</p>
                 </div>
-                <form action="" class="perfil">
+                <form th:action="@{/compras/add-carrinho}" class="perfil" th:object="${livro}">
                     <div class="dados-form">
                         <fieldset>
                             <div class="coluna">
                                 <div class="campo esp">
                                     <label for="titulo">Título</label>
-                                    <input class="g" type="text" id="titulo" value="Harry Potter e a Pedra Filosofal" readonly>
+                                    <input class="g" type="text" id="titulo" th:field="*{titulo}" readonly>
                                 </div>
                                 <div class="campo">
                                     <label for="editora">Editora</label>
-                                    <input class="g" type="text" id="editora" value="Bloomsbury Publishing" readonly>
+                                    <input class="g" type="text" id="editora" th:field="*{editora}" readonly>
                                 </div>
                             </div>
                             <div class="coluna">
                                 <div class="campo esp">
                                     <label for="autor">Autor</label>
-                                    <input class="g" type="text" id="autor" value="J. K. Rowling" readonly>
+                                    <input class="g" type="text" id="autor" th:field="*{autor}" readonly>
                                 </div>
                                 <div class="campo esp">
                                     <label for="ano">Ano</label>
-                                    <input class="p" type="text" id="ano" value="1997" readonly>
+                                    <input class="p" type="text" id="ano" th:field="*{ano}" readonly>
                                 </div>
                                 <div class="campo">
                                     <label for="edicao">Edição</label>
-                                    <input class="p" type="text" id="edicao" value="1ª Edição" readonly>
+                                    <input class="p" type="text" id="edicao" th:field="*{edicao}" readonly>
                                 </div>
                             </div>
                             <div class="coluna">
                                 <div class="campo esp">
                                     <label for="isbn">ISBN</label>
-                                    <input class="g" type="text" id="isbn" value="0-7475-3269-9" readonly>
+                                    <input class="g" type="text" id="isbn" th:field="*{isbn}" readonly>
                                 </div>
                                 <div class="campo esp">
                                     <label for="n_paginas">Número de páginas</label>
-                                    <input class="p" type="text" id="n_paginas" value="223" readonly>
+                                    <input class="p" type="text" id="n_paginas" th:field="*{numPaginas}" readonly>
                                 </div>
                             </div>
                             <div class="coluna">
                                 <div class="campo esp">
                                     <label for="sinopse">Sinopse</label>
-                                    <textarea name="" id="sinopse" cols="60" rows="5" readonly>
-                                    O livro conta a história de Harry Potter, um órfão criado pelos tios que descobre, em seu décimo primeiro aniversário, que é um bruxo.
+                                    <textarea name="" id="sinopse" cols="60" rows="5" th:field="*{sinopse}" readonly>
                                 </textarea>
                                 </div>
                                 <div class="campo">
                                     <label for="categoria" class="opcao">Categoria</label>
-                                    <input type="text" id="categoria" value="fantasia / ficção" readonly>
+                                    <input type="text" id="categoria" th:field="*{categoria}" readonly>
                                 </div>
                             </div>
                             <div class="coluna">
                                 <div class="campo esp">
                                     <label for="g_precificação">Grupo de precificação</label>
-                                    <input class="p" type="text" id="g_precificação" value="1" readonly>
+                                    <input class="p" type="text" id="g_precificação" th:field="*{grupoPrecificacao}" readonly>
                                 </div>
                                 <div class="campo esp">
                                     <label for="preco">Preço</label>
-                                    <input class="p" type="text" id="preco" value="R$ 30,00" readonly>
+                                    <input class="p" type="text" id="preco" th:field="*{preco}" readonly>
                                 </div>
                                 <div class="campo esp">
                                     <label for="cod_barras">Código de barras</label>
-                                    <input class="g" type="text" id="cod_barras" value="0000.0000.0000" readonly>
+                                    <input class="g" type="text" id="cod_barras" th:field="*{codBarra}" readonly>
                                 </div>
                             </div>
                             <p class="sub-legend">Dimensões</p>
                             <div class="coluna">
                                 <div class="campo esp">
                                     <label for="altura">Altura</label>
-                                    <input class="p" type="text" id="altura" value="00" readonly>
+                                    <input class="p" type="text" id="altura" th:field="*{altura}" readonly>
                                 </div>
                                 <div class="campo esp">
                                     <label for="largura">Largura</label>
-                                    <input class="p" type="text" id="largura" value="00" readonly>
+                                    <input class="p" type="text" id="largura" th:field="*{largura}" readonly>
                                 </div>
                                 <div class="campo esp">
                                     <label for="peso">Peso</label>
-                                    <input class="p" type="text" id="peso" value="00" readonly>
+                                    <input class="p" type="text" id="peso" th:field="*{peso}" readonly>
                                 </div>
                                 <div class="campo">
                                     <label for="profundidade">Profundidade</label>
-                                    <input class="p" type="text" id="profundidade" value="00" readonly>
+                                    <input class="p" type="text" id="profundidade" th:field="*{profundidade}" readonly>
                                 </div>
                             </div>
                         </fieldset>
                         <fieldset class="compra">
                             <div class="campo">
                                 <label for="quantidade">Quantidade</label>
-                                <input class="quant" type="text" id="quantidade" required>
+                                <input class="quant" type="text" id="quantidade" th:field="*{estoque}" required>
                             </div>
                             <div class="div-botao">
                                 <input type="submit" class="botao" value="Adicionar ao carrinho">

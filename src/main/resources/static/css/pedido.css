@@ -3,47 +3,6 @@
     height: 100vh;
 }
 
-.page-header .top-bar-container .marca{
-    display: flex;
-}
-
-.page-header .top-bar-container h2{
-    font-family: 'Roboto', 'sans-serif';
-    font-size: 3.5rem;
-    font-weight: bold;
-    color: #000000;
-}
-
-.page-header .top-bar-container .logo{
-    background-color: #FCC06D;
-    width: 40px;
-    height: 40px;
-
-    margin-right: 1.5rem;
-}
-
-.page-header .top-bar-container .user{
-    display: flex;
-    align-items: center;
-}
-
-.page-header .top-bar-container .user p{
-    font-size: 2rem;
-    color:#FCC06D;
-    margin-right: 2rem;
-}
-
-.page-header .top-bar-container .user a{
-    background-color: #FCC06D;
-    padding: 0.5rem;
-    border-radius: 0.9rem;
-}
-
-.page-header .top-bar-container .carrinho{
-    width: 20px;
-    height: 18px;
-}
-
 #page-landing main{
     width: 100%;
     margin: 0 auto;
@@ -56,7 +15,7 @@ main .caixa{
     margin: 0 auto;
     width: 1000px;
     padding: 3rem 5rem;
-    border: #FCC06D solid 1.5px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 0.8rem;
     background-color: #ffffff;
     display: flex;
@@ -129,7 +88,7 @@ main .caixa .titulo {
 }
 
 .caixa form .div-botao .botao{
-    background-color: #FCC06D;
+    background-color: #0C6FF9;
     padding: 0.8rem 2rem;
     color:#ffffff;
     font-size: 1.5rem;
@@ -159,29 +118,23 @@ table {
     border-collapse: collapse;
 }
 
-.tabela {
-    margin-bottom: 5rem;
-}
-
 main .listagem{
     margin: 0 auto;
     margin-top: 2rem;
 }
 
 main .listagem .titulo-tabela{
-    font-size: 2.5rem;
+    font-size: 2rem;
 }
 
 main .listagem .tabela th{
     padding: 1rem;
-    color: white;
-    background-color: #FCC06D;
+    color: black;
     font-size: 1.8rem;
     text-align: start;
 }
 
 main .listagem .tabela tr{
-    border-top: #FCC06D solid 1.5px;
     border-bottom: #FCC06D solid 1.5px;
 }
 
@@ -214,9 +167,8 @@ main .listagem .tabela .botao{
 }
 
 .caixa .sub-categorias{
-    color: #FCC06D;
+    color: black;
     font-size: 1.8rem;
-    font-weight: bold;
 
     margin-bottom: 1rem;
 }
@@ -268,6 +220,7 @@ main .listagem .tabela .botao{
 
 .explicacao{
     font-size: 2rem;
+    font-weight: bold;
     margin-bottom: 1rem;
 }
 
@@ -284,9 +237,16 @@ main .listagem .tabela .botao{
 
 .caixa .editar{
     padding: 1rem;
-    background-color: #FCC06D;
+    background-color: #0C6FF9;
     font-size: 1.4rem;
     font-weight: bold;
     color: white;
     text-decoration: none;
+}
+
+.caixa .cupons{
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.7rem;
+    font-weight: bold;
 }

@@ -33,10 +33,10 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><a th:href="@{/clientes/list-cliente}">Lista de clientes</a></td>
+                            <td><a th:href="@{/clientes/lista-cliente}">Lista de clientes</a></td>
                         </tr>
                         <tr>
-                            <td><a th:href="@{/clientes/lista-compras-admin}">Lista de vendas</a></td>
+                            <td><a th:href="@{/compras/lista-venda}">Lista de vendas</a></td>
                         </tr>
                         </tbody>
                     </table>
@@ -67,10 +67,7 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><a th:href="@{/livros/lista-livro}">Dashboard</a></td>
-                        </tr>
-                        <tr>
-                            <td><a th:href="@{/livros/lista-livro}">Cupons</a></td>
+                            <td><a th:href="@{/admin/dashboard}">Dashboard</a></td>
                         </tr>
                         <tr>
                             <td><a th:href="@{/livros/lista-livro}">Grupo de precificação</a></td>
@@ -93,7 +90,7 @@
                                     <label for="nome">Nome completo</label>
                                     <input class="g" type="text" id="nome">
                                 </div>
-                                <div class="campo">
+                                <div class="campo esp">
                                     <label for="genero">Gênero</label>
                                     <select class="p" name="genero" id="genero">
                                         <option value="m">Masculino</option>
@@ -101,22 +98,20 @@
                                         <option value="o">Outros</option>
                                     </select>
                                 </div>
-                            </div>
-                            <div class="coluna">
-                                <div class="campo esp">
+                                <div class="campo">
                                     <label for="dt_nascimento">Data de nascimento</label>
                                     <input class="p" type="date" id="dt_nascimento">
                                 </div>
+                            </div>
+                            <div class="coluna">
                                 <div class="campo esp">
                                     <label for="cpf">CPF</label>
                                     <input class="p" type="text" id="cpf">
                                 </div>
-                                <div class="campo">
+                                <div class="campo esp">
                                     <label for="tel">Telefone</label>
                                     <input class="p" type="text" id="tel">
                                 </div>
-                            </div>
-                            <div class="coluna">
                                 <div class="campo">
                                     <label for="email">E-mail</label>
                                     <input class="g" type="text" id="email">
@@ -132,7 +127,6 @@
             <div th:switch="${clientes}" class="listagem">
                 <h2 th:case="null" class="alerta">Nenhum cliente cadastrado ainda!</h2>
                 <div th:case="*" class="div-tabela">
-                    <h2 class="titulo-tabela">Clientes</h2>
                     <table class="tabela">
                         <thead>
                         <tr>

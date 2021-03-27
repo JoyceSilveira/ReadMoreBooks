@@ -31,7 +31,7 @@ main .caixa{
     margin: 12.7rem auto;
 
     padding: 3rem 5rem;
-    border: #FCC06D solid 1.5px;
+    border: black solid 1.5px;
     border-radius: 0.8rem;
     background-color: #ffffff;
 }
@@ -90,7 +90,7 @@ main .caixa .titulo p{
 }
 
 .caixa form .div-botao .botao{
-    background-color: #FCC06D;
+    background-color: #0C6FF9;
     padding: 0.8rem 2rem;
     color:#ffffff;
     font-size: 1.5rem;

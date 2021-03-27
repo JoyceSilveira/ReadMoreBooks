@@ -33,10 +33,10 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><a th:href="@{/clientes/list-cliente}">Lista de clientes</a></td>
+                            <td><a th:href="@{/clientes/lista-cliente}">Lista de clientes</a></td>
                         </tr>
                         <tr>
-                            <td><a th:href="@{/clientes/lista-compras-admin}">Lista de vendas</a></td>
+                            <td><a th:href="@{/compras/lista-venda}">Lista de vendas</a></td>
                         </tr>
                         </tbody>
                     </table>
@@ -67,10 +67,7 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><a th:href="@{/livros/lista-livro}">Dashboard</a></td>
-                        </tr>
-                        <tr>
-                            <td><a th:href="@{/livros/lista-livro}">Cupons</a></td>
+                            <td><a th:href="@{/admin/dashboard}">Dashboard</a></td>
                         </tr>
                         <tr>
                             <td><a th:href="@{/livros/lista-livro}">Grupo de precificação</a></td>
@@ -171,14 +168,16 @@
                                 </div>
                             </div>
                         </fieldset>
-                        <fieldset class="compra">
+                        <fieldset class="add-estoque">
                             <div class="campo">
                                 <p class="sub-legend">Dar entrada no estoque</p>
                                 <label for="quantidade">Quantidade</label>
                                 <input class="quant" type="text" id="quantidade" required>
                             </div>
-                            <div class="div-botao">
-                                <input type="submit" class="botao" value="Adicionar">
+                            <div>
+                                <div class="div-botao">
+                                    <input type="submit" class="botao" value="Adicionar">
+                                </div>
                             </div>
                         </fieldset>
                     </div>

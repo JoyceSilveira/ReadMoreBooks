@@ -1,7 +1,7 @@
 package br.com.fatec.readmorebookstore.controller;
 
 import br.com.fatec.readmorebookstore.dominio.*;
-import br.com.fatec.readmorebookstore.facade.ClienteFacade;
+import br.com.fatec.readmorebookstore.facade.LivroFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import lombok.extern.log4j.Log4j2;
@@ -13,20 +13,32 @@ import org.springframework.ui.Model;
 @RequestMapping("/livros")
 public class LivroController {
 
+    @Autowired
+    private LivroFacade livroFacade;
+
     @GetMapping("/editar-livro")
     public String EditLivro(){ return "update-livro"; }
 
     @GetMapping("/lista-livro")
-    public String listaLivro(){ return "lista-livro"; }
+    public String listaLivro(){
+        return "lista-livro";
+    }
 
     @GetMapping("/add-livro")
     public String mostraFormularioLivro(){ return "cadastro-livro"; }
 
     @GetMapping("/principal")
-    public String principal(){ return "busca-livro"; }
+    public String principal(Model model){
+        model.addAttribute("livros", livroFacade.listarTodos());
+        return "busca-livro";
+    }
 
     @GetMapping("/detalhes-livro")
-    public String detalhesLivro(){ return "detalhes-livro"; }
+    public String detalhesLivro(@PathVariable("id") Integer id, Model model){
+        Livro livro = livroFacade.getLivro(id);
+        model.addAttribute("livro", livro);
+        return "detalhes-livro";
+    }
 
     @GetMapping("/detalhes-livro-admin")
     public String detalhesLivroAdmin(){ return "detalhes-livro-admin"; }
