@@ -63,7 +63,7 @@
                 <div class="titulo">
                     <p class="detalhe">Detalhes do livro</p>
                 </div>
-                <form th:action="@{/compras/add-carrinho}" class="perfil" th:object="${livro}">
+                <form class="perfil" th:object="${livro}">
                     <div class="dados-form">
                         <fieldset>
                             <div class="coluna">
@@ -145,10 +145,14 @@
                                 </div>
                             </div>
                         </fieldset>
+                    </div>
+                </form>
+                <form class="perfil" th:action="@{/compras/add-carrinho/{id}/{clienteId}(id=${livro.id}, clienteId=${cliente.id})}" th:object="${compraLivro}">
+                    <div class="dados-form">
                         <fieldset class="compra">
                             <div class="campo">
                                 <label for="quantidade">Quantidade</label>
-                                <input class="quant" type="text" id="quantidade" th:field="*{estoque}" required>
+                                <input class="quant" type="text" id="quantidade" th:field="*{quantidade}" required>
                             </div>
                             <div class="div-botao">
                                 <input type="submit" class="botao" value="Adicionar ao carrinho">

@@ -15,6 +15,8 @@ import javax.persistence.*;
 public class Cupom extends AbstractEntidade{
     @ManyToOne(cascade= CascadeType.PERSIST)
     private Compra compra;
+    @ManyToOne(cascade= CascadeType.PERSIST)
+    private Cliente cliente;
     private double valor;
     private String nome;
     @Enumerated(EnumType.STRING)

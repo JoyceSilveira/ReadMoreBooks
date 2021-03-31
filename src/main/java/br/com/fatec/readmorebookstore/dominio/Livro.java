@@ -6,10 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,18 +25,19 @@ public class Livro extends AbstractEntidade {
     private String isbn;
     private String numPaginas;
     private String sinopse;
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "livro")
+//    @ManyToMany
 //    private List<CategoriaLivro> categoriasVinculadas = new ArrayList<>();
-    private String categoria;
 //    private GrupoPrecificacao grupoPrecificacao;
+    private String categoria;
     private String grupoPrecificacao;
-    private String preco;
+    private Double custo;
+    private Double preco;
     private String codBarra;
     private String altura;
     private String largura;
     private String peso;
     private String profundidade;
-    private String estoque;
+    private Integer estoque;
 
 //    @Transient
 //    private List<CategoriaLivro> categorias = new ArrayList<>();

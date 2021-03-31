@@ -31,6 +31,10 @@ public class Cliente extends AbstractEntidade {
     private List<Endereco> enderecosVinculados = new ArrayList<>();
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente")
     private List<Cartao> cartoesVinculados = new ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente")
+    private List<CompraLivro> itensVinculados = new ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cliente")
+    private List<Cupom> cuponsVinculados = new ArrayList<>();
 
     @Transient
     private Endereco enderecoEntrega;
@@ -42,4 +46,8 @@ public class Cliente extends AbstractEntidade {
     private Cartao cartao;
     @Transient
     private String senhaConfirmacao;
+    @Transient
+    private CompraLivro item;
+    @Transient
+    private Cupom cupom;
 }

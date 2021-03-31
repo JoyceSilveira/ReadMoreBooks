@@ -2,6 +2,7 @@ package br.com.fatec.readmorebookstore.controller;
 
 import br.com.fatec.readmorebookstore.dominio.*;
 import br.com.fatec.readmorebookstore.facade.ClienteFacade;
+import br.com.fatec.readmorebookstore.facade.CompraFacade;
 import br.com.fatec.readmorebookstore.facade.LivroFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,11 +17,15 @@ public class CompraController {
 
     @Autowired
     private LivroFacade livroFacade;
+    @Autowired
+    private ClienteFacade clienteFacade;
+    @Autowired
+    private CompraFacade compraFacade;
 
-    @GetMapping("/carrinho-compras/{id}")
-    public String carrinhoCompras(@PathVariable("id") Integer id, Model model){
-        Livro livro = livroFacade.getLivro(id);
-        model.addAttribute("livro", livro);
+    @GetMapping("/carrinho-compras/{clienteId}")
+    public String carrinhoCompras(@PathVariable("clienteId") Integer clienteId, Model model, CompraLivro compraLivro){
+        Cliente cliente = clienteFacade.getCliente(clienteId);
+        model.addAttribute("cliente", cliente);
         return "carrinho";
     }
 
@@ -33,8 +38,10 @@ public class CompraController {
     @GetMapping("/detalhes-pedido-admin")
     public String detalhesPedidoAdmin(){ return "detalhes-pedido-admin"; }
 
-    @GetMapping("/lista-compra")
-    public String listaCompra(){ return "lista-compra"; }
+    @GetMapping("/lista-compra/{clienteId}")
+    public String listaCompra(@PathVariable("clienteId") Integer clienteId){
+        return "lista-compra";
+    }
 
     @GetMapping("/lista-venda")
     public String listaVenda(){ return "lista-venda"; }
@@ -42,14 +49,43 @@ public class CompraController {
     @GetMapping("/lista-troca")
     public String listaTroca(){ return "lista-troca"; }
 
-    @GetMapping("/pedido")
-    public String pedido(){ return "pedido"; }
+    @GetMapping("/pedido/{clienteId}")
+    public String pedido(@PathVariable("clienteId") Integer clienteId, Model model, Compra compra){
+        Cliente cliente = clienteFacade.getCliente(clienteId);
+        model.addAttribute("cliente", cliente);
+        return "pedido";
+    }
 
     @GetMapping("/troca")
     public String troca(){ return "troca"; }
 
-    @GetMapping("/add-carrinho/{id}")
-    public String addCarrinho(Livro livro, @PathVariable("id") Integer id){
-        return "redirect:/compras/detalhes-livro/" + livro.getId() + "";
+    @GetMapping("/add-carrinho/{id}/{clienteId}")
+    public String addCarrinho(CompraLivro compraLivro, @PathVariable("id") Integer id, @PathVariable("clienteId") Integer clienteId){
+        try{
+            Livro livro = livroFacade.getLivro(id);
+            Cliente cliente = clienteFacade.getCliente(clienteId);
+            compraLivro.setLivro(livro);
+            compraLivro.setCliente(cliente);
+            compraFacade.cadastrarItem(compraLivro);
+            return "redirect:/livros/detalhes-livro/" + livro.getId() + "/" + cliente.getId() + "";
+        } catch (Exception e) {
+            log.error("Falha ao salvar item no carrinho.", e);
+            return "Falha ao salvar item no carrinho.";
+        }
+    }
+
+    @GetMapping("/editar-quantidade/{id}/{clienteId}")
+    public String editarQuantidade( @PathVariable("id") Integer id, @PathVariable("clienteId") Integer clienteId, CompraLivro compraLivro){
+        try{
+            Livro livro = livroFacade.getLivro(id);
+            Cliente cliente = clienteFacade.getCliente(clienteId);
+            compraLivro.setLivro(livro);
+            compraLivro.setCliente(cliente);
+            compraFacade.cadastrarItem(compraLivro);
+            return "redirect:/compras/carrinho-compras/" + cliente.getId() + "";
+        } catch (Exception e) {
+            log.error("Falha ao salvar item no carrinho.", e);
+            return "Falha ao salvar item no carrinho.";
+        }
     }
 }

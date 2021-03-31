@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>ReadMore Books</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/css/justificativa-inativacao-livro.css}" rel="stylesheet">
+</head>
+<body id="page-landing">
+<div id="container" class="admin">
+    <header class="page-header">
+        <div class="top-bar-container">
+            <div class="logo"></div>
+            <h2>ReadMore Books</h2>
+        </div>
+    </header>
+    <main>
+        <div class="caixa">
+            <div class="titulo">
+                <p class="inativar">Inativar livro</p>
+            </div>
+            <form action="">
+                <div class="dados-form">
+                    <fieldset>
+                        <div class="coluna">
+                            <div class="campo">
+                                <label for="data">Data</label>
+                                <input class="p" type="text" id="data" value="22/07/2021" readonly>
+                            </div>
+                        </div>
+                        <div class="coluna">
+                            <div class="campo esp">
+                                <label for="justificativa">Justificativa</label>
+                                <input class="g" type="text" id="justificativa" required>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="div-botao">
+                    <a class="botao" th:href="@{/livros/detalhes-livro-admin}">Cancelar</a>
+                    <input type="submit" class="botao" value="Salvar">
+                </div>
+            </form>
+        </div>
+    </main>
+</div>
+</body>
+</html>

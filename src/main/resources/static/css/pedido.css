@@ -28,7 +28,6 @@ main .caixa{
 }
 
 main .caixa .titulo {
-    font-family: 'Roboto', 'sans serif';
     font-size: 3rem;
     color: #000000;
 
@@ -36,18 +35,13 @@ main .caixa .titulo {
     margin-right: 2rem;
 }
 
-.caixa form fieldset .coluna{
+.caixa form .coluna{
     display: flex;
     justify-content: flex-start;
 }
 
-.caixa form fieldset .campo{
-    margin-top: 1.3rem
-}
-
 .caixa form fieldset label{
     display: block;
-    font-family: 'Roboto', 'Sans serief';
     font-size: 1.7rem;
     margin-bottom: 0.8rem;
     color: #4B4C4D;
@@ -63,7 +57,7 @@ main .caixa .titulo {
     border: #4B4C4D solid 1px;
 }
 
-.caixa form fieldset .esp{
+.caixa form .esp{
     margin-right: 2.5rem;
 }
 
@@ -92,7 +86,6 @@ main .caixa .titulo {
     padding: 0.8rem 2rem;
     color:#ffffff;
     font-size: 1.5rem;
-    font-family: 'Roboto', 'sans serief';
     border: none;
 }
 
@@ -108,7 +101,6 @@ main .caixa .titulo {
 }
 
 .titulo_opcao {
-    font-family: 'Roboto', 'Sans serief';
     font-size: 1.7rem;
     color: #4B4C4D;
     margin-bottom: 0.8rem;
@@ -200,7 +192,6 @@ main .listagem .tabela .botao{
 
 .caixa .cupom-label{
     display: block;
-    font-family: 'Roboto', 'Sans serief';
     font-size: 1.7rem;
     margin-bottom: 0.8rem;
     color: #FCC06D;
@@ -249,4 +240,8 @@ main .listagem .tabela .botao{
     margin-bottom: 1rem;
     font-size: 1.7rem;
     font-weight: bold;
+}
+
+.livro{
+    width: 8rem;
 }

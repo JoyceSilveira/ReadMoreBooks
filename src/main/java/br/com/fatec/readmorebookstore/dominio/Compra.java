@@ -23,6 +23,7 @@ public class Compra extends AbstractEntidade {
     private Double valorTotal;
     @Enumerated(EnumType.STRING)
     private StatusEnum status;
+    private String previsaoEntrega;
 
     @Transient
     private List<Cupom> cupons = new ArrayList<>();

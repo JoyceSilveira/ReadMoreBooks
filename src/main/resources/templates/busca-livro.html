@@ -45,7 +45,7 @@
                             <td><a th:href="@{/livros/principal}">Início</a></td>
                         </tr>
                         <tr>
-                            <td><a>Perfil de usuário</a></td>
+                            <td><a th:href="@{/clientes/perfil-cliente/{clienteId}(clienteId=${cliente.id})}">Perfil de usuário</a></td>
                         </tr>
                         <tr>
                             <td><a th:href="@{/compras/cupons}">Cupons disponíveis</a></td>
@@ -140,10 +140,11 @@
                     <table class="tabela">
                         <tbody>
                         <tr th:each="livro : ${livros}">
+                            <td><img th:src="@{/img/livro.png}" alt="" class="livro"></td>
                             <td th:text="${livro.titulo}" class="nome"></td>
                             <td th:text="${livro.edicao}" class="edicao"></td>
                             <td th:text="${livro.preco}" class="preco"></td>
-                            <td class="botao-acao"><a th:href="@{/livros/detalhes-livro/{id}(id=${livro.id})}" class="botao">Detalhes</a></td>
+                            <td class="botao-acao"><a th:href="@{/livros/detalhes-livro/{id}/{clienteId}(id=${livro.id}, clienteId=${cliente.id})}" class="botao">Detalhes</a></td>
                         </tr>
                         </tbody>
                     </table>

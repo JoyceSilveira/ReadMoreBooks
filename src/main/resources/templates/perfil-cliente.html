@@ -23,9 +23,9 @@
             <div class="user">
                 <p><a th:href="@{/clientes/perfil-cliente/{id}(id=${cliente.id})}">Usuário</a></p>
                 <p>
-                    <a th:href="@{/clientes/lista-compras}"><img th:src="@{/img/sacolas-compras.png}" alt="" class="carrinho"></a>
+                    <a th:href="@{/compras/lista-compras}"><img th:src="@{/img/sacolas-compras.png}" alt="" class="carrinho"></a>
                 </p>
-                <a th:href="@{/clientes/carrinho-compras}"><img th:src="@{/img/carrinho-compras.png}" alt="" class="carrinho"></a>
+                <a th:href="@{/compras/carrinho-compras/{clienteId}(clienteId=${cliente.id})}"><img th:src="@{/img/carrinho-compras.png}" alt="" class="carrinho"></a>
             </div>
         </div>
     </header>
@@ -41,7 +41,7 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><a th:href="@{/livros/principal}">Início</a></td>
+                            <td><a th:href="@{/livros/principal/{clienteId}(clienteId=${cliente.id})}">Início</a></td>
                         </tr>
                         <tr>
                             <td><a th:href="@{/clientes/perfil-cliente/{id}(id=${cliente.id})}">Perfil de usuário</a></td>

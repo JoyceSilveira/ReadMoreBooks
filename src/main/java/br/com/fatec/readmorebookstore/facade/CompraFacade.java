@@ -6,29 +6,34 @@ import br.com.fatec.readmorebookstore.negocio.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
+import lombok.extern.log4j.Log4j2;
 
 import java.util.*;
 
+@Log4j2
 @Service
-public class
-LivroFacade implements IFacade{
+public class CompraFacade implements IFacade {
 
-    private final LivroDAO livroDAO;
+    private final CompraDAO compraDAO;
+    private final CompraLivroDAO compraLivroDAO;
     private Map<String, CrudRepository> daos;
 
     @Autowired
-    public LivroFacade(LivroDAO livroDAO) {
-        this.livroDAO = livroDAO;
-        definirDAOS(livroDAO);
+    public CompraFacade(CompraDAO compraDAO, CompraLivroDAO compraLivroDAO){
+        this.compraDAO = compraDAO;
+        this.compraLivroDAO = compraLivroDAO;
+        definirDAOS(compraDAO, compraLivroDAO);
     }
 
-    private void definirDAOS(LivroDAO livroDAO){
+    private void definirDAOS(CompraDAO compraDAO, CompraLivroDAO compraLivroDAO){
         daos = new HashMap<>();
-        daos.put(Livro.class.getName(), livroDAO);
+        daos.put(Compra.class.getName(), compraDAO);
+        daos.put(CompraLivro.class.getName(), compraLivroDAO);
     }
 
     @Override
     public String cadastrar(AbstractEntidade entidade) {
+
         return null;
     }
 
@@ -47,14 +52,8 @@ LivroFacade implements IFacade{
         return null;
     }
 
-    public Livro getLivro(Integer id) {
-        Livro livro = livroDAO.findById(id).orElse(null);
-        return livro;
-    }
-
-    public List<Livro> listarTodos() {
-        List<Livro> livros = new ArrayList<>();
-        livroDAO.findAll().forEach(livros::add);
-        return livros;
+    public void cadastrarItem(AbstractEntidade entidade){
+        CrudRepository dao = daos.get(entidade.getClass().getName());
+        dao.save(entidade);
     }
 }
