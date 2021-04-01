@@ -110,3 +110,7 @@ main .listagem .tabela tr .preco{
 .caixa form .campo{
     margin-top: 2.3rem
 }
+
+.livro{
+    width: 8rem;
+}

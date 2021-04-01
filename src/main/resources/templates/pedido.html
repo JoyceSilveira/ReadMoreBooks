@@ -38,7 +38,7 @@
                 </div>
                 <div class="div-tabela">
                     <h2 class="titulo-tabela">Itens da compra</h2>
-                    <form action="" th:object="${compra}">
+                    <form th:action="@{/compras/add-pedido/{clienteId}(clienteId=${cliente.id})}" th:object="${compra}">
                         <table class="tabela">
                             <tbody id="itens">
                                 <tr th:each="item : ${cliente.itensVinculados}">
@@ -76,18 +76,18 @@
                                         <td th:text="${end.numero}"></td>
                                         <td th:text="${end.complemento}"></td>
                                         <td th:text="${end.observacoes}"></td>
-                                        <td><input type="radio" name="endereco"></td>
+                                        <td><input type="radio" name="endereco" th:value="${end.id}" th:field="*{enderecoEntrega}" onclick="calculaFrete();calcularData()"></td>
                                     </tr>
                                 </tbody>
                             </table>
                             <div class="coluna">
                                 <div class="campo esp">
                                     <label for="frete" class="cupom-label">Valor Frete:</label>
-                                    <input class="frete" type="text" id="frete" value="R$ 43,50">
+                                    <input class="frete" type="text" id="frete" th:field="*{frete}">
                                 </div>
                                 <div class="campo">
                                     <label for="dt_entrega" class="cupom-label">Previsão de entrega:</label>
-                                    <input class="frete" type="text" id="dt_entrega" value="01/04/2021">
+                                    <input class="frete" type="text" id="dt_entrega" th:field="*{previsaoEntrega}">
                                 </div>
                             </div>
                         </div>
@@ -111,63 +111,56 @@
                                         <td th:text="${cartaoC.numero}" class="cpf"></td>
                                         <td th:text="${cartaoC.cvv}" class="telefone"></td>
                                         <td th:text="${cartaoC.nomeImpresso}" class="email"></td>
-                                        <td><input type="checkbox" name="cartao"></td>
+                                        <td><input th:value="${cartaoC.id}" th:field="*{cartoes}" type="checkbox" name="cartao"></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <div class="campo">
-                            <p class="cupons">Cupons promocionais disponíveis</p>
-                            <table class="tabela">
-                                <thead>
-                                <tr>
-                                    <th>Código</th>
-                                    <th>Valor</th>
-                                    <th>Tipo</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td class="nome">BEMVINDO</td>
-                                    <td class="valor">R$ 10,00</td>
-                                    <td class="tipo">Promocional</td>
-                                    <td><input type="radio"></td>
-                                </tr>
-                                <tr>
-                                    <td class="nome">TROCA20</td>
-                                    <td class="valor">R$ 20,00</td>
-                                    <td class="tipo">Troca</td>
-                                    <td><input type="radio"></td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <p class="cupons">Cupons de troca disponíveis</p>
-                            <table class="tabela">
-                                <thead>
-                                <tr>
-                                    <th>Código</th>
-                                    <th>Valor</th>
-                                    <th>Tipo</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td class="nome">BEMVINDO</td>
-                                    <td class="valor">R$ 10,00</td>
-                                    <td class="tipo">Promocional</td>
-                                    <td><input type="checkbox"></td>
-                                </tr>
-                                <tr>
-                                    <td class="nome">TROCA20</td>
-                                    <td class="valor">R$ 20,00</td>
-                                    <td class="tipo">Troca</td>
-                                    <td><input type="checkbox"></td>
-                                </tr>
-                                </tbody>
-                            </table>
+                        <div class="categoria-info">
+                            <div class="campo">
+                                <p class="cupons">Cupons promocionais disponíveis</p>
+                                <table class="tabela">
+                                    <thead>
+                                    <tr>
+                                        <th>Código</th>
+                                        <th>Valor</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="cupom : ${cliente.cuponsVinculados}">
+                                    <tr th:each="cupom : ${cliente.cuponsVinculados}">
+                                        <td th:if="${cupom.tipoCupom.descricao == 'Promocional'}" th:text="${cupom.nome}" class="nome"></td>
+                                        <td th:if="${cupom.tipoCupom.descricao == 'Promocional'}" th:text="${cupom.valor}" class="valor"></td>
+                                        <td th:if="${cupom.tipoCupom.descricao == 'Promocional'}"><input th:value="${cupom.id}" th:field="*{cupons}" type="radio"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <p class="cupons">Cupons de troca disponíveis</p>
+                                <table class="tabela">
+                                    <thead>
+                                    <tr>
+                                        <th>Código</th>
+                                        <th>Valor</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="cupom : ${cliente.cuponsVinculados}">
+                                        <td th:if="${cupom.tipoCupom.descricao == 'Troca'}" th:text="${cupom.nome}" class="nome"></td>
+                                        <td th:if="${cupom.tipoCupom.descricao == 'Troca'}" th:text="${cupom.valor}" class="valor"></td>
+                                        <td th:if="${cupom.tipoCupom.descricao == 'Troca'}"><input th:value="${cupom.id}" th:field="*{cupons}"  type="checkbox"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="coluna">
+                            <div class="campo esp">
+                                <label for="total" class="label-total">Valor Total:</label>
+                                <input class="val-total" type="text" id="total" th:field="*{valorTotal}">
+                            </div>
                         </div>
                         <div class="div-botao">
-                            <a class="botao" th:href="@{/compras/lista-compras/{clienteId}(clienteId=${cliente.id})}">Finalizar compra</a>
+                            <input type="submit" class="botao" value="Finalizar compra">
                         </div>
                     </form>
                 </div>
@@ -175,5 +168,30 @@
         </div>
     </main>
 </div>
+<script>
+    function calculaTotal(){
+        var precos = document.getElementsByClassName("preco");
+        var total = 0;
+        for (var i = 0; i < precos.length; i ++){
+            total = total + parseFloat(precos[i].innerHTML);
+        }
+        total = total + parseFloat(document.getElementById("frete").value);
+        document.getElementById("total").value = total;
+    }
+
+    function calculaFrete(){
+        document.getElementById("frete").value = 43.5;
+        calculaTotal();
+    }
+
+    function calcularData(){
+        var data = new Date();
+        console.log(data.toLocaleDateString());
+        document.getElementById("dt_entrega").value = data.toLocaleDateString();
+    }
+
+
+
+</script>
 </body>
 </html>

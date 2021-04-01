@@ -38,6 +38,8 @@ public class Livro extends AbstractEntidade {
     private String peso;
     private String profundidade;
     private Integer estoque;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "livro", orphanRemoval = true)
+    private List<CompraLivro> compras;
 
 //    @Transient
 //    private List<CategoriaLivro> categorias = new ArrayList<>();

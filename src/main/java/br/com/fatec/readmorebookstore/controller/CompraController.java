@@ -32,19 +32,32 @@ public class CompraController {
     @GetMapping("/cupons")
     public String listaCupom(){ return "cupom"; }
 
-    @GetMapping("/detalhes-pedido")
-    public String detalhesPedido(){ return "detalhes-pedido"; }
+    @GetMapping("/detalhes-pedido/{id}")
+    public String detalhesPedido(@PathVariable("id") Integer id, Model model){
+        Compra compra = compraFacade.getCompra(id);
+        model.addAttribute("compra", compra);
+        return "detalhes-pedido";
+    }
 
-    @GetMapping("/detalhes-pedido-admin")
-    public String detalhesPedidoAdmin(){ return "detalhes-pedido-admin"; }
+    @GetMapping("/detalhes-pedido-admin/{id}")
+    public String detalhesPedidoAdmin(@PathVariable("id") Integer id, Model model){
+        Compra compra = compraFacade.getCompra(id);
+        model.addAttribute("compra", compra);
+        return "detalhes-pedido-admin";
+    }
 
     @GetMapping("/lista-compra/{clienteId}")
-    public String listaCompra(@PathVariable("clienteId") Integer clienteId){
+    public String listaCompra(@PathVariable("clienteId") Integer clienteId, Model model){
+        Cliente cliente = clienteFacade.getCliente(clienteId);
+        model.addAttribute("cliente", cliente);
         return "lista-compra";
     }
 
     @GetMapping("/lista-venda")
-    public String listaVenda(){ return "lista-venda"; }
+    public String listaVenda(Model model){
+        model.addAttribute("compras", compraFacade.listarTodas());
+        return "lista-venda";
+    }
 
     @GetMapping("/lista-troca")
     public String listaTroca(){ return "lista-troca"; }
@@ -54,6 +67,21 @@ public class CompraController {
         Cliente cliente = clienteFacade.getCliente(clienteId);
         model.addAttribute("cliente", cliente);
         return "pedido";
+    }
+
+    @GetMapping("/add-pedido/{clienteId}")
+    public String addPedido(@PathVariable("clienteId") Integer clienteId, Compra compra){
+        try{
+            Cliente cliente = clienteFacade.getCliente(clienteId);
+            compra.setCliente(cliente);
+            compra.setStatus(StatusEnum.PROCESSAMENTO);
+            compraFacade.cadastrar(compra);
+            compraFacade.cadastrarDependencias(compra);
+            return "redirect:/compras/lista-compra/" + cliente.getId() + "";
+        } catch (Exception e) {
+            log.error("Falha ao salvar compra.", e);
+            return "Falha ao salvar compra";
+        }
     }
 
     @GetMapping("/troca")

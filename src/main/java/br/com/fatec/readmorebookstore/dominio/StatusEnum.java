@@ -4,6 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum StatusEnum {
+    PROCESSAMENTO("processamento"),
     APROVADA("aprovada"),
     REPROVADA("reprovada"),
     TRANSPORTE("transporte"),

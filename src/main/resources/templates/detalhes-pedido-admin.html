@@ -89,27 +89,23 @@
             <div class="caixa">
                 <div class="listagem">
                     <div class="div-tabela">
-                        <h2 class="titulo-tabela">Itens da compra 184502</h2>
+                        <h2 class="titulo-tabela">Itens da compra</h2>
                         <form>
                             <table class="tabela">
-                                <tr>
-                                    <td class="nome">Harry Potter e a Pedra Filosofal</td>
-                                    <td class="edicao">1ª Edição</td>
-                                    <td class="preco">R$ 30,00</td>
-                                    <td class="botao-acao">Quant:<input type="text" class="quantidade" value="3" readonly></td>
-                                </tr>
-                                <tr>
-                                    <td class="nome">Harry Potter E A Câmara Secreta</td>
-                                    <td class="edicao">2ª Edição</td>
-                                    <td class="preco">R$ 41,00</td>
-                                    <td class="botao-acao">Quant:<input type="text" class="quantidade" value="2" readonly></td>
+                                <tr th:each="item : ${compra.itensVinculados}">
+                                    <td><img th:src="@{/img/livro.png}" alt="" class="livro"></td>
+                                    <td th:text="${item.livro.titulo}" class="nome"></td>
+                                    <td th:text="${item.livro.edicao}" class="edicao"></td>
+                                    <td th:text="${item.livro.preco}" class="preco"></td>
+                                    <td th:text="${item.quantidade}" class="quantidade"></td>
                                 </tr>
                                 </tbody>
                             </table>
                             <form>
                                 <div class="campo">
                                     <label for="status" class="status-label">Alterar status do pedido:</label>
-                                    <select name="status" class="status" id="status">
+                                    <select name="status" class="status" id="status" th:field="*{compra.status}">
+                                        <option value="processamento">Em processamento</option>
                                         <option value="aprovada">Aprovada</option>
                                         <option value="reprovada">Reprovada</option>
                                         <option value="transporte">Em transporte</option>

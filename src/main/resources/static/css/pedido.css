@@ -245,3 +245,22 @@ main .listagem .tabela .botao{
 .livro{
     width: 8rem;
 }
+
+.caixa .label-total{
+    display: block;
+    font-size: 3rem;
+    margin-bottom: 0.8rem;
+    color: #FCC06D;
+    font-weight: bold;
+    margin-top: 2rem;
+}
+
+.caixa .val-total{
+    font-size: 1.8rem;
+    padding: 0.5rem 1rem;
+    border: none;
+}
+
+.campo{
+    margin-bottom: 2.3rem;
+}

@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -20,4 +21,6 @@ public class Cartao extends AbstractEntidade {
     @ManyToOne(cascade= CascadeType.PERSIST)
     private Cliente cliente;
     private boolean preferencial = true;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "cartao", orphanRemoval = true)
+    private List<CompraCartao> compra;
 }
