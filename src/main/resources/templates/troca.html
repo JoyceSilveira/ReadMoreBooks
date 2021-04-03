@@ -18,14 +18,14 @@
         <div class="top-bar-container">
             <div class="marca">
                 <div class="logo"></div>
-                <h2><a th:href="@{/livros/principal}">ReadMore Books</a></h2>
+                <h2><a th:href="@{/livros/principal/{clienteId}(clienteId=${compra.cliente.id})}">ReadMore Books</a></h2>
             </div>
             <div class="user">
                 <p><a>Usuário</a></p>
                 <p>
-                    <a th:href="@{/clientes/lista-compras}"><img th:src="@{/img/sacolas-compras.png}" alt="" class="carrinho"></a>
+                    <a th:href="@{/compras/lista-compras/{clienteId}(clienteId=${compra.cliente.id})}"><img th:src="@{/img/sacolas-compras.png}" alt="" class="carrinho"></a>
                 </p>
-                <a th:href="@{/clientes/carrinho-compras}"><img th:src="@{/img/carrinho-compras.png}" alt="" class="carrinho"></a>
+                <a th:href="@{/compras/carrinho-compras/{clienteId}(clienteId=${compra.cliente.id})}"><img th:src="@{/img/carrinho-compras.png}" alt="" class="carrinho"></a>
             </div>
         </div>
     </header>
@@ -41,16 +41,16 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><a th:href="@{/livros/principal}">Início</a></td>
+                            <td><a th:href="@{/livros/principal/{clienteId}(clienteId=${compra.cliente.id})}">Início</a></td>
                         </tr>
                         <tr>
-                            <td><a>Perfil de usuário</a></td>
+                            <td><a th:href="@{/clientes/perfil-cliente/{clienteId}(clienteId=${compra.cliente.id})}">Perfil de usuário</a></td>
                         </tr>
                         <tr>
-                            <td><a th:href="@{/compras/cupons}">Cupons disponíveis</a></td>
+                            <td><a th:href="@{/compras/cupons/{clienteId}(clienteId=${compra.cliente.id})}">Cupons disponíveis</a></td>
                         </tr>
                         <tr>
-                            <td><a th:href="@{/compras/lista-compra}">Histórico de pedidos</a></td>
+                            <td><a th:href="@{/compras/lista-compra/{clienteId}(clienteId=${compra.cliente.id})}">Histórico de pedidos</a></td>
                         </tr>
                         </tbody>
                     </table>
@@ -61,28 +61,22 @@
             <div class="caixa">
                 <div class="listagem">
                     <div class="div-tabela">
-                        <h2 class="titulo-tabela">Itens da compra 184502</h2>
+                        <h2 class="titulo-tabela">Itens da compra</h2>
                         <p class="info">Selecione os itens para a troca:</p>
-                        <form>
+                        <form th:action="@{/compras/solicitar-troca/{id}(id=${compra.id})}" th:object="${compra}">
                             <table class="tabela">
-                                <tr>
-                                    <td class="nome">Harry Potter e a Pedra Filosofal</td>
-                                    <td class="edicao">1ª Edição</td>
-                                    <td class="preco">R$ 30,00</td>
-                                    <td class="botao-acao">Quant:<input type="text" class="quantidade" value="3"></td>
-                                    <td><input type="checkbox" name="troca"></td>
-                                </tr>
-                                <tr>
-                                    <td class="nome">Harry Potter E A Câmara Secreta</td>
-                                    <td class="edicao">2ª Edição</td>
-                                    <td class="preco">R$ 41,00</td>
-                                    <td class="botao-acao">Quant:<input type="text" class="quantidade" value="2"></td>
-                                    <td><input type="checkbox" name="troca"></td>
+                                <tr th:each="item : ${compra.itensVinculados}">
+                                    <td><img th:src="@{/img/livro.png}" alt="" class="livro"></td>
+                                    <td th:text="${item.livro.titulo}" class="nome"></td>
+                                    <td th:text="${item.livro.edicao}" class="edicao"></td>
+                                    <td th:text="${item.livro.preco}" class="preco"></td>
+                                    <td th:text="${item.quantidade}" class="quantidade"></td>
+                                    <td><input th:value="${item.id}" th:field="*{compraLivros}" type="checkbox" name="troca"></td>
                                 </tr>
                                 </tbody>
                             </table>
                             <div class="div-botao">
-                                <a class="botao" th:href="@{/clientes/pedido}">Solicitar troca</a>
+                                <input type="submit" class="botao" value="Trocar">
                             </div>
                         </form>
                     </div>

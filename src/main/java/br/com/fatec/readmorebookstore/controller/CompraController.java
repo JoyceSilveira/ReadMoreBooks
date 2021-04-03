@@ -29,8 +29,12 @@ public class CompraController {
         return "carrinho";
     }
 
-    @GetMapping("/cupons")
-    public String listaCupom(){ return "cupom"; }
+    @GetMapping("/cupons/{clienteId}")
+    public String listaCupom(@PathVariable("clienteId") Integer clienteId, Model model){
+        Cliente cliente = clienteFacade.getCliente(clienteId);
+        model.addAttribute("cliente", cliente);
+        return "cupom";
+    }
 
     @GetMapping("/detalhes-pedido/{id}")
     public String detalhesPedido(@PathVariable("id") Integer id, Model model){
@@ -84,8 +88,18 @@ public class CompraController {
         }
     }
 
-    @GetMapping("/troca")
-    public String troca(){ return "troca"; }
+    @GetMapping("/troca/{id}")
+    public String troca(@PathVariable("id") Integer id, Model model){
+        Compra compra = compraFacade.getCompra(id);
+        model.addAttribute("compra", compra);
+        return "troca";
+    }
+
+    @GetMapping("/solicitar-troca/{id}")
+    public String solicitarTroca(@PathVariable("id") Integer id, Compra compraForm){
+        compraFacade.gerarTroca(compraForm, id);
+        return "redirect:/compras/detalhes-pedido/" + id + "";
+    }
 
     @GetMapping("/add-carrinho/{id}/{clienteId}")
     public String addCarrinho(CompraLivro compraLivro, @PathVariable("id") Integer id, @PathVariable("clienteId") Integer clienteId){
@@ -115,5 +129,24 @@ public class CompraController {
             log.error("Falha ao salvar item no carrinho.", e);
             return "Falha ao salvar item no carrinho.";
         }
+    }
+
+    @GetMapping("/editar-status/{id}")
+    public String editarStatus(@PathVariable("id") Integer id, Compra compraForm){
+        Compra compra = compraFacade.getCompra(id);
+        compra.setStatus(compraForm.getStatus());
+        compraFacade.cadastrar(compra);
+        if(compra.getStatus().getDescricao() == "trocado"){
+            compraFacade.cadastrarCupomTroca(compra);
+        }
+        return "redirect:/compras/detalhes-pedido-admin/" + id + "";
+    }
+
+    @GetMapping("/excluir-item-carrinho/{id}/{clienteId}")
+    public String excluirItem(@PathVariable("id") Integer id, @PathVariable("clienteId") Integer clienteId){
+        CompraLivro compraLivro = compraFacade.getCompraLivro(id);
+        Cliente cliente = clienteFacade.getCliente(clienteId);
+        compraFacade.excluir(compraLivro);
+        return "redirect:/compras/carrinho-compras/" + cliente.getId() + "";
     }
 }

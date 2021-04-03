@@ -90,7 +90,7 @@
                 <div class="listagem">
                     <div class="div-tabela">
                         <h2 class="titulo-tabela">Itens da compra</h2>
-                        <form>
+                        <form th:action="@{/compras/editar-status/{id}(id=${compra.id})}" th:object="${compra}">
                             <table class="tabela">
                                 <tr th:each="item : ${compra.itensVinculados}">
                                     <td><img th:src="@{/img/livro.png}" alt="" class="livro"></td>
@@ -104,17 +104,29 @@
                             <form>
                                 <div class="campo">
                                     <label for="status" class="status-label">Alterar status do pedido:</label>
-                                    <select name="status" class="status" id="status" th:field="*{compra.status}">
-                                        <option value="processamento">Em processamento</option>
-                                        <option value="aprovada">Aprovada</option>
-                                        <option value="reprovada">Reprovada</option>
-                                        <option value="transporte">Em transporte</option>
-                                        <option value="troca">Em troca</option>
-                                        <option value="entregue">Entregue</option>
+                                    <select name="status" class="status" id="status" th:field="*{status}" onclick="retornarItensEstoque(this.value)">
+                                        <option value="PROCESSAMENTO">Em processamento</option>
+                                        <option value="APROVADA">Aprovada</option>
+                                        <option value="REPROVADA">Reprovada</option>
+                                        <option value="TRANSPORTE">Em transporte</option>
+                                        <option value="TROCA">Em troca</option>
+                                        <option value="TROCADO">Trocado</option>
+                                        <option value="ENTREGUE">Entregue</option>
                                     </select>
                                 </div>
+                                <div class="campo" id="estoque" style="display: none">
+                                    <p class="controle-estoque">Os itens da troca devem voltar para o estoque?</p>
+                                    <label class="label-estoque">
+                                        <input type="radio" class="input-estoque" onclick="permitirSalvar()">
+                                        Sim
+                                    </label>
+                                    <label class="label-estoque">
+                                        <input type="radio" class="input-estoque" onclick="permitirSalvar()">
+                                        Não
+                                    </label>
+                                </div>
                                 <div class="div-botao">
-                                    <input type="submit" class="botao" value="Salvar">
+                                    <input type="submit" class="botao" value="Salvar" id="botao">
                                 </div>
                             </form>
                         </form>
@@ -124,5 +136,17 @@
         </div>
     </main>
 </div>
+<script>
+    function retornarItensEstoque(valor){
+        if(valor == "TROCADO"){
+            document.getElementById("estoque").style.display = "block";
+            document.getElementById("botao").disabled = true;
+        }
+    }
+
+    function permitirSalvar(){
+        document.getElementById("botao").disabled = false;
+    }
+</script>
 </body>
 </html>

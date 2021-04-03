@@ -18,14 +18,14 @@
         <div class="top-bar-container">
             <div class="marca">
                 <div class="logo"></div>
-                <h2><a th:href="@{/livros/principal}">ReadMore Books</a></h2>
+                <h2><a th:href="@{/livros/principal/{clienteId}(clienteId=${cliente.id})}">ReadMore Books</a></h2>
             </div>
             <div class="user">
                 <p><a>Usuário</a></p>
                 <p>
-                    <a th:href="@{/clientes/lista-compras}"><img th:src="@{/img/sacolas-compras.png}" alt="" class="carrinho"></a>
+                    <a th:href="@{/compras/lista-compras/{clienteId}(clienteId=${cliente.id})}"><img th:src="@{/img/sacolas-compras.png}" alt="" class="carrinho"></a>
                 </p>
-                <a th:href="@{/clientes/carrinho-compras}"><img th:src="@{/img/carrinho-compras.png}" alt="" class="carrinho"></a>
+                <a th:href="@{/compras/carrinho-compras/{clienteId}(clienteId=${cliente.id})}"><img th:src="@{/img/carrinho-compras.png}" alt="" class="carrinho"></a>
             </div>
         </div>
     </header>
@@ -41,16 +41,16 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><a th:href="@{/livros/principal}">Início</a></td>
+                            <td><a th:href="@{/livros/principal/{clienteId}(clienteId=${cliente.id})}">Início</a></td>
                         </tr>
                         <tr>
-                            <td><a>Perfil de usuário</a></td>
+                            <td><a th:href="@{/clientes/perfil-cliente/{clienteId}(clienteId=${cliente.id})}">Perfil de usuário</a></td>
                         </tr>
                         <tr>
-                            <td><a th:href="@{/compras/cupons}">Cupons disponíveis</a></td>
+                            <td><a th:href="@{/compras/cupons/{clienteId}(clienteId=${cliente.id})}">Cupons disponíveis</a></td>
                         </tr>
                         <tr>
-                            <td><a th:href="@{/compras/lista-compra}">Histórico de pedidos</a></td>
+                            <td><a th:href="@{/compras/lista-compra/{clienteId}(clienteId=${cliente.id})}">Histórico de pedidos</a></td>
                         </tr>
                         </tbody>
                     </table>
@@ -70,15 +70,10 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td class="nome">BEMVINDO</td>
-                            <td class="valor">R$ 10,00</td>
-                            <td class="tipo">Promocional</td>
-                        </tr>
-                        <tr>
-                            <td class="nome">TROCA20</td>
-                            <td class="valor">R$ 20,00</td>
-                            <td class="tipo">Troca</td>
+                        <tr th:each="cupom : ${cliente.cuponsVinculados}">
+                            <td th:text="${cupom.nome}" class="nome"></td>
+                            <td th:text="${cupom.valor}" class="valor"></td>
+                            <td th:text="${cupom.tipoCupom}" class="valor"></td>
                         </tr>
                         </tbody>
                     </table>

@@ -141,12 +141,32 @@ public class ClienteController {
         }
     }
 
-    @GetMapping("/add-endereco/{id}")
-    public String addEndCobranca(Endereco endereco) {
+    @GetMapping("/add-endereco/{clienteId}")
+    public String addEndCobranca(Endereco endereco, @PathVariable("clienteId") Integer clienteId, Model model) {
+        Cliente cliente = clienteFacade.getCliente(clienteId);
+        model.addAttribute("cliente", cliente);
         return "add-endereco";
     }
 
-    @GetMapping("/add-cartao/{id}")
-    public String addCartao(Cartao cartao) { return "add-cartao"; }
+    @GetMapping("/cadastrar-endereco/{clienteId}")
+    public String novoEndereco(Endereco endereco, @PathVariable("clienteId") Integer clienteId, Model model) {
+        Cliente cliente = clienteFacade.getCliente(clienteId);
+        model.addAttribute("cliente", cliente);
+        return "redirect:/clientes/perfil-cliente/" + cliente.getId() + "";
+    }
+
+    @GetMapping("/add-cartao/{clienteId}")
+    public String addCartao(Cartao cartao, @PathVariable("clienteId") Integer clienteId, Model model) {
+        Cliente cliente = clienteFacade.getCliente(clienteId);
+        model.addAttribute("cliente", cliente);
+        return "add-cartao";
+    }
+
+    @GetMapping("/cadastrar-cartao/{clienteId}")
+    public String novoCartao(Cartao cartao, @PathVariable("clienteId") Integer clienteId, Model model) {
+        Cliente cliente = clienteFacade.getCliente(clienteId);
+        model.addAttribute("cliente", cliente);
+        return "redirect:/clientes/perfil-cliente/" + cliente.getId() + "";
+    }
 
 }

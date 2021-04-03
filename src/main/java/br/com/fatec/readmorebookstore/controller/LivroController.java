@@ -14,8 +14,6 @@ import org.springframework.ui.Model;
 @RequestMapping("/livros")
 public class LivroController {
 
-
-
     @Autowired
     private LivroFacade livroFacade;
     @Autowired

@@ -17,7 +17,7 @@ public class Cupom extends AbstractEntidade{
     private Compra compra;
     @ManyToOne(cascade= CascadeType.PERSIST)
     private Cliente cliente;
-    private double valor;
+    private Double valor;
     private String nome;
     @Enumerated(EnumType.STRING)
     private TipoCupomEnum tipoCupom;

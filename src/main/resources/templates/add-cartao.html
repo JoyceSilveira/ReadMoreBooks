@@ -10,7 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
     <link th:href="@{/css/main.css}" rel="stylesheet">
-    <!--<link th:href="@{/css/cadastro-cliente.css}" rel="stylesheet">-->
     <link th:href="@{/css/add-cartao.css}" rel="stylesheet">
 </head>
 <body id="page-landing">
@@ -19,14 +18,14 @@
         <div class="top-bar-container">
             <div class="marca">
                 <div class="logo"></div>
-                <h2><a th:href="@{/livros/principal}">ReadMore Books</a></h2>
+                <h2><a th:href="@{/livros/principal/{clienteId}(clienteId=${cliente.id})}">ReadMore Books</a></h2>
             </div>
             <div class="user">
                 <p><a>Usuário</a></p>
                 <p>
-                    <a th:href="@{/clientes/lista-compras}"><img th:src="@{/img/sacolas-compras.png}" alt="" class="carrinho"></a>
+                    <a th:href="@{/compras/lista-compras/{clienteId}(clienteId=${cliente.id})}"><img th:src="@{/img/sacolas-compras.png}" alt="" class="carrinho"></a>
                 </p>
-                <a th:href="@{/clientes/carrinho-compras}"><img th:src="@{/img/carrinho-compras.png}" alt="" class="carrinho"></a>
+                <a th:href="@{/compras/carrinho-compras/{clienteId}(clienteId=${cliente.id})}"><img th:src="@{/img/carrinho-compras.png}" alt="" class="carrinho"></a>
             </div>
         </div>
     </header>
@@ -35,13 +34,13 @@
             <div class="titulo">
                 <p class="add">Adicionar cartão</p>
             </div>
-            <form method="post">
+            <form th:action="@{/clientes/cadastrar-cartao/{clienteId}(clienteId = ${cliente.id})}" th:object="${cartao}">
                 <div class="dados-form">
                     <fieldset>
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="bandeira">Bandeira</label>
-                                <select class="p" name="bandeira" id="bandeira" required>
+                                <select th:field="*{bandeira}" class="p" name="bandeira" id="bandeira" required>
                                     <option value="mastercard">Mastercard</option>
                                     <option value="visa">Visa</option>
                                     <option value="elo">Elo</option>
@@ -49,18 +48,18 @@
                             </div>
                             <div class="campo esp">
                                 <label for="num_card">Número</label>
-                                <input class="p" type="text" id="num_card" required>
+                                <input th:field="*{numero}" class="p" type="text" id="num_card" required>
                             </div>
                             <div class="campo">
                                 <label for="cod_seguranca">Código de segurança</label>
-                                <input class="p" type="text" id="cod_seguranca" required>
+                                <input th:field="*{cvv}" class="p" type="text" id="cod_seguranca" required>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo">
                                 <div class="campo">
                                     <label for="nome_card">Nome impresso no cartão</label>
-                                    <input class="p" type="text" id="nome_card" required>
+                                    <input th:field="*{nomeImpresso}" class="p" type="text" id="nome_card" required>
                                 </div>
                             </div>
                         </div>
@@ -72,9 +71,6 @@
             </form>
         </div>
     </main>
-    <footer>
-
-    </footer>
 </div>
 </body>
 </html>
