@@ -38,9 +38,10 @@ main .caixa .titulo .detalhe{
     padding-bottom: 2rem;
 }
 
-.caixa .perfil fieldset .sub-legend{
+.caixa .sub-legend{
     color: #FCC06D;
     font-size: 1.7rem;
+    margin-top: 2rem;
 }
 
 .caixa .perfil fieldset .coluna{
@@ -109,3 +110,24 @@ textarea {
     border: none;
     padding: 0.5rem 1rem;
 }
+
+.livro{
+    width: 8rem;
+}
+
+#label-titulo{
+    font-size: 3rem;
+}
+
+#label-preco{
+    font-size: 3rem;
+}
+
+#preco{
+    font-size: 2rem;
+}
+
+#titulo{
+    font-size: 2rem;
+}
+

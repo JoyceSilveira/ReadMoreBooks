@@ -24,7 +24,7 @@
             <div class="user">
                 <p><a>Usuário</a></p>
                 <p>
-                    <a th:href="@{/compras/lista-compras/{clienteId}(clienteId=${cliente.id})}"><img th:src="@{/img/sacolas-compras.png}" alt="" class="carrinho"></a>
+                    <a th:href="@{/compras/lista-compra/{clienteId}(clienteId=${cliente.id})}"><img th:src="@{/img/sacolas-compras.png}" alt="" class="carrinho"></a>
                 </p>
                 <a th:href="@{/compras/carrinho-compras/{clienteId}(clienteId=${cliente.id})}"><img th:src="@{/img/carrinho-compras.png}" alt="" class="carrinho"></a>
             </div>
@@ -76,7 +76,7 @@
                                         <td th:text="${end.numero}"></td>
                                         <td th:text="${end.complemento}"></td>
                                         <td th:text="${end.observacoes}"></td>
-                                        <td><input type="radio" name="endereco" th:value="${end.id}" th:field="*{enderecoEntrega}" onclick="calculaFrete();calcularData()"></td>
+                                        <td><input type="radio" name="endereco" th:value="${end.id}" th:field="*{enderecoEntrega}" onclick="calculaFrete();calcularData();"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -109,7 +109,6 @@
                                     <tr th:each="cartaoC : ${cliente.cartoesVinculados}">
                                         <td th:text="${cartaoC.bandeira}" class="nome"></td>
                                         <td th:text="${cartaoC.numero}" class="cpf"></td>
-                                        <td th:text="${cartaoC.cvv}" class="telefone"></td>
                                         <td th:text="${cartaoC.nomeImpresso}" class="email"></td>
                                         <td><input th:value="${cartaoC.id}" th:field="*{cartoes}" type="checkbox" name="cartao"></td>
                                     </tr>
@@ -188,8 +187,6 @@
         console.log(data.toLocaleDateString());
         document.getElementById("dt_entrega").value = data.toLocaleDateString();
     }
-
-
 
 </script>
 </body>

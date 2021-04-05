@@ -18,17 +18,12 @@ main .caixa{
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.caixa form fieldset{
-    border: none;
-    margin-top: 2rem;
-}
-
-.caixa form fieldset .coluna{
+.caixa .coluna{
     display: flex;
     justify-content: flex-start;
 }
 
-.caixa form .div-botao {
+.caixa .div-botao {
     display: flex;
     align-content: center;
     justify-content: flex-end;
@@ -36,7 +31,7 @@ main .caixa{
     margin-top: 2rem;
 }
 
-.caixa form .div-botao .botao{
+.caixa .div-botao .botao{
     background-color: #0C6FF9;
     padding: 0.8rem 2rem;
     color:#ffffff;
@@ -58,16 +53,17 @@ main .listagem .titulo-tabela{
     margin-bottom: 2rem;
 }
 
-main .listagem .tabela th{
-    padding: 1rem;
-    color: white;
-    background-color: #FCC06D;
-    font-size: 1.8rem;
-    text-align: start;
+main .listagem .titulo-info{
+    font-size: 2rem;
+    margin-bottom: 1.7rem;
+    margin-top: 2rem;
+    color: #4B4C4D;
 }
 
-main .listagem .tabela tr{
-    border-bottom: #FCC06D solid 1.5px;
+.caixa .tabela th{
+    padding: 1rem;
+    font-size: 1.7rem;
+    text-align: start;
 }
 
 main .listagem .tabela td{
@@ -75,19 +71,38 @@ main .listagem .tabela td{
     padding: 1.8rem 1.2rem;
 }
 
-main .listagem .tabela td a{
+main .listagem .tabela tr{
+    border-bottom: #FCC06D solid 1.5px;
+}
+
+.caixa .tabela-info th{
+    padding: 1rem;
+    font-size: 1.4rem;
+    text-align: start;
+}
+
+main .listagem .tabela-info td{
+    font-size: 1.5rem;
+    padding: 1.8rem 1.2rem;
+}
+
+main .listagem .tabela-info tr{
+    border-bottom: #FCC06D solid 1.5px;
+}
+
+main .listagem td a{
     color: black;
 }
 
-main .listagem .tabela tr .nome{
+main .listagem tr .nome{
     width: 40rem;
 }
 
-main .listagem .tabela tr .edicao{
+main .listagem tr .edicao{
     width: 16rem;
 }
 
-main .listagem .tabela tr .preco{
+main .listagem tr .preco{
     width: 14rem;
 }
 
@@ -103,6 +118,7 @@ main .listagem .tabela tr .preco{
     margin-bottom: 0.5rem;
     color: #FCC06D;
     font-weight: bold;
+    margin-top: 2rem;
 }
 
 .caixa .status{
@@ -117,4 +133,13 @@ main .listagem .tabela tr .preco{
 
 .livro{
     width: 8rem;
+}
+
+.tabela{
+    margin-top: 2rem;
+}
+
+.categoria-info{
+    border-bottom: #FCC06D 1.5px solid;
+    padding: 2rem 0;
 }

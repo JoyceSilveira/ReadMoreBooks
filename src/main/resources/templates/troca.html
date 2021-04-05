@@ -23,7 +23,7 @@
             <div class="user">
                 <p><a>Usuário</a></p>
                 <p>
-                    <a th:href="@{/compras/lista-compras/{clienteId}(clienteId=${compra.cliente.id})}"><img th:src="@{/img/sacolas-compras.png}" alt="" class="carrinho"></a>
+                    <a th:href="@{/compras/lista-compra/{clienteId}(clienteId=${compra.cliente.id})}"><img th:src="@{/img/sacolas-compras.png}" alt="" class="carrinho"></a>
                 </p>
                 <a th:href="@{/compras/carrinho-compras/{clienteId}(clienteId=${compra.cliente.id})}"><img th:src="@{/img/carrinho-compras.png}" alt="" class="carrinho"></a>
             </div>

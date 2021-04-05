@@ -24,7 +24,7 @@
             <div class="user">
                 <p><a>Usuário</a></p>
                 <p>
-                    <a th:href="@{/compras/lista-compras/{clienteId}(clienteId=${cliente.id})}"><img th:src="@{/img/sacolas-compras.png}" alt="" class="carrinho"></a>
+                    <a th:href="@{/compras/lista-compra/{clienteId}(clienteId=${cliente.id})}"><img th:src="@{/img/sacolas-compras.png}" alt="" class="carrinho"></a>
                 </p>
                 <a th:href="@{/compras/carrinho-compras/{clienteId}(clienteId=${cliente.id})}"><img th:src="@{/img/carrinho-compras.png}" alt="" class="carrinho"></a>
             </div>
@@ -68,12 +68,15 @@
                         <fieldset>
                             <div class="coluna">
                                 <div class="campo esp">
-                                    <label for="titulo">Título</label>
+                                    <img th:src="@{/img/livro.png}" alt="" class="livro">
+                                </div>
+                                <div class="campo esp">
+                                    <label for="titulo" id="label-titulo">Título</label>
                                     <input class="g" type="text" id="titulo" th:field="*{titulo}" readonly>
                                 </div>
                                 <div class="campo">
-                                    <label for="editora">Editora</label>
-                                    <input class="g" type="text" id="editora" th:field="*{editora}" readonly>
+                                    <label for="preco" id="label-preco">Preço</label>
+                                    <input class="p" type="text" id="preco" th:field="*{preco}" readonly>
                                 </div>
                             </div>
                             <div class="coluna">
@@ -103,7 +106,7 @@
                             <div class="coluna">
                                 <div class="campo esp">
                                     <label for="sinopse">Sinopse</label>
-                                    <textarea name="" id="sinopse" cols="60" rows="5" th:field="*{sinopse}" readonly>
+                                    <textarea name="" id="sinopse" cols="60" rows="3" th:field="*{sinopse}" readonly>
                                 </textarea>
                                 </div>
                                 <div class="campo">
@@ -113,14 +116,10 @@
                             </div>
                             <div class="coluna">
                                 <div class="campo esp">
-                                    <label for="g_precificação">Grupo de precificação</label>
-                                    <input class="p" type="text" id="g_precificação" th:field="*{grupoPrecificacao}" readonly>
+                                    <label for="editora">Editora</label>
+                                    <input class="g" type="text" id="editora" th:field="*{editora}" readonly>
                                 </div>
-                                <div class="campo esp">
-                                    <label for="preco">Preço</label>
-                                    <input class="p" type="text" id="preco" th:field="*{preco}" readonly>
-                                </div>
-                                <div class="campo esp">
+                                <div class="campo">
                                     <label for="cod_barras">Código de barras</label>
                                     <input class="g" type="text" id="cod_barras" th:field="*{codBarra}" readonly>
                                 </div>
@@ -149,6 +148,7 @@
                 </form>
                 <form class="perfil" th:action="@{/compras/add-carrinho/{id}/{clienteId}(id=${livro.id}, clienteId=${cliente.id})}" th:object="${compraLivro}">
                     <div class="dados-form">
+                        <p class="sub-legend">Em estoque</p>
                         <fieldset class="compra">
                             <div class="campo">
                                 <label for="quantidade">Quantidade</label>

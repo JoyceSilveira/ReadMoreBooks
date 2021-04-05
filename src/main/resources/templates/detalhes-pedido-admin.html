@@ -90,45 +90,122 @@
                 <div class="listagem">
                     <div class="div-tabela">
                         <h2 class="titulo-tabela">Itens da compra</h2>
-                        <form th:action="@{/compras/editar-status/{id}(id=${compra.id})}" th:object="${compra}">
-                            <table class="tabela">
-                                <tr th:each="item : ${compra.itensVinculados}">
-                                    <td><img th:src="@{/img/livro.png}" alt="" class="livro"></td>
-                                    <td th:text="${item.livro.titulo}" class="nome"></td>
-                                    <td th:text="${item.livro.edicao}" class="edicao"></td>
-                                    <td th:text="${item.livro.preco}" class="preco"></td>
-                                    <td th:text="${item.quantidade}" class="quantidade"></td>
+                        <table class="tabela">
+                            <tr th:each="item : ${compra.itensVinculados}">
+                                <td><img th:src="@{/img/livro.png}" alt="" class="livro"></td>
+                                <td th:text="${item.livro.titulo}" class="nome"></td>
+                                <td th:text="${item.livro.edicao}" class="edicao"></td>
+                                <td th:text="${item.livro.preco}" class="preco"></td>
+                                <td th:text="${item.quantidade}" class="quantidade"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="categoria-info">
+                            <h2 class="titulo-info">Endereço de entrega</h2>
+                            <table class="tabela-info">
+                                <thead>
+                                <tr>
+                                    <th>Logradouro</th>
+                                    <th>Bairro</th>
+                                    <th>Cidade</th>
+                                    <th>Número</th>
+                                    <th>Complemento</th>
+                                    <th>Observações</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td th:text="${compra.enderecoEntrega.tipoEndereco}"></td>
+                                    <td th:text="${compra.enderecoEntrega.logradouro}"></td>
+                                    <td th:text="${compra.enderecoEntrega.bairro}"></td>
+                                    <td th:text="${compra.enderecoEntrega.nomeCidade}"></td>
+                                    <td th:text="${compra.enderecoEntrega.numero}"></td>
+                                    <td th:text="${compra.enderecoEntrega.complemento}"></td>
+                                    <td th:text="${compra.enderecoEntrega.observacoes}"></td>
                                 </tr>
                                 </tbody>
                             </table>
-                            <form>
-                                <div class="campo">
-                                    <label for="status" class="status-label">Alterar status do pedido:</label>
-                                    <select name="status" class="status" id="status" th:field="*{status}" onclick="retornarItensEstoque(this.value)">
-                                        <option value="PROCESSAMENTO">Em processamento</option>
-                                        <option value="APROVADA">Aprovada</option>
-                                        <option value="REPROVADA">Reprovada</option>
-                                        <option value="TRANSPORTE">Em transporte</option>
-                                        <option value="TROCA">Em troca</option>
-                                        <option value="TROCADO">Trocado</option>
-                                        <option value="ENTREGUE">Entregue</option>
-                                    </select>
-                                </div>
-                                <div class="campo" id="estoque" style="display: none">
-                                    <p class="controle-estoque">Os itens da troca devem voltar para o estoque?</p>
-                                    <label class="label-estoque">
-                                        <input type="radio" class="input-estoque" onclick="permitirSalvar()">
-                                        Sim
-                                    </label>
-                                    <label class="label-estoque">
-                                        <input type="radio" class="input-estoque" onclick="permitirSalvar()">
-                                        Não
-                                    </label>
-                                </div>
-                                <div class="div-botao">
-                                    <input type="submit" class="botao" value="Salvar" id="botao">
-                                </div>
-                            </form>
+                        </div>
+                        <div class="categoria-info">
+                            <h2 class="titulo-info">Forma de pagamento</h2>
+                            <table class="tabela-info">
+                                <thead>
+                                <tr>
+                                    <th>Bandeira</th>
+                                    <th>Número</th>
+                                    <th>Nome impresso no cartão</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="c : ${compra.cartoesVinculados}">
+                                    <td th:text="${c.cartao.bandeira}" class="nome"></td>
+                                    <td th:text="${c.cartao.numero}" class="cpf"></td>
+                                    <td th:text="${c.cartao.nomeImpresso}" class="email"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="categoria-info">
+                            <h2 class="titulo-info">Cupons utilizados</h2>
+                            <table class="tabela-info">
+                                <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Valor</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="cupom : ${compra.cuponsVinculados}">
+                                    <td th:text="${cupom.nome}" class="nome"></td>
+                                    <td th:text="${cupom.valor}" class="valor"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <form th:action="@{/compras/editar-status/{id}(id=${compra.id})}" th:object="${compra}">
+                            <div class="campo">
+                                <label for="status" class="status-label">Alterar status do pedido:</label>
+                                <select th:if="${compra.status.descricao == 'processamento'}" name="status" class="status" id="status" th:field="*{status}" onclick="retornarItensEstoque(this.value)">
+                                    <option value="PROCESSAMENTO">Em processamento</option>
+                                    <option value="APROVADA">Aprovada</option>
+                                    <option value="REPROVADA">Reprovada</option>
+                                </select>
+                                <select th:if="${compra.status.descricao == 'aprovada'}" name="status" class="status" id="status" th:field="*{status}" onclick="retornarItensEstoque(this.value)">
+                                    <option value="APROVADA">Aprovada</option>
+                                    <option value="TRANSPORTE">Em transporte</option>
+                                </select>
+                                <select th:if="${compra.status.descricao == 'reprovada'}" name="status" class="status" id="status" th:field="*{status}" onclick="retornarItensEstoque(this.value)">
+                                    <option value="REPROVADA">Reprovada</option>
+                                </select>
+                                <select th:if="${compra.status.descricao == 'transporte'}" name="status" class="status" id="status" th:field="*{status}" onclick="retornarItensEstoque(this.value)">
+                                    <option value="TRANSPORTE">Em transporte</option>
+                                    <option value="ENTREGUE">Entregue</option>
+                                </select>
+                                <select th:if="${compra.status.descricao == 'troca'}" name="status" class="status" id="status" th:field="*{status}" onclick="retornarItensEstoque(this.value)">
+                                    <option value="TROCA">Em troca</option>
+                                    <option value="TROCADO">Trocado</option>
+                                </select>
+                                <select th:if="${compra.status.descricao == 'trocado'}" name="status" class="status" id="status" th:field="*{status}" onclick="retornarItensEstoque(this.value)">
+                                    <option value="TROCADO">Trocado</option>
+                                </select>
+                                <select th:if="${compra.status.descricao == 'entregue'}" name="status" class="status" id="status" th:field="*{status}" onclick="retornarItensEstoque(this.value)">
+                                    <option value="ENTREGUE">Entregue</option>
+                                </select>
+                            </div>
+                            <div class="campo" id="estoque" style="display: none">
+                                <p class="controle-estoque">Os itens da troca devem voltar para o estoque?</p>
+                                <label class="label-estoque">
+                                    <input type="radio" class="input-estoque" onclick="permitirSalvar()">
+                                    Sim
+                                </label>
+                                <label class="label-estoque">
+                                    <input type="radio" class="input-estoque" onclick="permitirSalvar()">
+                                    Não
+                                </label>
+                            </div>
+                            <div class="div-botao">
+                                <input type="submit" class="botao" value="Salvar" id="botao">
+                            </div>
                         </form>
                     </div>
                 </div>

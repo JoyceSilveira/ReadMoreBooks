@@ -27,7 +27,7 @@ public class Compra extends AbstractEntidade {
     @ManyToOne
     private Endereco enderecoEntrega;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "compra")
-    private List<Cartao> cartoesVinculados = new ArrayList<>();
+    private List<CompraCartao> cartoesVinculados = new ArrayList<>();
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "compra")
     private List<CompraLivro> itensVinculados = new ArrayList<>();
 
