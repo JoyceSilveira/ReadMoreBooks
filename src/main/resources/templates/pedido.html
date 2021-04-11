@@ -33,6 +33,7 @@
     <main>
         <div class="caixa">
             <div class="listagem">
+                <div class="alert-danger" role="alert" th:text="${erro}" th:if="${erro}"> </div>
                 <div class="titulo">
                     <p class="cadastrar">Detalhes do pedido</p>
                 </div>
@@ -54,7 +55,7 @@
                             <p class="explicacao">Selecionar endereço para entrega:</p>
                             <legend class="sub-categorias">Endereços</legend>
                             <div class="botao-editar">
-                                <a th:href="@{/clientes/add-endereco}" class="editar">Adicionar novo endereço</a>
+                                <a th:href="@{/clientes/add-endereco/{clienteId}(clienteId=${cliente.id})}" class="editar">Adicionar novo endereço</a>
                             </div>
                             <table class="info-cliente">
                                 <thead>
@@ -69,14 +70,13 @@
                                 </thead>
                                 <tbody>
                                     <tr th:each="end : ${cliente.enderecosVinculados}">
-                                        <td th:text="${end.tipoEndereco}"></td>
-                                        <td th:text="${end.logradouro}"></td>
-                                        <td th:text="${end.bairro}"></td>
-                                        <td th:text="${end.nomeCidade}"></td>
-                                        <td th:text="${end.numero}"></td>
-                                        <td th:text="${end.complemento}"></td>
-                                        <td th:text="${end.observacoes}"></td>
-                                        <td><input type="radio" name="endereco" th:value="${end.id}" th:field="*{enderecoEntrega}" onclick="calculaFrete();calcularData();"></td>
+                                        <td th:if="${end.tipoEndereco.descricao == 'Entrega'}" th:text="${end.logradouro}"></td>
+                                        <td th:if="${end.tipoEndereco.descricao == 'Entrega'}" th:text="${end.bairro}"></td>
+                                        <td th:if="${end.tipoEndereco.descricao == 'Entrega'}" th:text="${end.nomeCidade}"></td>
+                                        <td th:if="${end.tipoEndereco.descricao == 'Entrega'}" th:text="${end.numero}"></td>
+                                        <td th:if="${end.tipoEndereco.descricao == 'Entrega'}" th:text="${end.complemento}"></td>
+                                        <td th:if="${end.tipoEndereco.descricao == 'Entrega'}" th:text="${end.observacoes}"></td>
+                                        <td th:if="${end.tipoEndereco.descricao == 'Entrega'}"><input type="radio" name="endereco" th:value="${end.id}" th:field="*{enderecoEntrega}" onclick="calculaFrete();calcularData();"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -95,7 +95,7 @@
                             <p class="explicacao">Selecionar cartão de crédito para cobrança:</p>
                             <legend class="sub-categorias">Cartão de crédito</legend>
                             <div class="botao-editar">
-                                <a th:href="@{/clientes/add-cartao}" class="editar">Adicionar novo cartão</a>
+                                <a th:href="@{/clientes/add-cartao/{clienteId}(clienteId=${cliente.id})}" class="editar">Adicionar novo cartão</a>
                             </div>
                             <table class="info-cliente">
                                 <thead>
@@ -178,7 +178,7 @@
     }
 
     function calculaFrete(){
-        document.getElementById("frete").value = 43.5;
+        document.getElementById("frete").value = 5.0;
         calculaTotal();
     }
 

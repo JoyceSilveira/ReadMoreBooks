@@ -34,7 +34,7 @@
             <div class="titulo">
                 <p class="add">Adicionar endereço</p>
             </div>
-            <form th:action="@{/clientes/atualizar-endereco/{clienteId}(clienteId = ${cliente.id})}" th:object="${endereco}">
+            <form th:action="@{/clientes/cadastrar-endereco/{clienteId}(clienteId = ${cliente.id})}" th:object="${endereco}">
                 <div class="dados-form">
                     <fieldset>
                         <div class="coluna">

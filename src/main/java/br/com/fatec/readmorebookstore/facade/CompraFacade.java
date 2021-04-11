@@ -19,16 +19,50 @@ public class CompraFacade implements IFacade {
     private final CupomDAO cupomDAO;
     private final CartaoDAO cartaoDAO;
     private final CompraCartaoDAO compraCartaoDAO;
+    private final ValidadorValorCartao vValorCartao;
+    private final ValidadorValorCupons vValorCupons;
+    private final ValidadorItemExistenteCarrinho vItemExistenteCarrinho;
+    private final ValidadorQuantidadeLivro vQuantidadeLivro;
     private Map<String, CrudRepository> daos;
+    private Map<String, List<IStrategy>> rns;
+    @Autowired
+    private LivroFacade livroFacade;
 
     @Autowired
-    public CompraFacade(CompraDAO compraDAO, CompraLivroDAO compraLivroDAO, CupomDAO cupomDAO, CartaoDAO cartaoDAO, CompraCartaoDAO compraCartaoDAO){
+    public CompraFacade(
+            CompraDAO compraDAO, CompraLivroDAO compraLivroDAO, CupomDAO cupomDAO, CartaoDAO cartaoDAO, CompraCartaoDAO compraCartaoDAO, ValidadorValorCartao vValorCartao, ValidadorValorCupons vValorCupons,
+            ValidadorItemExistenteCarrinho vItemExistenteCarrinho, ValidadorQuantidadeLivro vQuantidadeLivro
+    ){
         this.compraDAO = compraDAO;
         this.compraLivroDAO = compraLivroDAO;
         this.cupomDAO = cupomDAO;
         this.cartaoDAO = cartaoDAO;
         this.compraCartaoDAO = compraCartaoDAO;
+        this.vValorCartao = vValorCartao;
+        this.vValorCupons = vValorCupons;
+        this.vItemExistenteCarrinho = vItemExistenteCarrinho;
+        this.vQuantidadeLivro = vQuantidadeLivro;
         definirDAOS(compraDAO, compraLivroDAO, cupomDAO, cartaoDAO, compraCartaoDAO);
+        definirRNSCompra(vValorCartao, vValorCupons, vItemExistenteCarrinho, vQuantidadeLivro);
+    }
+
+    private void definirRNSCompra(
+            ValidadorValorCartao vValorCartao, ValidadorValorCupons vValorCupons,
+            ValidadorItemExistenteCarrinho vItemExistenteCarrinho, ValidadorQuantidadeLivro vQuantidadeLivro
+    ) {
+        rns = new HashMap<>();
+
+        List<IStrategy> rnsCompra = new ArrayList<>();
+        rnsCompra.add(vValorCupons);
+        rnsCompra.add(vValorCartao);
+
+        rns.put(Compra.class.getName(), rnsCompra);
+
+        List<IStrategy> rnsCompraLivro = new ArrayList<>();
+        rnsCompraLivro.add(vItemExistenteCarrinho);
+        rnsCompraLivro.add(vQuantidadeLivro);
+
+        rns.put(CompraLivro.class.getName(), rnsCompraLivro);
     }
 
     private void definirDAOS(CompraDAO compraDAO, CompraLivroDAO compraLivroDAO, CupomDAO cupomDAO, CartaoDAO cartaoDAO, CompraCartaoDAO compraCartaoDAO){
@@ -42,13 +76,33 @@ public class CompraFacade implements IFacade {
 
     @Override
     public String cadastrar(AbstractEntidade entidade) {
-        CrudRepository dao = daos.get(entidade.getClass().getName());
-        dao.save(entidade);
+        String msg = executarRegras(entidade);
+        if(msg == null){
+            CrudRepository dao = daos.get(entidade.getClass().getName());
+            dao.save(entidade);
+            return null;
+        }
+        return msg;
+    }
+
+    private String executarRegras(AbstractEntidade entidade) {
+        String nmClasse = entidade.getClass().getName();
+
+        List<IStrategy> regras = rns.get(nmClasse);
+
+        for (IStrategy s : regras) {
+            String m = s.processar(entidade);
+            if (m != null) {
+                return m;
+            }
+        }
         return null;
     }
 
     @Override
     public String excluir(AbstractEntidade entidade) {
+        CompraLivro compraLivro = (CompraLivro) entidade;
+        livroFacade.reporEstoque(compraLivro);
         String nmClasse = entidade.getClass().getName();
         CrudRepository dao = daos.get(nmClasse);
         dao.delete(entidade);
@@ -65,9 +119,16 @@ public class CompraFacade implements IFacade {
         return null;
     }
 
-    public void cadastrarItem(AbstractEntidade entidade){
-        CrudRepository dao = daos.get(entidade.getClass().getName());
-        dao.save(entidade);
+    public String cadastrarItem(AbstractEntidade entidade){
+        CompraLivro compraLivro = (CompraLivro) entidade;
+        String msg = executarRegras(entidade);
+        if(msg == null){
+            livroFacade.retirarEstoque(compraLivro);
+            CrudRepository dao = daos.get(entidade.getClass().getName());
+            dao.save(entidade);
+            return null;
+        }
+        return msg;
     }
 
     public void alterarCupom(AbstractEntidade entidade){
@@ -76,12 +137,26 @@ public class CompraFacade implements IFacade {
     }
 
     public void utilizarCupons(Compra compra){
+        Double desconto = 0.0;
         for(int i = 0; i < compra.getCupons().size(); i++){
             Cupom cupom = cupomDAO.findById(compra.getCupons().get(i)).orElse(null);
+            desconto += cupom.getValor();
             cupom.setCompra(compra);
             cupom.setCliente(null);
             alterarCupom(cupom);
         }
+        if(desconto > compra.getValorTotal()){
+            cadastrarCupomDiferenca(desconto - compra.getValorTotal(), compra);
+        }
+    }
+
+    public void cadastrarCupomDiferenca(Double valor, Compra compra){
+        Cupom cupom = new Cupom();
+        cupom.setTipoCupom(TipoCupomEnum.TROCA);
+        cupom.setValor(valor);
+        cupom.setNome("Diferenca" + Integer.toString(compra.getId()));
+        cupom.setCliente(compra.getCliente());
+        cadastrarCupom(cupom);
     }
 
     public void cadastrarDependencias(Compra compra){

@@ -60,7 +60,8 @@
         </div>
         <div class="conteudo">
             <div class="caixa">
-                <div class="titulo">
+                <div class="alert-danger" role="alert" th:text="${erro}" th:if="${erro}"> </div>
+            <div class="titulo">
                     <p class="detalhe">Detalhes do livro</p>
                 </div>
                 <form class="perfil" th:object="${livro}">
@@ -77,6 +78,12 @@
                                 <div class="campo">
                                     <label for="preco" id="label-preco">Preço</label>
                                     <input class="p" type="text" id="preco" th:field="*{preco}" readonly>
+                                </div>
+                            </div>
+                            <div class="coluna">
+                                <div class="campo">
+                                    <label for="estoque" id="label-estoque">Estoque disponível</label>
+                                    <input class="p" type="text" id="estoque" th:field="*{estoque}" readonly>
                                 </div>
                             </div>
                             <div class="coluna">
@@ -146,7 +153,7 @@
                         </fieldset>
                     </div>
                 </form>
-                <form class="perfil" th:action="@{/compras/add-carrinho/{id}/{clienteId}(id=${livro.id}, clienteId=${cliente.id})}" th:object="${compraLivro}">
+                <form class="perfil" th:action="@{/compras/add-carrinho/{id}/{clienteId}(id=${livro.id}, clienteId=${cliente.id})}" th:object="${compraLivro}" onsubmit="verificaEstoque()">
                     <div class="dados-form">
                         <p class="sub-legend">Em estoque</p>
                         <fieldset class="compra">
@@ -167,5 +174,13 @@
         </div>
     </main>
 </div>
+<script>
+    function verificaEstoque(){
+        if(document.getElementById("quantidade").value > document.getElementById("estoque").value){
+            event.preventDefault();
+            alert("A quantidade selecionada não deve ser maior que a quantidade em estoque!");
+        }
+    }
+</script>
 </body>
 </html>

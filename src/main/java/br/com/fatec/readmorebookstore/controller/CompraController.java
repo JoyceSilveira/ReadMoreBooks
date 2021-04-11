@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Log4j2
 @Controller
@@ -74,14 +75,19 @@ public class CompraController {
     }
 
     @GetMapping("/add-pedido/{clienteId}")
-    public String addPedido(@PathVariable("clienteId") Integer clienteId, Compra compra){
+    public String addPedido(@PathVariable("clienteId") Integer clienteId, Compra compra, RedirectAttributes redirAttrs){
         try{
             Cliente cliente = clienteFacade.getCliente(clienteId);
             compra.setCliente(cliente);
             compra.setStatus(StatusEnum.PROCESSAMENTO);
-            compraFacade.cadastrar(compra);
-            compraFacade.cadastrarDependencias(compra);
-            return "redirect:/compras/lista-compra/" + cliente.getId() + "";
+            String msg = compraFacade.cadastrar(compra);
+            if(msg == null){
+                compraFacade.cadastrarDependencias(compra);
+                return "redirect:/compras/lista-compra/" + cliente.getId() + "";
+            } else {
+                redirAttrs. addFlashAttribute ( "erro" , msg ) ;
+                return "redirect:/compras/pedido/" + cliente.getId() + "";
+            }
         } catch (Exception e) {
             log.error("Falha ao salvar compra.", e);
             return "Falha ao salvar compra";
@@ -102,17 +108,23 @@ public class CompraController {
     }
 
     @GetMapping("/add-carrinho/{id}/{clienteId}")
-    public String addCarrinho(CompraLivro compraLivro, @PathVariable("id") Integer id, @PathVariable("clienteId") Integer clienteId){
+    public String addCarrinho(CompraLivro compraLivro, @PathVariable("id") Integer id, @PathVariable("clienteId") Integer clienteId, RedirectAttributes redirAttrs ){
+        Livro livro = livroFacade.getLivro(id);
+        Cliente cliente = clienteFacade.getCliente(clienteId);
         try{
-            Livro livro = livroFacade.getLivro(id);
-            Cliente cliente = clienteFacade.getCliente(clienteId);
             compraLivro.setLivro(livro);
             compraLivro.setCliente(cliente);
-            compraFacade.cadastrarItem(compraLivro);
-            return "redirect:/livros/detalhes-livro/" + livro.getId() + "/" + cliente.getId() + "";
+            String msg = compraFacade.cadastrarItem(compraLivro);
+            if(msg == null){
+                return "redirect:/livros/detalhes-livro/" + livro.getId() + "/" + cliente.getId() + "";
+            } else {
+                redirAttrs. addFlashAttribute ( "erro" , msg ) ;
+                return "redirect:/livros/detalhes-livro/" + livro.getId() + "/" + cliente.getId() + "";
+            }
         } catch (Exception e) {
+            redirAttrs. addFlashAttribute ( "erro" , "Falha ao salvar item no carrinho." ) ;
             log.error("Falha ao salvar item no carrinho.", e);
-            return "Falha ao salvar item no carrinho.";
+            return "redirect:/livros/detalhes-livro/" + livro.getId() + "/" + cliente.getId() + "";
         }
     }
 

@@ -57,4 +57,21 @@ LivroFacade implements IFacade{
         livroDAO.findAll().forEach(livros::add);
         return livros;
     }
+
+    public void retirarEstoque(CompraLivro compraLivro){
+        Livro livro = compraLivro.getLivro();
+        livro.setEstoque(livro.getEstoque() - compraLivro.getQuantidade());
+        alterarDados(livro);
+    }
+
+    public void reporEstoque(CompraLivro compraLivro){
+        Livro livro = compraLivro.getLivro();
+        livro.setEstoque(livro.getEstoque() + compraLivro.getQuantidade());
+        alterarDados(livro);
+    }
+
+    public void alterarDados(AbstractEntidade entidade){
+        CrudRepository dao = daos.get(entidade.getClass().getName());
+        dao.save(entidade);
+    }
 }

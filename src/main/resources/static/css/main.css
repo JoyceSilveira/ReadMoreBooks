@@ -134,6 +134,20 @@ table {
     margin: 0 auto;
 }
 
+.alert-danger{
+    font-size: 2rem;
+    color: #fc1303;
+    background-color: #ffbcb8;
+    padding: 0.8rem;
+}
+
+alert-sucess{
+    font-size: 2rem;
+    color: #07db0e;
+    background-color: #c4ffb8;
+    padding: 0.8rem;
+}
+
 @media (min-width: 700px) {
     :root{
         font-size: 60%;

@@ -147,16 +147,13 @@
                                 <tr>
                                     <th>Bandeira</th>
                                     <th>Número</th>
-                                    <th>Código de segurança</th>
                                     <th>Nome impresso no cartão</th>
-                                    <th>Preferencial</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr th:each="cartaoC : ${cliente.cartoesVinculados}">
                                     <td th:text="${cartaoC.bandeira}" class="nome"></td>
                                     <td th:text="${cartaoC.numero}" class="cpf"></td>
-                                    <td th:text="${cartaoC.cvv}" class="telefone"></td>
                                     <td th:text="${cartaoC.nomeImpresso}" class="email"></td>
                                     <td><a th:href="@{/clientes/editar-cartao/{id}(id=${cartaoC.id})}" class="editar">Editar</a></td>
                                 </tr>

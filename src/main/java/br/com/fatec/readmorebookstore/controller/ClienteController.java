@@ -151,8 +151,10 @@ public class ClienteController {
     @GetMapping("/cadastrar-endereco/{clienteId}")
     public String novoEndereco(Endereco endereco, @PathVariable("clienteId") Integer clienteId, Model model) {
         Cliente cliente = clienteFacade.getCliente(clienteId);
+        endereco.setCliente(cliente);
+        clienteFacade.alterarDados(endereco);
         model.addAttribute("cliente", cliente);
-        return "redirect:/clientes/perfil-cliente/" + cliente.getId() + "";
+        return "redirect:/compras/pedido/" + cliente.getId() + "";
     }
 
     @GetMapping("/add-cartao/{clienteId}")
@@ -165,8 +167,10 @@ public class ClienteController {
     @GetMapping("/cadastrar-cartao/{clienteId}")
     public String novoCartao(Cartao cartao, @PathVariable("clienteId") Integer clienteId, Model model) {
         Cliente cliente = clienteFacade.getCliente(clienteId);
+        cartao.setCliente(cliente);
+        clienteFacade.alterarDados(cartao);
         model.addAttribute("cliente", cliente);
-        return "redirect:/clientes/perfil-cliente/" + cliente.getId() + "";
+        return "redirect:/compras/pedido/" + cliente.getId() + "";
     }
 
 }
