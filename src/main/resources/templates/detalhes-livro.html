@@ -162,13 +162,13 @@
                                 <input class="quant" type="text" id="quantidade" th:field="*{quantidade}" required>
                             </div>
                             <div class="div-botao">
-                                <input type="submit" class="botao" value="Adicionar ao carrinho">
+                                <input type="submit" class="botao" id="add-carrinho" value="Adicionar ao carrinho">
                             </div>
                         </fieldset>
                     </div>
                 </form>
                 <div class="div-botao">
-                    <a th:href="@{/livros/principal/{clienteId}(clienteId=${cliente.id})}" class="botao">Voltar</a>
+                    <a th:href="@{/livros/principal/{clienteId}(clienteId=${cliente.id})}" class="botao" id="voltar">Voltar</a>
                 </div>
             </div>
         </div>

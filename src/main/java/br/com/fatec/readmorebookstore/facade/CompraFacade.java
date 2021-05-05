@@ -261,4 +261,14 @@ public class CompraFacade implements IFacade {
         CrudRepository dao = daos.get(entidade.getClass().getName());
         dao.save(entidade);
     }
+
+    public String alterarQuantidade(CompraLivro compraLivro, CompraLivro compraLivroForm){
+        String msg = vQuantidadeLivro.processar(compraLivroForm);
+        if(msg == null){
+            livroFacade.reporEstoque(compraLivro);
+            livroFacade.retirarEstoque(compraLivroForm);
+            return null;
+        }
+        return msg;
+    }
 }

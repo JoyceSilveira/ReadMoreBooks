@@ -46,6 +46,9 @@
                         <tr>
                             <td><a th:href="@{/compras/lista-venda}">Lista de vendas</a></td>
                         </tr>
+                        <tr>
+                            <td><a th:href="@{/compras/lista-troca}">Lista de trocas</a></td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -92,26 +95,17 @@
                     <table class="tabela">
                         <thead>
                         <tr>
-                            <th>Título</th>
-                            <th>Edição</th>
-                            <th>Quantidade</th>
+                            <th>Código</th>
                             <th>Valor</th>
+                            <th>Status</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td class="nome">Harry Potter e a Pedra Filosofal</td>
-                            <td class="edicao">1ª Edição</td>
-                            <td class="botao-acao"><input type="text" class="quantidade" value="3"></td>
-                            <td class="valor">R$ 30,00</td>
-                            <td class="botao-acao"><a class="botao">Autorizar</a></td>
-                        </tr>
-                        <tr>
-                            <td class="nome">Harry Potter E A Câmara Secreta</td>
-                            <td class="edicao">2ª Edição</td>
-                            <td class="botao-acao"><input type="text" class="quantidade" value="2"></td>
-                            <td class="valor">R$ 41,00</td>
-                            <td class="botao-acao"><a class="botao">Autorizar</a></td>
+                        <tr th:each="compra : ${compras}">
+                            <td th:if="${compra.getStatus().getDescricao() == 'troca'}" th:text="${compra.id}" class="nome"></td>
+                            <td th:if="${compra.getStatus().getDescricao() == 'troca'}" th:text="${compra.valorTotal}" class="preco"></td>
+                            <td th:if="${compra.getStatus().getDescricao() == 'troca'}" th:text="${compra.status}"></td>
+                            <td th:if="${compra.getStatus().getDescricao() == 'troca'}" class="botao-acao"><a th:href="@{/compras/detalhes-pedido-admin/{id}(id=${compra.id})}" class="botao">Detalhes</a></td>
                         </tr>
                         </tbody>
                     </table>

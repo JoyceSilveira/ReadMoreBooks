@@ -71,7 +71,7 @@
                             </div>
                             <div class="campo">
                                 <label for="rep-senha">Digite a senha novamente</label>
-                                <input th:field="*{senhaConfirmacao}" class="p" type="password" id="rep-senha" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                                <input th:field="*{senhaConfirmacao}" class="p" type="password" id="rep-senha" required>
                             </div>
                         </div>
                         <p class="info-senha">
@@ -115,7 +115,7 @@
                                 </div>
                                 <div class="campo">
                                     <label for="cep_end">CEP</label>
-                                    <input th:field="*{enderecoEntrega.cep}" class="p" type="text" id="cep_end" required>
+                                    <input th:field="*{enderecoEntrega.cep}" class="p" type="text" id="cep_end" pattern=".{8}" required>
                                 </div>
                             </div>
                             <div class="coluna">
@@ -179,7 +179,7 @@
                             </div>
                             <div class="campo">
                                 <label for="cep">CEP</label>
-                                <input th:field="*{enderecoCobranca.cep}" class="p" type="text" id="cep" required>
+                                <input th:field="*{enderecoCobranca.cep}" class="p" type="text" id="cep" pattern=".{8}" required>
                             </div>
                         </div>
                         <div class="coluna">
@@ -226,7 +226,7 @@
                                 </div>
                                 <div class="campo esp">
                                     <label for="num_card">Número</label>
-                                    <input th:field="*{cartao.numero}" class="p" type="text" id="num_card" required>
+                                    <input th:field="*{cartao.numero}" class="p" type="text" id="num_card" pattern=".{16}" required>
                                 </div>
                                 <div class="campo">
                                     <label for="cod_seguranca">Código de segurança</label>
@@ -257,12 +257,8 @@
 
         if(senha != repSenha){
             event.preventDefault();
-            console.log(senha);
-            console.log(repSenha);
             alert("As senhas não coincidem!");
-            return false;
         }
-        return true;
     }
 </script>
 </body>

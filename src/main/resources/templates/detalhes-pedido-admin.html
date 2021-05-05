@@ -46,6 +46,9 @@
                         <tr>
                             <td><a th:href="@{/compras/lista-venda}">Lista de vendas</a></td>
                         </tr>
+                        <tr>
+                            <td><a th:href="@{/compras/lista-troca}">Lista de trocas</a></td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -194,14 +197,8 @@
                             </div>
                             <div class="campo" id="estoque" style="display: none">
                                 <p class="controle-estoque">Os itens da troca devem voltar para o estoque?</p>
-                                <label class="label-estoque">
-                                    <input type="radio" class="input-estoque" onclick="permitirSalvar()">
-                                    Sim
-                                </label>
-                                <label class="label-estoque">
-                                    <input type="radio" class="input-estoque" onclick="permitirSalvar()">
-                                    Não
-                                </label>
+                                <a class="label-estoque" th:href="@{/livros/estoque-troca/{decisao}(decisao='sim')}">Sim</a>
+                                <a class="label-estoque" th:href="@{/livros/estoque-troca/{decisao}(decisao='nao')}">Não</a>
                             </div>
                             <div class="div-botao">
                                 <input type="submit" class="botao" value="Salvar" id="botao">
@@ -219,10 +216,6 @@
             document.getElementById("estoque").style.display = "block";
             document.getElementById("botao").disabled = true;
         }
-    }
-
-    function permitirSalvar(){
-        document.getElementById("botao").disabled = false;
     }
 </script>
 </body>

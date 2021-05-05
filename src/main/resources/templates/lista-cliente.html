@@ -38,6 +38,9 @@
                         <tr>
                             <td><a th:href="@{/compras/lista-venda}">Lista de vendas</a></td>
                         </tr>
+                        <tr>
+                            <td><a th:href="@{/compras/lista-troca}">Lista de trocas</a></td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -144,7 +147,7 @@
                             <td th:text="${cliente.cpf}" class="cpf"></td>
                             <td th:text="${cliente.telefone}" class="telefone"></td>
                             <td th:text="${cliente.email}" class="email"></td>
-                            <td class="cpf"><a th:href="@{/clientes/lista-compras-admin}">Ver compras</a></td>
+                            <td class="cpf"><a th:href="@{/compras/lista-venda-cliente/{clienteId}(clienteId=${cliente.id})}">Ver compras</a></td>
                             <td th:text="${cliente.ativo}" class="status"></td>
                             <td class="botao-acao"><a th:href="@{/clientes/inativar-ativar/{id}(id=${cliente.id})}" class="excluir">Ativar/Inativar</a></td>
                         </tr>

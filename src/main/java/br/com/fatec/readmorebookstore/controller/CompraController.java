@@ -64,8 +64,18 @@ public class CompraController {
         return "lista-venda";
     }
 
+    @GetMapping("/lista-venda-cliente/{clienteId}")
+    public String listaVendaCliente(Model model, @PathVariable("clienteId") Integer clienteId){
+        Cliente cliente = clienteFacade.getCliente(clienteId);
+        model.addAttribute("compras", cliente.getComprasVinculadas());
+        return "lista-venda";
+    }
+
     @GetMapping("/lista-troca")
-    public String listaTroca(){ return "lista-troca"; }
+    public String listaTroca(Model model){
+        model.addAttribute("compras", compraFacade.listarTodas());
+        return "lista-troca";
+    }
 
     @GetMapping("/pedido/{clienteId}")
     public String pedido(@PathVariable("clienteId") Integer clienteId, Model model, Compra compra){
@@ -129,14 +139,17 @@ public class CompraController {
     }
 
     @GetMapping("/editar-quantidade/{id}/{clienteId}")
-    public String editarQuantidade( @PathVariable("id") Integer id, @PathVariable("clienteId") Integer clienteId, CompraLivro compraLivro){
+    public String editarQuantidade(@PathVariable("id") Integer id, @PathVariable("clienteId") Integer clienteId, CompraLivro compraLivroForm, RedirectAttributes redirAttrs){
         try{
-            Livro livro = livroFacade.getLivro(id);
+            CompraLivro compraLivro = compraFacade.getCompraLivro(id);
             Cliente cliente = clienteFacade.getCliente(clienteId);
-            compraLivro.setLivro(livro);
-            compraLivro.setCliente(cliente);
-            compraFacade.cadastrarItem(compraLivro);
-            return "redirect:/compras/carrinho-compras/" + cliente.getId() + "";
+            String msg = compraFacade.alterarQuantidade(compraLivro, compraLivroForm);
+            if(msg == null){
+                return "redirect:/compras/carrinho-compras/" + cliente.getId() + "";
+            }else{
+                redirAttrs. addFlashAttribute ( "erro" , "Falha ao salvar item no carrinho." ) ;
+                return "redirect:/compras/carrinho-compras/" + cliente.getId() + "";
+            }
         } catch (Exception e) {
             log.error("Falha ao salvar item no carrinho.", e);
             return "Falha ao salvar item no carrinho.";

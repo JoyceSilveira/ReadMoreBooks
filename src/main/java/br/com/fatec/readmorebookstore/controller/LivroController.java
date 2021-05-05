@@ -49,4 +49,10 @@ public class LivroController {
 
     @GetMapping("/justificativa-inativacao")
     public String justificativaInativacao(){ return "justificativa-inativacao-livro"; }
+
+    @GetMapping("/estoque-troca/{decisao}")
+    public String controlarEstoqueTroca(){
+
+        return "justificativa-inativacao-livro";
+    }
 }
