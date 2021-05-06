@@ -27,6 +27,8 @@ public class CompraFacade implements IFacade {
     private Map<String, List<IStrategy>> rns;
     @Autowired
     private LivroFacade livroFacade;
+    @Autowired
+    private ClienteFacade clienteFacade;
 
     @Autowired
     public CompraFacade(
@@ -260,6 +262,14 @@ public class CompraFacade implements IFacade {
     public void cadastrarCupom(AbstractEntidade entidade){
         CrudRepository dao = daos.get(entidade.getClass().getName());
         dao.save(entidade);
+    }
+
+    public void cadastrarCupomPromocional(Cupom cupom){
+        List<Cliente> clientes = clienteFacade.listarTodos();
+        for(Cliente cliente : clientes){
+            cupom.setCliente(cliente);
+            cadastrarCupom(cupom);
+        }
     }
 
     public String alterarQuantidade(CompraLivro compraLivro, CompraLivro compraLivroForm){

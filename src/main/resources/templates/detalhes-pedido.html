@@ -110,7 +110,7 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="c : ${compra.cartoesVinculados}">
-                                    <td th:text="${c.cartao.bandeira}" class="nome"></td>
+                                    <td th:text="${c.cartao.bandeira.getDescricao()}" class="nome"></td>
                                     <td th:text="${c.cartao.numero}" class="cpf"></td>
                                     <td th:text="${c.cartao.nomeImpresso}" class="email"></td>
                                 </tr>

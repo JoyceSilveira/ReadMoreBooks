@@ -168,6 +168,7 @@ public class ClienteController {
     public String novoCartao(Cartao cartao, @PathVariable("clienteId") Integer clienteId, Model model) {
         Cliente cliente = clienteFacade.getCliente(clienteId);
         cartao.setCliente(cliente);
+        cartao.setPreferencial(false);
         clienteFacade.alterarDados(cartao);
         model.addAttribute("cliente", cliente);
         return "redirect:/compras/pedido/" + cliente.getId() + "";

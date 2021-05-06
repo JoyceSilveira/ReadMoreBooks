@@ -10,11 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
     <link th:href="@{/css/main.css}" rel="stylesheet">
-    <!--<link th:href="@{/css/lista-livros.css}" rel="stylesheet">-->
-    <link th:href="@{/css/lista-vendas.css}" rel="stylesheet">
+    <link th:href="@{/css/cadastro-livro.css}" rel="stylesheet">
 </head>
-<body id="page-landing">
-<div id="container" class="admin">
+<body id="page-landing" class="admin">
+<div id="container">
     <header class="page-header">
         <div class="top-bar-container">
             <div class="logo"></div>
@@ -81,28 +80,37 @@
             </div>
         </div>
         <div class="conteudo">
-            <div th:switch="${compras}" class="listagem">
-                <h2 th:case="null" class="alerta">Nenhuma venda feita ainda!</h2>
-                <div th:case="*" class="div-tabela">
-                    <h2 class="titulo-tabela">Vendas realizadas</h2>
-                    <table class="tabela">
-                        <thead>
-                        <tr>
-                            <th>Código</th>
-                            <th>Valor</th>
-                            <th>Status</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each="compra : ${compras}">
-                            <td th:text="${compra.id}" class="nome"></td>
-                            <td th:text="${compra.valorTotal}" class="preco"></td>
-                            <td th:text="${compra.status}"></td>
-                            <td class="botao-acao"><a th:href="@{/compras/detalhes-pedido-admin/{id}(id=${compra.id})}" class="botao">Detalhes</a></td>
-                        </tr>
-                        </tbody>
-                    </table>
+            <div class="caixa">
+                <div class="titulo">
+                    <p class="cadastrar">Cadastro de cupom</p>
                 </div>
+                <form th:action="@{/compras/cadastrar-cupom}" th:object="${cupom}">
+                    <div class="dados-form">
+                        <fieldset>
+                            <div class="coluna">
+                                <div class="campo esp">
+                                    <label for="nome">Nome</label>
+                                    <input th:field="*{nome}" class="g" type="text" id="nome" required>
+                                </div>
+                                <div class="campo esp">
+                                    <label for="valor">Valor</label>
+                                    <input th:field="*{valor}" class="p" type="text" id="valor" required>
+                                </div>
+                            </div>
+                            <div class="coluna">
+                                <div class="campo">
+                                    <label for="tipo">Tipo</label>
+                                    <select th:field="*{tipoCupom}"  class="p" name="tipo_cupom" id="tipo">
+                                        <option value="PROMOCIONAL">Promocional</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="div-botao">
+                        <input type="submit" class="botao" value="Salvar">
+                    </div>
+                </form>
             </div>
         </div>
     </main>

@@ -81,7 +81,7 @@
                             <td><a th:href="@{/admin/dashboard}">Dashboard</a></td>
                         </tr>
                         <tr>
-                            <td><a th:href="@{/livros/lista-livro}">Grupo de precificação</a></td>
+                            <td><a th:href="@{/compras/add-cupom}">Cadastrar cupom</a></td>
                         </tr>
                         </tbody>
                     </table>
@@ -141,7 +141,7 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="c : ${compra.cartoesVinculados}">
-                                    <td th:text="${c.cartao.bandeira}" class="nome"></td>
+                                    <td th:text="${c.cartao.bandeira.getDescricao()}" class="nome"></td>
                                     <td th:text="${c.cartao.numero}" class="cpf"></td>
                                     <td th:text="${c.cartao.nomeImpresso}" class="email"></td>
                                 </tr>

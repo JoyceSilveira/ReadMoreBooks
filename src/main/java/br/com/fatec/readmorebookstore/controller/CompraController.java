@@ -174,4 +174,15 @@ public class CompraController {
         compraFacade.excluir(compraLivro);
         return "redirect:/compras/carrinho-compras/" + cliente.getId() + "";
     }
+
+    @GetMapping("/add-cupom")
+    public String addCupom(Cupom cupom){
+        return "cadastro-cupom";
+    }
+
+    @GetMapping("/cadastrar-cupom")
+    public String novoEndereco(Cupom cupom) {
+        compraFacade.cadastrarCupomPromocional(cupom);
+        return "redirect:/clientes/lista-cliente";
+    }
 }

@@ -107,7 +107,7 @@
                                 </thead>
                                 <tbody>
                                     <tr th:each="cartaoC : ${cliente.cartoesVinculados}">
-                                        <td th:text="${cartaoC.bandeira}" class="nome"></td>
+                                        <td th:text="${cartaoC.bandeira.getDescricao()}" class="nome"></td>
                                         <td th:text="${cartaoC.numero}" class="cpf"></td>
                                         <td th:text="${cartaoC.nomeImpresso}" class="email"></td>
                                         <td><input th:value="${cartaoC.id}" th:field="*{cartoes}" type="checkbox" name="cartao"></td>
