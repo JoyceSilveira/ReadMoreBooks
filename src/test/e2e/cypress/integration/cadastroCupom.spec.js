@@ -11,5 +11,5 @@ context('Todo tests', () => {
 
         cy.get('.botao').click();
     });
-    
+
 });

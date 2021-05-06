@@ -156,3 +156,7 @@ main .caixa .titulo p{
 .caixa table tbody tr{
     border: #FCC06D solid 1px;
 }
+
+.preferencial{
+    margin-left: 1rem;
+}

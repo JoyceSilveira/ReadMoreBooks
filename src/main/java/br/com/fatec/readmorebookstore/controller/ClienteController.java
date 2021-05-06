@@ -142,14 +142,30 @@ public class ClienteController {
     }
 
     @GetMapping("/add-endereco/{clienteId}")
-    public String addEndCobranca(Endereco endereco, @PathVariable("clienteId") Integer clienteId, Model model) {
+    public String addEnd(Endereco endereco, @PathVariable("clienteId") Integer clienteId, Model model) {
         Cliente cliente = clienteFacade.getCliente(clienteId);
         model.addAttribute("cliente", cliente);
         return "add-endereco";
     }
 
+    @GetMapping("/add-endereco-carrinho/{clienteId}")
+    public String addEndCarrinho(Endereco endereco, @PathVariable("clienteId") Integer clienteId, Model model) {
+        Cliente cliente = clienteFacade.getCliente(clienteId);
+        model.addAttribute("cliente", cliente);
+        return "add-endereco-carrinho";
+    }
+
     @GetMapping("/cadastrar-endereco/{clienteId}")
     public String novoEndereco(Endereco endereco, @PathVariable("clienteId") Integer clienteId, Model model) {
+        Cliente cliente = clienteFacade.getCliente(clienteId);
+        endereco.setCliente(cliente);
+        clienteFacade.alterarDados(endereco);
+        model.addAttribute("cliente", cliente);
+        return "redirect:/clientes/perfil-cliente/" + cliente.getId() + "";
+    }
+
+    @GetMapping("/cadastrar-endereco-carrinho/{clienteId}")
+    public String novoEnderecoCarrinho(Endereco endereco, @PathVariable("clienteId") Integer clienteId, Model model) {
         Cliente cliente = clienteFacade.getCliente(clienteId);
         endereco.setCliente(cliente);
         clienteFacade.alterarDados(endereco);
@@ -164,8 +180,25 @@ public class ClienteController {
         return "add-cartao";
     }
 
+    @GetMapping("/add-cartao-carrinho/{clienteId}")
+    public String addCartaoCarrinho(Cartao cartao, @PathVariable("clienteId") Integer clienteId, Model model) {
+        Cliente cliente = clienteFacade.getCliente(clienteId);
+        model.addAttribute("cliente", cliente);
+        return "add-cartao-carrinho";
+    }
+
     @GetMapping("/cadastrar-cartao/{clienteId}")
     public String novoCartao(Cartao cartao, @PathVariable("clienteId") Integer clienteId, Model model) {
+        Cliente cliente = clienteFacade.getCliente(clienteId);
+        cartao.setCliente(cliente);
+        cartao.setPreferencial(false);
+        clienteFacade.alterarDados(cartao);
+        model.addAttribute("cliente", cliente);
+        return "redirect:/clientes/perfil-cliente/" + cliente.getId() + "";
+    }
+
+    @GetMapping("/cadastrar-cartao-carrinho/{clienteId}")
+    public String novoCartaoCarrinho(Cartao cartao, @PathVariable("clienteId") Integer clienteId, Model model) {
         Cliente cliente = clienteFacade.getCliente(clienteId);
         cartao.setCliente(cliente);
         cartao.setPreferencial(false);
@@ -174,4 +207,16 @@ public class ClienteController {
         return "redirect:/compras/pedido/" + cliente.getId() + "";
     }
 
+    @GetMapping("/alterar-cartao-preferencial/{id}")
+    public String atualizarDados(@PathVariable("id") Integer id) {
+        try {
+            Cartao cartao = clienteFacade.pegarCartao(id);
+            Cliente cliente = cartao.getCliente();
+            clienteFacade.alterarCartaoPreferencial(cliente, cartao);
+            return "redirect:/clientes/perfil-cliente/" + cliente.getId() + "";
+        } catch (Exception e) {
+            log.error("Falha ao salvar cliente.", e);
+            return "Falha ao salvar cliente.";
+        }
+    }
 }

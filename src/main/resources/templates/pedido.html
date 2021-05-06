@@ -55,7 +55,7 @@
                             <p class="explicacao">Selecionar endereço para entrega:</p>
                             <legend class="sub-categorias">Endereços</legend>
                             <div class="botao-editar">
-                                <a th:href="@{/clientes/add-endereco/{clienteId}(clienteId=${cliente.id})}" class="editar">Adicionar novo endereço</a>
+                                <a th:href="@{/clientes/add-endereco-carrinho/{clienteId}(clienteId=${cliente.id})}" class="editar">Adicionar novo endereço</a>
                             </div>
                             <table class="info-cliente">
                                 <thead>
@@ -95,7 +95,7 @@
                             <p class="explicacao">Selecionar cartão de crédito para cobrança:</p>
                             <legend class="sub-categorias">Cartão de crédito</legend>
                             <div class="botao-editar">
-                                <a th:href="@{/clientes/add-cartao/{clienteId}(clienteId=${cliente.id})}" class="editar">Adicionar novo cartão</a>
+                                <a th:href="@{/clientes/add-cartao-carrinho/{clienteId}(clienteId=${cliente.id})}" class="editar">Adicionar novo cartão</a>
                             </div>
                             <table class="info-cliente">
                                 <thead>

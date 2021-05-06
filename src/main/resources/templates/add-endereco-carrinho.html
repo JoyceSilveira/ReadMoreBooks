@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>ReadMore Books</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/css/add-endereco.css}" rel="stylesheet">
+</head>
+<body id="page-landing">
+<div id="container" class="cliente">
+    <header class="page-header">
+        <div class="top-bar-container">
+            <div class="marca">
+                <div class="logo"></div>
+                <h2><a th:href="@{/livros/principal/{clienteId}(clienteId=${cliente.id})}">ReadMore Books</a></h2>
+            </div>
+            <div class="user">
+                <p><a>Usuário</a></p>
+                <p>
+                    <a th:href="@{/compras/lista-compra/{clienteId}(clienteId=${cliente.id})}"><img th:src="@{/img/sacolas-compras.png}" alt="" class="carrinho"></a>
+                </p>
+                <a th:href="@{/compras/carrinho-compras/{clienteId}(clienteId=${cliente.id})}"><img th:src="@{/img/carrinho-compras.png}" alt="" class="carrinho"></a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="caixa">
+            <div class="titulo">
+                <p class="add">Adicionar endereço</p>
+            </div>
+            <form th:action="@{/clientes/cadastrar-endereco-carrinho/{clienteId}(clienteId = ${cliente.id})}" th:object="${endereco}">
+                <div class="dados-form">
+                    <fieldset>
+                        <div class="coluna">
+                            <div class="campo esp">
+                                <label for="tp_endereco">Tipo de endereço</label>
+                                <select th:field="*{tipoEndereco}"  class="p" name="tp_endereco" id="tp_endereco">
+                                    <option value="ENTREGA">Entrega</option>
+                                </select>
+                            </div>
+                            <div class="campo esp">
+                                <label for="tp_residencia">Tipo de residência</label>
+                                <select th:field="*{tipoResidencia}" class="p" name="tp_residencia" id="tp_residencia">
+                                    <option value="casa">Casa</option>
+                                    <option value="apto">Apartamento</option>
+                                </select>
+                            </div>
+                            <div class="campo">
+                                <label for="tp_logradouro">Tipo de logradouro</label>
+                                <select th:field="*{tipoLogradouro}" class="p" name="tp_logradouro" id="tp_logradouro">
+                                    <option value="rua">Rua</option>
+                                    <option value="av">Avenida</option>
+                                    <option value="est">Estrada</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="coluna">
+                            <div class="campo esp">
+                                <label for="logradouro">Logradouro</label>
+                                <input th:field="*{logradouro}" class="g" type="text" id="logradouro" required>
+                            </div>
+                            <div class="campo">
+                                <label for="cep">CEP</label>
+                                <input th:field="*{cep}" class="p" type="text" id="cep" required>
+                            </div>
+                        </div>
+                        <div class="coluna">
+                            <div class="campo esp">
+                                <label for="numero">Número</label>
+                                <input th:field="*{numero}" class="p" type="text" id="numero" required>
+                            </div>
+                            <div class="campo esp">
+                                <label for="complemento">Complemento</label>
+                                <input th:field="*{complemento}" class="p" type="text" id="complemento">
+                            </div>
+                            <div class="campo">
+                                <label for="bairro">Bairro</label>
+                                <input th:field="*{bairro}" class="p" type="text" id="bairro" required>
+                            </div>
+                        </div>
+                        <div class="coluna">
+                            <div class="campo esp">
+                                <label for="cidade">Cidade</label>
+                                <input th:field="*{nomeCidade}" class="p" type="text" id="cidade" required>
+                            </div>
+                            <div class="campo">
+                                <label for="identificacao">Nome de identificação</label>
+                                <input th:field="*{identificacao}" class="g" type="text" id="identificacao" required>
+                            </div>
+                        </div>
+                        <div class="coluna">
+                            <div class="campo">
+                                <label for="obs">Observações</label>
+                                <input th:field="*{observacoes}" class="g" type="text" id="obs">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="div-botao">
+                    <input type="submit" class="botao" value="Salvar">
+                </div>
+            </form>
+        </div>
+    </main>
+</div>
+</body>
+</html>

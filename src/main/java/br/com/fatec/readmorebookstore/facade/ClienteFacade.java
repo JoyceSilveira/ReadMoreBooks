@@ -211,4 +211,17 @@ public class ClienteFacade implements IFacade {
         clienteDAO.findAll().forEach(clientes::add);
         return clientes;
     }
+
+    public void alterarCartaoPreferencial(Cliente cliente, Cartao cartao) {
+        List<Cartao> cartoes = cliente.getCartoesVinculados();
+        for(Cartao cartaoCliente: cartoes){
+            if(cartaoCliente.getId() == cartao.getId()){
+                cartaoCliente.setPreferencial(true);
+                alterarDados(cartaoCliente);
+            } else {
+                cartaoCliente.setPreferencial(false);
+                alterarDados(cartaoCliente);
+            }
+        }
+    }
 }

@@ -141,6 +141,7 @@
                             <legend class="sub-categorias">Cartão de crédito</legend>
                             <div class="botao-editar">
                                 <a th:href="@{/clientes/add-cartao/{id}(id=${cliente.id})}" class="editar">Adicionar</a>
+                                <a onclick="mudarPreferencial()" class="editar preferencial">Alterar preferencial</a>
                             </div>
                             <table>
                                 <thead>
@@ -150,12 +151,13 @@
                                     <th>Nome impresso no cartão</th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="cartoes">
                                 <tr th:each="cartaoC : ${cliente.cartoesVinculados}">
                                     <td th:text="${cartaoC.bandeira}" class="nome"></td>
                                     <td th:text="${cartaoC.numero}" class="cpf"></td>
                                     <td th:text="${cartaoC.nomeImpresso}" class="email"></td>
                                     <td><a th:href="@{/clientes/editar-cartao/{id}(id=${cartaoC.id})}" class="editar">Editar</a></td>
+                                    <td style="display: none;"><a th:href="@{/clientes/alterar-cartao-preferencial/{id}(id=${cartaoC.id})}" class="editar">Selecionar preferencial</a></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -169,5 +171,14 @@
         </div>
     </main>
 </div>
+<script>
+    function mudarPreferencial(){
+        tbody = document.getElementById("cartoes");
+        for(var i = 0; i < tbody.childElementCount; i++){
+            tbody.children[i].children[3].style.display = "none";
+            tbody.children[i].children[4].style.display = "block";
+        }
+    }
+</script>
 </body>
 </html>

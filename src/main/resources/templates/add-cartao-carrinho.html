@@ -34,7 +34,7 @@
             <div class="titulo">
                 <p class="add">Adicionar cartão</p>
             </div>
-            <form th:action="@{/clientes/cadastrar-cartao/{clienteId}(clienteId = ${cliente.id})}" th:object="${cartao}">
+            <form th:action="@{/clientes/cadastrar-cartao-carrinho/{clienteId}(clienteId = ${cliente.id})}" th:object="${cartao}">
                 <div class="dados-form">
                     <fieldset>
                         <div class="coluna">
