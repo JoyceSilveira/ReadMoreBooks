@@ -10,6 +10,7 @@ public enum StatusEnum {
     TRANSPORTE("transporte"),
     TROCA("troca"),
     TROCADO("trocado"),
+    RECUSADO("recusado"),
     ENTREGUE("entregue");
 
     private String descricao;

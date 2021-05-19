@@ -103,8 +103,6 @@ public class CompraFacade implements IFacade {
 
     @Override
     public String excluir(AbstractEntidade entidade) {
-        CompraLivro compraLivro = (CompraLivro) entidade;
-        livroFacade.reporEstoque(compraLivro);
         String nmClasse = entidade.getClass().getName();
         CrudRepository dao = daos.get(nmClasse);
         dao.delete(entidade);
@@ -125,7 +123,7 @@ public class CompraFacade implements IFacade {
         CompraLivro compraLivro = (CompraLivro) entidade;
         String msg = executarRegras(entidade);
         if(msg == null){
-            livroFacade.retirarEstoque(compraLivro);
+            livroFacade.retirarEstoque(compraLivro.getQuantidade(), compraLivro.getLivro());
             CrudRepository dao = daos.get(entidade.getClass().getName());
             dao.save(entidade);
             return null;
@@ -273,12 +271,18 @@ public class CompraFacade implements IFacade {
     }
 
     public String alterarQuantidade(CompraLivro compraLivro, CompraLivro compraLivroForm){
-        String msg = vQuantidadeLivro.processar(compraLivroForm);
-        if(msg == null){
-            livroFacade.reporEstoque(compraLivro);
-            livroFacade.retirarEstoque(compraLivroForm);
+        if(compraLivroForm.getQuantidade() <= compraLivro.getLivro().getEstoque()){
+            livroFacade.retornarEstoqueCarrinho(compraLivro);
+            livroFacade.retirarEstoque(compraLivroForm.getQuantidade(), compraLivro.getLivro());
+            compraLivro.setQuantidade(compraLivroForm.getQuantidade());
+            alterarDados(compraLivro);
             return null;
         }
-        return msg;
+        return "Quantidade maior do que estoque";
+    }
+
+    public void alterarDados(AbstractEntidade entidade){
+        CrudRepository dao = daos.get(entidade.getClass().getName());
+        dao.save(entidade);
     }
 }

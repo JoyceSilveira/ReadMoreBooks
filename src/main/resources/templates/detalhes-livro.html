@@ -117,8 +117,10 @@
                                 </textarea>
                                 </div>
                                 <div class="campo">
-                                    <label for="categoria" class="opcao">Categoria</label>
-                                    <input type="text" id="categoria" th:field="*{categoria}" readonly>
+                                    <label class="opcao">Categoria</label>
+                                    <div th:each="categoriaLivro : ${livro.categoriasVinculadas}">
+                                        <input type="text" th:value="${categoriaLivro.categoria.nome}" readonly>
+                                    </div>
                                 </div>
                             </div>
                             <div class="coluna">
@@ -162,7 +164,7 @@
                                 <input class="quant" type="text" id="quantidade" th:field="*{quantidade}" required>
                             </div>
                             <div class="div-botao">
-                                <input type="submit" class="botao" id="add-carrinho" value="Adicionar ao carrinho">
+                                <input type="submit" class="botao" id="add-carrinho" value="Adicionar ao carrinho" onclick="verificaZero()">
                             </div>
                         </fieldset>
                     </div>
@@ -176,9 +178,16 @@
 </div>
 <script>
     function verificaEstoque(){
-        if(document.getElementById("quantidade").value > document.getElementById("estoque").value){
+        if(parseInt(document.getElementById("quantidade").value) > parseInt(document.getElementById("estoque").value)){
             event.preventDefault();
             alert("A quantidade selecionada não deve ser maior que a quantidade em estoque!");
+        }
+    }
+
+    function verificaZero(){
+        if(parseInt(document.getElementById("estoque").value) <= 0){
+            event.preventDefault();
+            alert("Não há estoque!");
         }
     }
 </script>

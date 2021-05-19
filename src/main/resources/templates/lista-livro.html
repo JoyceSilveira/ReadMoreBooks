@@ -155,36 +155,18 @@
                     </div>
                 </form>
             </div>
-            <div class="listagem">
+            <div th:switch="${livros}" class="listagem">
                 <div class="div-tabela">
                     <table class="tabela">
-                        <thead>
-                        <tr>
-                            <th>Título</th>
-                            <th>Edição</th>
-                            <th>Preço</th>
-                            <th>Estoque</th>
-                            <th>Ativo</th>
-                        </tr>
-                        </thead>
                         <tbody>
-                        <tr>
-                            <td class="titulo">Harry Potter e a Pedra Filosofal</td>
-                            <td class="edicao">1ª Edição</td>
-                            <td class="preco">R$ 30,00</td>
-                            <td class="quant"><input type="text" class="quantidade" value="30"></td>
-                            <td class="ativo">Ativo</td>
-                            <td class="botao-acao"><a th:href="@{/livros/detalhes-livro-admin}" class="botao">Detalhes</a></td>
-                            <td class="botao-acao"><a th:href="@{/livros/justificativa-inativacao}" class="botao">Inativar/Ativar</a></td>
-                        </tr>
-                        <tr>
-                            <td class="titulo">Harry Potter E A Câmara Secreta</td>
-                            <td class="edicao">2ª Edição</td>
-                            <td class="preco">R$ 41,00</td>
-                            <td class="quant"><input type="text" class="quantidade" value="20"></td>
-                            <td class="ativo">Ativo</td>
-                            <td class="botao-acao"><a th:href="@{/livros/detalhes-livro-admin}" class="botao">Detalhes</a></td>
-                            <td class="botao-acao"><a th:href="@{/livros/justificativa-inativacao}" class="botao">Inativar/Ativar</a></td>
+                        <tr th:each="livro : ${livros}">
+                            <td><img th:src="@{/img/livro.png}" alt="" class="livro"></td>
+                            <td th:text="${livro.titulo}" class="nome"></td>
+                            <td th:text="${livro.edicao}" class="edicao"></td>
+                            <td th:text="${livro.preco}" class="preco"></td>
+                            <td th:text="${livro.ativo}" class="ativo"></td>
+                            <td class="botao-acao"><a th:href="@{/livros/detalhes-livro-admin/{id}(id=${livro.id})}" class="botao">Detalhes</a></td>
+                            <td class="botao-acao"><a th:href="@{/livros/justificativa-inativacao/{id}(id=${livro.id})}" class="botao">Inativar/Ativar</a></td>
                         </tr>
                         </tbody>
                     </table>

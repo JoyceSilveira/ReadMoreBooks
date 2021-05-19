@@ -64,7 +64,7 @@ context('Todo tests', () => {
         cy.get('#enderecoEntrega1').click();
         cy.get('#cartoes1').click();
         cy.get('#cartoes2').click();
-        cy.get('#cupons1').click();
+        cy.get('#cupons2').click();
         cy.get('.botao').click();
     });
 
@@ -86,5 +86,21 @@ context('Todo tests', () => {
         cy.visit('/compras/lista-compra/1');
         cy.get(':nth-child(1) > .botao-acao > .botao').click();
     });
+
+    it('Realizar troca', () =>{
+        cy.visit('/compras/lista-compra/1');
+        cy.get(':nth-child(1) > .botao-acao > .botao').click();
+        cy.get('#troca').click();
+        cy.get('#compraLivros1').click();
+        cy.get('.botao').click();
+        cy.visit('/compras/lista-compra/1');
+        cy.visit('/compras/lista-venda');
+        cy.get(':nth-child(2) > .botao-acao > .botao').click();
+        cy.get('#statusTroca').select("Trocado");
+        cy.get('#sim').click();
+        cy.visit('/compras/lista-venda');
+        cy.visit('/compras/lista-compra/1');
+        cy.visit('/compras/cupons/1');
+    })
 
 });

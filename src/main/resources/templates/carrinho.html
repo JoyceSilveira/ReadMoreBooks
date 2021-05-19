@@ -34,6 +34,7 @@
             <div th:switch="${cliente.itensVinculados}" class="listagem">
                 <h2 th:case="null" class="alerta">Nenhum livro adicionado ainda!</h2>
                 <div th:case="*" class="div-tabela">
+                    <div class="alert-danger" role="alert" th:text="${erro}" th:if="${erro}"> </div>
                     <h2 class="titulo-tabela">Itens do carrinho</h2>
                     <table class="tabela">
                         <tbody id="itens">

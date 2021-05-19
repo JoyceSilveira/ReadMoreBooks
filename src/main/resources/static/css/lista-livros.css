@@ -177,3 +177,7 @@ main .listagem .tabela .botao{
     background-color: #0C6FF9;
     font-size: 1.5rem;
 }
+
+.livro{
+    width: 8rem;
+}

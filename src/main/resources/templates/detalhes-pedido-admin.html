@@ -168,37 +168,41 @@
                         <form th:action="@{/compras/editar-status/{id}(id=${compra.id})}" th:object="${compra}">
                             <div class="campo">
                                 <label for="status" class="status-label">Alterar status do pedido:</label>
-                                <select th:if="${compra.status.descricao == 'processamento'}" name="status" class="status" id="status" th:field="*{status}" onclick="retornarItensEstoque(this.value)">
+                                <select th:if="${compra.status.descricao == 'processamento'}" name="status" class="status" id="status" th:field="*{status}">
                                     <option value="PROCESSAMENTO">Em processamento</option>
                                     <option value="APROVADA">Aprovada</option>
                                     <option value="REPROVADA">Reprovada</option>
                                 </select>
-                                <select th:if="${compra.status.descricao == 'aprovada'}" name="status" class="status" id="status" th:field="*{status}" onclick="retornarItensEstoque(this.value)">
+                                <select th:if="${compra.status.descricao == 'aprovada'}" name="status" class="status" id="status" th:field="*{status}">
                                     <option value="APROVADA">Aprovada</option>
                                     <option value="TRANSPORTE">Em transporte</option>
                                 </select>
-                                <select th:if="${compra.status.descricao == 'reprovada'}" name="status" class="status" id="status" th:field="*{status}" onclick="retornarItensEstoque(this.value)">
+                                <select th:if="${compra.status.descricao == 'reprovada'}" name="status" class="status" id="status" th:field="*{status}">
                                     <option value="REPROVADA">Reprovada</option>
                                 </select>
-                                <select th:if="${compra.status.descricao == 'transporte'}" name="status" class="status" id="status" th:field="*{status}" onclick="retornarItensEstoque(this.value)">
+                                <select th:if="${compra.status.descricao == 'transporte'}" name="status" class="status" id="status" th:field="*{status}">
                                     <option value="TRANSPORTE">Em transporte</option>
                                     <option value="ENTREGUE">Entregue</option>
                                 </select>
-                                <select th:if="${compra.status.descricao == 'troca'}" name="status" class="status" id="status" th:field="*{status}" onclick="retornarItensEstoque(this.value)">
+                                <select th:if="${compra.status.descricao == 'troca'}" name="status" class="status" id="statusTroca" th:field="*{status}" onchange="retornarItensEstoque(this.value)">
                                     <option value="TROCA">Em troca</option>
                                     <option value="TROCADO">Trocado</option>
+                                    <option value="RECUSADO">Recusado</option>
                                 </select>
-                                <select th:if="${compra.status.descricao == 'trocado'}" name="status" class="status" id="status" th:field="*{status}" onclick="retornarItensEstoque(this.value)">
+                                <select th:if="${compra.status.descricao == 'trocado'}" name="status" class="status" id="status" th:field="*{status}">
                                     <option value="TROCADO">Trocado</option>
                                 </select>
-                                <select th:if="${compra.status.descricao == 'entregue'}" name="status" class="status" id="status" th:field="*{status}" onclick="retornarItensEstoque(this.value)">
+                                <select th:if="${compra.status.descricao == 'recusado'}" name="status" class="status" id="status" th:field="*{status}">
+                                    <option value="RECUSADO">Recusado</option>
+                                </select>
+                                <select th:if="${compra.status.descricao == 'entregue'}" name="status" class="status" id="status" th:field="*{status}">
                                     <option value="ENTREGUE">Entregue</option>
                                 </select>
                             </div>
                             <div class="campo" id="estoque" style="display: none">
                                 <p class="controle-estoque">Os itens da troca devem voltar para o estoque?</p>
-                                <a class="label-estoque" th:href="@{/livros/estoque-troca/{decisao}(decisao='sim')}">Sim</a>
-                                <a class="label-estoque" th:href="@{/livros/estoque-troca/{decisao}(decisao='nao')}">Não</a>
+                                <a class="label-estoque" id="sim" th:href="@{/livros/retornar-estoque-troca/{id}(id=${compra.id})}">Sim</a>
+                                <a class="label-estoque" id="nao" th:href="@{/livros/excluir-estoque-troca/{id}(id=${compra.id})}">Não</a>
                             </div>
                             <div class="div-botao">
                                 <input type="submit" class="botao" value="Salvar" id="botao">
@@ -215,6 +219,9 @@
         if(valor == "TROCADO"){
             document.getElementById("estoque").style.display = "block";
             document.getElementById("botao").disabled = true;
+        } else {
+            document.getElementById("estoque").style.display = "none";
+            document.getElementById("botao").disabled = false;
         }
     }
 </script>

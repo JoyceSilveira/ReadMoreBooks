@@ -25,10 +25,10 @@ public class Livro extends AbstractEntidade {
     private String isbn;
     private String numPaginas;
     private String sinopse;
-//    @ManyToMany
-//    private List<CategoriaLivro> categoriasVinculadas = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "livro")
+    private List<CategoriaLivro> categoriasVinculadas = new ArrayList<>();
 //    private GrupoPrecificacao grupoPrecificacao;
-    private String categoria;
+//    private String categoria;
     private String grupoPrecificacao;
     private Double custo;
     private Double preco;
@@ -38,9 +38,9 @@ public class Livro extends AbstractEntidade {
     private String peso;
     private String profundidade;
     private Integer estoque;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "livro", orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "livro")
     private List<CompraLivro> compras;
 
-//    @Transient
-//    private List<CategoriaLivro> categorias = new ArrayList<>();
+    @Transient
+    private List<Integer> categorias = new ArrayList<>();
 }

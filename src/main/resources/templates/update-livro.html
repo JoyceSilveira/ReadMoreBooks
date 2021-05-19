@@ -10,8 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 
     <link th:href="@{/css/main.css}" rel="stylesheet">
-    <!--<link th:href="@{/css/cadastro-cliente.css}" rel="stylesheet">
-    <link th:href="@{/css/cadastro-livro.css}" rel="stylesheet">-->
     <link th:href="@{/css/update-livro.css}" rel="stylesheet">
 </head>
 <body id="page-landing">
@@ -27,101 +25,93 @@
             <div class="titulo">
                 <p class="editar">Editar livro</p>
             </div>
-            <form action="">
+            <form th:action="@{/livros/atualizar-livro/{id}(id=${livro.id})}" th:object="${livro}">
                 <div class="dados-form">
                     <fieldset>
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="titulo">Título</label>
-                                <input class="g" type="text" id="titulo" required>
+                                <input th:field="*{titulo}" class="g" type="text" id="titulo" required>
                             </div>
                             <div class="campo">
                                 <label for="editora">Editora</label>
-                                <input class="g" type="text" id="editora" required>
+                                <input th:field="*{editora}" class="g" type="text" id="editora" required>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="autor">Autor</label>
-                                <input class="g" type="text" id="autor" required>
+                                <input th:field="*{autor}" class="g" type="text" id="autor" required>
                             </div>
                             <div class="campo esp">
                                 <label for="ano">Ano</label>
-                                <input class="p" type="text" id="ano" required>
+                                <input th:field="*{ano}" class="p" type="text" id="ano" required>
                             </div>
                             <div class="campo">
                                 <label for="edicao">Edição</label>
-                                <input class="p" type="text" id="edicao" required>
+                                <input th:field="*{edicao}" class="p" type="text" id="edicao" required>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="isbn">ISBN</label>
-                                <input class="g" type="text" id="isbn" required>
+                                <input th:field="*{isbn}" class="g" type="text" id="isbn" required>
                             </div>
                             <div class="campo esp">
                                 <label for="n_paginas">Número de páginas</label>
-                                <input class="p" type="text" id="n_paginas" required>
+                                <input th:field="*{numPaginas}" class="p" type="text" id="n_paginas" required>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="sinopse">Sinopse</label>
-                                <textarea name="" id="sinopse" cols="60" rows="5" required></textarea>
+                                <textarea th:field="*{sinopse}" name="" id="sinopse" cols="60" rows="5" required></textarea>
                             </div>
                             <div class="campo">
                                 <p class="titulo_opcao">Categoria</p>
-                                <div class="opcao_bloco">
-                                    <input type="checkbox" id="romance" name="categoria" value="romance" class="opcao_input" required>
-                                    <label for="romance" class="opcao">Romance</label>
-                                    <input type="checkbox" id="aventura" name="categoria" value="aventura" class="opcao_input">
-                                    <label for="aventura" class="opcao">Aventura</label>
-                                    <input type="checkbox" id="suspense" name="categoria" value="suspense" class="opcao_input">
-                                    <label for="suspense" class="opcao">Suspense</label>
-                                    <input type="checkbox" id="terror" name="categoria" value="terror" class="opcao_input">
-                                    <label for="terror" class="opcao">Terror</label>
-                                    <input type="checkbox" id="ficcao" name="categoria" value="ficcao" class="opcao_input">
-                                    <label for="ficcao" class="opcao">Ficção científica</label>
+                                <div class="opcao_bloco" th:each="categoria : ${categorias}">
+                                    <input th:field="*{categorias}" th:value="${categoria.id}" type="checkbox" name="categoria" class="opcao_input">
+                                    <label class="opcao" th:text="${categoria.nome}"></label>
                                 </div>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="g_precificação">Grupo de precificação</label>
-                                <input class="p" type="text" id="g_precificação" required>
+                                <input class="p" type="text" id="g_precificação" th:field="*{grupoPrecificacao}" required>
                             </div>
                             <div class="campo esp">
                                 <label for="custo">Custo</label>
-                                <input class="p" type="text" id="custo" required>
+                                <input class="p" type="text" id="custo" th:field="*{custo}" required>
                             </div>
                             <div class="campo">
                                 <label for="preco">Preço</label>
-                                <input class="p" type="text" id="preco" required>
+                                <input class="p" type="text" id="preco" th:field="*{preco}" required>
                             </div>
                         </div>
                         <div class="coluna">
                             <div class="campo">
                                 <label for="cod_barras">Código de barras</label>
-                                <input class="g" type="text" id="cod_barras" required>
+                                <input class="g" type="text" id="cod_barras" th:field="*{codBarra}" required>
                             </div>
                         </div>
                         <p class="sub-legend">Dimensões</p>
                         <div class="coluna">
                             <div class="campo esp">
                                 <label for="altura">Altura</label>
-                                <input class="p" type="text" id="altura" required>
+                                <input class="p" type="text" id="altura" th:field="*{altura}" required>
                             </div>
                             <div class="campo esp">
                                 <label for="largura">Largura</label>
-                                <input class="p" type="text" id="largura" required>
+                                <input class="p" type="text" id="largura" th:field="*{largura}" required>
                             </div>
                             <div class="campo esp">
                                 <label for="peso">Peso</label>
-                                <input class="p" type="text" id="peso" required>
+                                <input class="p" type="text" id="peso" th:field="*{peso}" required>
                             </div>
                             <div class="campo">
                                 <label for="profundidade">Profundidade</label>
-                                <input class="p" type="text" id="profundidade" required>
+                                <input class="p" type="text" id="profundidade" th:field="*{profundidade}" required>
                             </div>
                         </div>
                     </fieldset>

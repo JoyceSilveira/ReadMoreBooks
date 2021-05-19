@@ -1,12 +1,12 @@
 package br.com.fatec.readmorebookstore.negocio;
 
-import br.com.fatec.readmorebookstore.dao.CupomDAO;
 import br.com.fatec.readmorebookstore.dominio.AbstractEntidade;
 import br.com.fatec.readmorebookstore.dominio.CompraLivro;
-import br.com.fatec.readmorebookstore.dominio.Cupom;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+@Log4j2
 @Service
 public class ValidadorQuantidadeLivro implements IStrategy{
 
@@ -14,6 +14,8 @@ public class ValidadorQuantidadeLivro implements IStrategy{
     public String processar(AbstractEntidade entidade) {
 
         CompraLivro compraLivro = (CompraLivro) entidade;
+        log.error(compraLivro.getLivro().getEstoque());
+        log.error(compraLivro.getQuantidade());
         if(compraLivro.getLivro().getEstoque() < compraLivro.getQuantidade()){
             return "A quantidade selecionada não deve ser maior que a quantidade em estoque";
         }

@@ -147,7 +147,7 @@ public class CompraController {
             if(msg == null){
                 return "redirect:/compras/carrinho-compras/" + cliente.getId() + "";
             }else{
-                redirAttrs. addFlashAttribute ( "erro" , "Falha ao salvar item no carrinho." ) ;
+                redirAttrs. addFlashAttribute ( "erro" , msg ) ;
                 return "redirect:/compras/carrinho-compras/" + cliente.getId() + "";
             }
         } catch (Exception e) {
@@ -161,9 +161,6 @@ public class CompraController {
         Compra compra = compraFacade.getCompra(id);
         compra.setStatus(compraForm.getStatus());
         compraFacade.cadastrar(compra);
-        if(compra.getStatus().getDescricao() == "trocado"){
-            compraFacade.cadastrarCupomTroca(compra);
-        }
         return "redirect:/compras/detalhes-pedido-admin/" + id + "";
     }
 
@@ -171,6 +168,7 @@ public class CompraController {
     public String excluirItem(@PathVariable("id") Integer id, @PathVariable("clienteId") Integer clienteId){
         CompraLivro compraLivro = compraFacade.getCompraLivro(id);
         Cliente cliente = clienteFacade.getCliente(clienteId);
+        livroFacade.retornarEstoqueCarrinho(compraLivro);
         compraFacade.excluir(compraLivro);
         return "redirect:/compras/carrinho-compras/" + cliente.getId() + "";
     }
@@ -181,7 +179,7 @@ public class CompraController {
     }
 
     @GetMapping("/cadastrar-cupom")
-    public String novoEndereco(Cupom cupom) {
+    public String novoCupom(Cupom cupom) {
         compraFacade.cadastrarCupomPromocional(cupom);
         return "redirect:/clientes/lista-cliente";
     }

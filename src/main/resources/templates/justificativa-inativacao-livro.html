@@ -23,27 +23,21 @@
     <main>
         <div class="caixa">
             <div class="titulo">
-                <p class="inativar">Inativar livro</p>
+                <p class="inativar">Inativar/Ativar livro</p>
             </div>
-            <form action="">
+            <form th:action="@{/livros/inativar-ativar-livro/{id}(id=${livro.id})}" th:object="${logDesativacaoLivro}">
                 <div class="dados-form">
                     <fieldset>
                         <div class="coluna">
-                            <div class="campo">
-                                <label for="data">Data</label>
-                                <input class="p" type="text" id="data" value="22/07/2021" readonly>
-                            </div>
-                        </div>
-                        <div class="coluna">
                             <div class="campo esp">
                                 <label for="justificativa">Justificativa</label>
-                                <input class="g" type="text" id="justificativa" required>
+                                <input class="g" type="text" id="justificativa" th:field="*{justificativa}" required>
                             </div>
                         </div>
                     </fieldset>
                 </div>
                 <div class="div-botao">
-                    <a class="botao" th:href="@{/livros/detalhes-livro-admin}">Cancelar</a>
+                    <a class="botao" th:href="@{/livros/lista-livro}">Cancelar</a>
                     <input type="submit" class="botao" value="Salvar">
                 </div>
             </form>
