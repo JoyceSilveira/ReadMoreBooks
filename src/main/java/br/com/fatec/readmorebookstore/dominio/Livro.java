@@ -27,9 +27,8 @@ public class Livro extends AbstractEntidade {
     private String sinopse;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "livro")
     private List<CategoriaLivro> categoriasVinculadas = new ArrayList<>();
-//    private GrupoPrecificacao grupoPrecificacao;
-//    private String categoria;
-    private String grupoPrecificacao;
+    @ManyToOne
+    private GrupoPrecificacao grupoPrecificacao;
     private Double custo;
     private Double preco;
     private String codBarra;

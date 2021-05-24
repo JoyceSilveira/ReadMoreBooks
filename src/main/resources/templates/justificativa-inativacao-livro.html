@@ -33,6 +33,18 @@
                                 <label for="justificativa">Justificativa</label>
                                 <input class="g" type="text" id="justificativa" th:field="*{justificativa}" required>
                             </div>
+                            <div class="campo esp">
+                                <label for="categoria">Categoria</label>
+                                <select th:if="${livro.ativo == true}" name="status" class="status" id="categoria" th:field="*{categoriaInativacao}">
+                                    <option value="FORA_MERCADO">Fora do mercado</option>
+                                    <option value="SEM_ESTOQUE">Sem estoque</option>
+                                    <option value="OUTROS">Outros</option>
+                                </select>
+                                <select th:if="${livro.ativo == false}" name="status" class="status" id="categoria" th:field="*{categoriaAtivacao}">
+                                    <option value="VOLTA_MERCADO">Retorno mercado</option>
+                                    <option value="OUTROS">Outros</option>
+                                </select>
+                            </div>
                         </div>
                     </fieldset>
                 </div>

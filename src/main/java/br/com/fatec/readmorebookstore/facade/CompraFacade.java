@@ -23,6 +23,7 @@ public class CompraFacade implements IFacade {
     private final ValidadorValorCupons vValorCupons;
     private final ValidadorItemExistenteCarrinho vItemExistenteCarrinho;
     private final ValidadorQuantidadeLivro vQuantidadeLivro;
+    private final ValidadorCartaoCompra vCartaoCompra;
     private Map<String, CrudRepository> daos;
     private Map<String, List<IStrategy>> rns;
     @Autowired
@@ -33,7 +34,7 @@ public class CompraFacade implements IFacade {
     @Autowired
     public CompraFacade(
             CompraDAO compraDAO, CompraLivroDAO compraLivroDAO, CupomDAO cupomDAO, CartaoDAO cartaoDAO, CompraCartaoDAO compraCartaoDAO, ValidadorValorCartao vValorCartao, ValidadorValorCupons vValorCupons,
-            ValidadorItemExistenteCarrinho vItemExistenteCarrinho, ValidadorQuantidadeLivro vQuantidadeLivro
+            ValidadorItemExistenteCarrinho vItemExistenteCarrinho, ValidadorQuantidadeLivro vQuantidadeLivro, ValidadorCartaoCompra vCartaoCompra
     ){
         this.compraDAO = compraDAO;
         this.compraLivroDAO = compraLivroDAO;
@@ -44,6 +45,7 @@ public class CompraFacade implements IFacade {
         this.vValorCupons = vValorCupons;
         this.vItemExistenteCarrinho = vItemExistenteCarrinho;
         this.vQuantidadeLivro = vQuantidadeLivro;
+        this.vCartaoCompra = vCartaoCompra;
         definirDAOS(compraDAO, compraLivroDAO, cupomDAO, cartaoDAO, compraCartaoDAO);
         definirRNSCompra(vValorCartao, vValorCupons, vItemExistenteCarrinho, vQuantidadeLivro);
     }
@@ -173,12 +175,31 @@ public class CompraFacade implements IFacade {
     }
 
     public void vincularCartaoCompra(Compra compra){
+        Integer msg = 0;
         for(int i = 0; i < compra.getCartoes().size(); i++){
             CompraCartao compraCartao = new CompraCartao();
             Cartao cartao = cartaoDAO.findById(compra.getCartoes().get(i)).orElse(null);
             compraCartao.setCartao(cartao);
             compraCartao.setCompra(compra);
             cadastrarCartaoCompra(compraCartao);
+            msg += verificarCartao(cartao);
+        }
+        Compra compraProcessada = getCompra(compra.getId());
+        if(msg > 0){
+            compraProcessada.setStatus(StatusEnum.REPROVADA);
+            alterarDados(compraProcessada);
+        } else {
+            compraProcessada.setStatus(StatusEnum.APROVADA);
+            alterarDados(compraProcessada);
+        }
+    }
+
+    public Integer verificarCartao(Cartao cartao){
+        String msg = vCartaoCompra.processar(cartao);
+        if(msg == null){
+            return 0;
+        } else {
+            return 1;
         }
     }
 
@@ -284,5 +305,43 @@ public class CompraFacade implements IFacade {
     public void alterarDados(AbstractEntidade entidade){
         CrudRepository dao = daos.get(entidade.getClass().getName());
         dao.save(entidade);
+    }
+
+    public HashMap<String, Integer> contarLivrosVendidos(){
+        Map<String, Integer> vendaLivros = new HashMap<>();
+        List<Livro> livros = livroFacade.listarTodos();
+        List<Compra> compras = listarTodas();
+        for(int i=0; i < livros.size(); i++){
+            Integer quantidade = 0;
+            for(int j=0; j < compras.size(); j++){
+                for(int c=0; c < compras.get(j).getItensVinculados().size(); c++){
+                    if(compras.get(j).getItensVinculados().get(c).getLivro() == livros.get(i)){
+                        quantidade += compras.get(j).getItensVinculados().get(c).getQuantidade();
+                    }
+                }
+            }
+            vendaLivros.put(livros.get(i).getTitulo(), quantidade);
+        }
+        return (HashMap<String, Integer>) vendaLivros;
+    }
+
+    public HashMap<String, Integer> contarCategoriasVendidas(){
+        Map<String, Integer> vendaCategorias = new HashMap<>();
+        List<Categoria> categorias = livroFacade.pegarCategorias();
+        List<Compra> compras = listarTodas();
+        for(int i=0; i < categorias.size(); i++){
+            Integer quantidade = 0;
+            for(int j=0; j < compras.size(); j++){
+                for(int c=0; c < compras.get(j).getItensVinculados().size(); c++){
+                    for(int z=0; z < compras.get(j).getItensVinculados().get(c).getLivro().getCategoriasVinculadas().size(); z++){
+                        if(compras.get(j).getItensVinculados().get(c).getLivro().getCategoriasVinculadas().get(z).getCategoria() == categorias.get(i)){
+                            quantidade += compras.get(j).getItensVinculados().get(c).getQuantidade();
+                        }
+                    }
+                }
+            }
+            vendaCategorias.put(categorias.get(i).getNome(), quantidade);
+        }
+        return (HashMap<String, Integer>) vendaCategorias;
     }
 }

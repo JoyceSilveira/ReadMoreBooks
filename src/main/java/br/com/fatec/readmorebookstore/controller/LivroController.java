@@ -27,6 +27,7 @@ public class LivroController {
         Livro livro = livroFacade.getLivro(id);
         model.addAttribute("livro", livro);
         model.addAttribute("categorias", livroFacade.pegarCategorias());
+        model.addAttribute("gruposPrecificacao", livroFacade.pegarGruposPrecificacao());
         return "update-livro";
     }
 
@@ -47,6 +48,7 @@ public class LivroController {
     @GetMapping("/add-livro")
     public String mostraFormularioLivro(Livro livro, Model model){
         model.addAttribute("categorias", livroFacade.pegarCategorias());
+        model.addAttribute("gruposPrecificacao", livroFacade.pegarGruposPrecificacao());
         return "cadastro-livro";
     }
 

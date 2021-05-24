@@ -168,11 +168,6 @@
                         <form th:action="@{/compras/editar-status/{id}(id=${compra.id})}" th:object="${compra}">
                             <div class="campo">
                                 <label for="status" class="status-label">Alterar status do pedido:</label>
-                                <select th:if="${compra.status.descricao == 'processamento'}" name="status" class="status" id="status" th:field="*{status}">
-                                    <option value="PROCESSAMENTO">Em processamento</option>
-                                    <option value="APROVADA">Aprovada</option>
-                                    <option value="REPROVADA">Reprovada</option>
-                                </select>
                                 <select th:if="${compra.status.descricao == 'aprovada'}" name="status" class="status" id="status" th:field="*{status}">
                                     <option value="APROVADA">Aprovada</option>
                                     <option value="TRANSPORTE">Em transporte</option>

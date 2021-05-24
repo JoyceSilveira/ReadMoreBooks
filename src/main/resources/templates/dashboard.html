@@ -11,6 +11,55 @@
 
     <link th:href="@{/css/main.css}" rel="stylesheet">
     <link th:href="@{/css/dashboard.css}" rel="stylesheet">
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" th:inline="javascript">
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+
+        var jsvCategorias = [[${vCategorias}]];
+        for(var i=1; i < jsvCategorias.length; i++){
+            jsvCategorias[i][1] = parseInt(jsvCategorias[i][1])
+            console.log(jsvCategorias[i]);
+        }
+
+        function drawChart() {
+
+            var data = google.visualization.arrayToDataTable(jsvCategorias);
+
+            var options = {
+                title: 'Vendas por categoria',
+                is3D: true,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+            chart.draw(data, options);
+        }
+    </script>
+    <script type="text/javascript" th:inline="javascript">
+        google.charts.load("current", {packages:['corechart']});
+        google.charts.setOnLoadCallback(drawChartColuna);
+
+        var jsvLivros = [[${vLivros}]];
+        for(var i=1; i < jsvLivros.length; i++){
+            jsvLivros[i][1] = parseInt(jsvLivros[i][1])
+            console.log(jsvLivros[i]);
+        }
+
+        function drawChartColuna() {
+            var data = google.visualization.arrayToDataTable(jsvLivros);
+
+            var options = {
+                title: "Vendas por livro",
+                width: 600,
+                height: 400,
+                bar: {groupWidth: "95%"},
+                legend: { position: "none" },
+            };
+            var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+            chart.draw(data, options);
+        }
+    </script>
 </head>
 <body id="page-landing">
 <div id="container" class="admin">
@@ -80,7 +129,8 @@
             </div>
         </div>
         <div class="conteudo">
-            <p></p>
+            <div id="piechart_3d" style="width: 900px; height: 300px;"></div>
+            <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
         </div>
     </main>
 </div>

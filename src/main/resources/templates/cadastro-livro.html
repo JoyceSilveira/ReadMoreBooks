@@ -137,8 +137,11 @@
                             </div>
                             <div class="coluna">
                                 <div class="campo esp">
-                                    <label for="g_precificação">Grupo de precificação</label>
-                                    <input th:field="*{grupoPrecificacao}" class="p" type="text" id="g_precificação" required>
+                                    <p class="titulo_opcao">Grupo precificação</p>
+                                    <div class="opcao_bloco" th:each="gPrecificacao : ${gruposPrecificacao}">
+                                        <input th:field="*{grupoPrecificacao}" th:value="${gPrecificacao.id}" type="radio" name="grupo_precificacao" class="opcao_input">
+                                        <label class="opcao" th:text="${gPrecificacao.nome}"></label>
+                                    </div>
                                 </div>
                                 <div class="campo esp">
                                     <label for="custo">Custo</label>

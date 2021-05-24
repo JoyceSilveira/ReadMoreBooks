@@ -19,23 +19,26 @@ LivroFacade implements IFacade{
     private final CategoriaDAO categoriaDAO;
     private final CategoriaLivroDAO categoriaLivroDAO;
     private final LogDesativacaoLivroDAO logDesativacaoLivroDAO;
+    private final GrupoPrecificacaoDAO grupoPrecificacaoDAO;
     private Map<String, CrudRepository> daos;
 
     @Autowired
-    public LivroFacade(LivroDAO livroDAO, CategoriaDAO categoriaDAO, CategoriaLivroDAO categoriaLivroDAO, LogDesativacaoLivroDAO logDesativacaoLivroDAO) {
+    public LivroFacade(LivroDAO livroDAO, CategoriaDAO categoriaDAO, CategoriaLivroDAO categoriaLivroDAO, LogDesativacaoLivroDAO logDesativacaoLivroDAO, GrupoPrecificacaoDAO grupoPrecificacaoDAO) {
         this.livroDAO = livroDAO;
         this.categoriaDAO = categoriaDAO;
         this.categoriaLivroDAO = categoriaLivroDAO;
         this.logDesativacaoLivroDAO = logDesativacaoLivroDAO;
-        definirDAOS(livroDAO, categoriaDAO, categoriaLivroDAO, logDesativacaoLivroDAO);
+        this.grupoPrecificacaoDAO = grupoPrecificacaoDAO;
+        definirDAOS(livroDAO, categoriaDAO, categoriaLivroDAO, logDesativacaoLivroDAO, grupoPrecificacaoDAO);
     }
 
-    private void definirDAOS(LivroDAO livroDAO, CategoriaDAO categoriaDAO, CategoriaLivroDAO categoriaLivroDAO, LogDesativacaoLivroDAO logDesativacaoLivroDAO){
+    private void definirDAOS(LivroDAO livroDAO, CategoriaDAO categoriaDAO, CategoriaLivroDAO categoriaLivroDAO, LogDesativacaoLivroDAO logDesativacaoLivroDAO, GrupoPrecificacaoDAO grupoPrecificacaoDAO){
         daos = new HashMap<>();
         daos.put(Livro.class.getName(), livroDAO);
         daos.put(Categoria.class.getName(), categoriaDAO);
         daos.put(CategoriaLivro.class.getName(), categoriaLivroDAO);
         daos.put(LogDesativacaoLivro.class.getName(), logDesativacaoLivroDAO);
+        daos.put(GrupoPrecificacao.class.getName(), grupoPrecificacaoDAO);
     }
 
     @Override
@@ -97,6 +100,12 @@ LivroFacade implements IFacade{
         List<Categoria> categorias = new ArrayList<>();
         categoriaDAO.findAll().forEach(categorias::add);
         return categorias;
+    }
+
+    public List<GrupoPrecificacao> pegarGruposPrecificacao() {
+        List<GrupoPrecificacao> grupos = new ArrayList<>();
+        grupoPrecificacaoDAO.findAll().forEach(grupos::add);
+        return grupos;
     }
 
     public void AtualizarDados(Livro livro, Livro livroForm){

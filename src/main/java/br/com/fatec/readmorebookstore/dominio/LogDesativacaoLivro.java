@@ -15,8 +15,11 @@ import java.util.List;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class LogDesativacaoLivro extends AbstractEntidade{
-    @ManyToOne
+    @ManyToOne(cascade= CascadeType.PERSIST)
     private Livro livro;
     private String justificativa;
-
+    @Enumerated(EnumType.STRING)
+    private CategoriaInativacaoEnum categoriaInativacao;
+    @Enumerated(EnumType.STRING)
+    private CategoriaAtivacaoEnum categoriaAtivacao;
 }
