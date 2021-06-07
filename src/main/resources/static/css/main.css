@@ -148,6 +148,10 @@ alert-sucess{
     padding: 0.8rem;
 }
 
+main{
+    min-height: 88.7vh;
+}
+
 @media (min-width: 700px) {
     :root{
         font-size: 60%;

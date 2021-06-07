@@ -51,7 +51,7 @@
 
             var options = {
                 title: "Vendas por livro",
-                width: 600,
+                width: 900,
                 height: 400,
                 bar: {groupWidth: "95%"},
                 legend: { position: "none" },
@@ -129,10 +129,92 @@
             </div>
         </div>
         <div class="conteudo">
-            <div id="piechart_3d" style="width: 900px; height: 300px;"></div>
-            <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
+            <div class="caixa">
+                <div class="titulo">
+                    <p>Filtros do período</p>
+                </div>
+                <form th:action="@{/admin/consulta-dashboard}" th:object="${filtroPeriodo}" onsubmit="verificaPeriodo()">
+                    <div class="dados-form">
+                        <fieldset>
+                            <div class="coluna">
+                                <div class="campo esp">
+                                    <label for="mes_inic">Mês inicio</label>
+                                    <select th:field="*{mesInicio}" class="p" name="mes_inic" id="mes_inic" required>
+                                        <option value="01">Janeiro</option>
+                                        <option value="02">Fevereiro</option>
+                                        <option value="03">Março</option>
+                                        <option value="04">Abril</option>
+                                        <option value="05">Maio</option>
+                                        <option value="06">Junho</option>
+                                        <option value="07">Julho</option>
+                                        <option value="08">Agosto</option>
+                                        <option value="09">Setembro</option>
+                                        <option value="10">Outubro</option>
+                                        <option value="11">Novembro</option>
+                                        <option value="12">Dezembro</option>
+                                    </select>
+                                </div>
+                                <div class="campo esp">
+                                    <label for="ano_inic">Ano inicio</label>
+                                    <select th:field="*{anoInicio}" class="p" name="ano_inic" id="ano_inic" required>
+                                        <option value="2020">2020</option>
+                                        <option value="2021">2021</option>
+                                    </select>
+                                </div>
+                                <div class="campo esp">
+                                    <label for="mes_fim">Mês fim</label>
+                                    <select th:field="*{mesFim}" class="p" name="mes_fim" id="mes_fim" required>
+                                        <option value="01">Janeiro</option>
+                                        <option value="02">Fevereiro</option>
+                                        <option value="03">Março</option>
+                                        <option value="04">Abril</option>
+                                        <option value="05">Maio</option>
+                                        <option value="06">Junho</option>
+                                        <option value="07">Julho</option>
+                                        <option value="08">Agosto</option>
+                                        <option value="09">Setembro</option>
+                                        <option value="10">Outubro</option>
+                                        <option value="11">Novembro</option>
+                                        <option value="12">Dezembro</option>
+                                    </select>
+                                </div>
+                                <div class="campo">
+                                    <label for="ano_fim">Ano fim</label>
+                                    <select th:field="*{anoFim}" class="p" name="ano_fim" id="ano_fim" required>
+                                        <option value="2020">2020</option>
+                                        <option value="2021">2021</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="div-botao">
+                        <input type="submit" class="botao" value="Filtrar">
+                    </div>
+                </form>
+            </div>
+            <div>
+                <div id="piechart_3d" style="width: 900px; height: 300px;"></div>
+                <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
+            </div>
         </div>
     </main>
 </div>
+<script>
+    // function verificaPeriodo(){
+    //     var mesInicio = parseInt(document.getElementById("mes_inic").value);
+    //     var anoInicio = parseInt(document.getElementById("ano_inic").value);
+    //     var mesFim = parseInt(document.getElementById("mes_fim").value);
+    //     var anoFim = parseInt(document.getElementById("ano_fim").value);
+    //     if(anoInicio > anoFim){
+    //         event.preventDefault();
+    //         alert("A data de inicio não pode ser maior que a data final");
+    //     } else if(anoInicio <= anoFim & mesInicio > mesFim){
+    //         event.preventDefault();
+    //         alert("A data de inicio não pode ser maior que a data final");
+    //     }
+    //
+    // }
+</script>
 </body>
 </html>

@@ -14,8 +14,6 @@ public class ValidadorQuantidadeLivro implements IStrategy{
     public String processar(AbstractEntidade entidade) {
 
         CompraLivro compraLivro = (CompraLivro) entidade;
-        log.error(compraLivro.getLivro().getEstoque());
-        log.error(compraLivro.getQuantidade());
         if(compraLivro.getLivro().getEstoque() < compraLivro.getQuantidade()){
             return "A quantidade selecionada não deve ser maior que a quantidade em estoque";
         }

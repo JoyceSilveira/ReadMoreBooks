@@ -24,6 +24,7 @@ public class CompraFacade implements IFacade {
     private final ValidadorItemExistenteCarrinho vItemExistenteCarrinho;
     private final ValidadorQuantidadeLivro vQuantidadeLivro;
     private final ValidadorCartaoCompra vCartaoCompra;
+    private final ComplementarDtCadastro cDataCadastro;
     private Map<String, CrudRepository> daos;
     private Map<String, List<IStrategy>> rns;
     @Autowired
@@ -34,7 +35,7 @@ public class CompraFacade implements IFacade {
     @Autowired
     public CompraFacade(
             CompraDAO compraDAO, CompraLivroDAO compraLivroDAO, CupomDAO cupomDAO, CartaoDAO cartaoDAO, CompraCartaoDAO compraCartaoDAO, ValidadorValorCartao vValorCartao, ValidadorValorCupons vValorCupons,
-            ValidadorItemExistenteCarrinho vItemExistenteCarrinho, ValidadorQuantidadeLivro vQuantidadeLivro, ValidadorCartaoCompra vCartaoCompra
+            ValidadorItemExistenteCarrinho vItemExistenteCarrinho, ValidadorQuantidadeLivro vQuantidadeLivro, ValidadorCartaoCompra vCartaoCompra, ComplementarDtCadastro cDataCadastro
     ){
         this.compraDAO = compraDAO;
         this.compraLivroDAO = compraLivroDAO;
@@ -46,19 +47,21 @@ public class CompraFacade implements IFacade {
         this.vItemExistenteCarrinho = vItemExistenteCarrinho;
         this.vQuantidadeLivro = vQuantidadeLivro;
         this.vCartaoCompra = vCartaoCompra;
+        this.cDataCadastro = cDataCadastro;
         definirDAOS(compraDAO, compraLivroDAO, cupomDAO, cartaoDAO, compraCartaoDAO);
-        definirRNSCompra(vValorCartao, vValorCupons, vItemExistenteCarrinho, vQuantidadeLivro);
+        definirRNSCompra(vValorCartao, vValorCupons, vItemExistenteCarrinho, vQuantidadeLivro, cDataCadastro);
     }
 
     private void definirRNSCompra(
             ValidadorValorCartao vValorCartao, ValidadorValorCupons vValorCupons,
-            ValidadorItemExistenteCarrinho vItemExistenteCarrinho, ValidadorQuantidadeLivro vQuantidadeLivro
+            ValidadorItemExistenteCarrinho vItemExistenteCarrinho, ValidadorQuantidadeLivro vQuantidadeLivro, ComplementarDtCadastro cDataCadastro
     ) {
         rns = new HashMap<>();
 
         List<IStrategy> rnsCompra = new ArrayList<>();
         rnsCompra.add(vValorCupons);
         rnsCompra.add(vValorCartao);
+        rnsCompra.add(cDataCadastro);
 
         rns.put(Compra.class.getName(), rnsCompra);
 
@@ -329,6 +332,74 @@ public class CompraFacade implements IFacade {
         Map<String, Integer> vendaCategorias = new HashMap<>();
         List<Categoria> categorias = livroFacade.pegarCategorias();
         List<Compra> compras = listarTodas();
+        for(int i=0; i < categorias.size(); i++){
+            Integer quantidade = 0;
+            for(int j=0; j < compras.size(); j++){
+                for(int c=0; c < compras.get(j).getItensVinculados().size(); c++){
+                    for(int z=0; z < compras.get(j).getItensVinculados().get(c).getLivro().getCategoriasVinculadas().size(); z++){
+                        if(compras.get(j).getItensVinculados().get(c).getLivro().getCategoriasVinculadas().get(z).getCategoria() == categorias.get(i)){
+                            quantidade += compras.get(j).getItensVinculados().get(c).getQuantidade();
+                        }
+                    }
+                }
+            }
+            vendaCategorias.put(categorias.get(i).getNome(), quantidade);
+        }
+        return (HashMap<String, Integer>) vendaCategorias;
+    }
+
+    public List<Compra> filtrarPeriodoCompra(FiltroPeriodo filtroPeriodo){
+        log.error("Filtrando...");
+        List<Compra> compraPeriodo = new ArrayList<>();
+        List<Compra> compras = listarTodas();
+        for(int i=0; i < compras.size(); i++){
+            if(compras.get(i).getDataCadastro().getYear() >= filtroPeriodo.getAnoInicio() && compras.get(i).getDataCadastro().getYear() <= filtroPeriodo.getAnoFim()){
+                if(compras.get(i).getDataCadastro().getYear() == filtroPeriodo.getAnoInicio() && compras.get(i).getDataCadastro().getYear() == filtroPeriodo.getAnoFim()){
+                    if(compras.get(i).getDataCadastro().getMonthValue() >= filtroPeriodo.getMesInicio() && compras.get(i).getDataCadastro().getMonthValue() <= filtroPeriodo.getMesFim()){
+                        compraPeriodo.add(compras.get(i));
+                        log.error(compras.get(i).getId());
+                        log.error(compras.get(i).getDataCadastro());
+                    }
+                } else if(compras.get(i).getDataCadastro().getYear() == filtroPeriodo.getAnoInicio()){
+                    if(compras.get(i).getDataCadastro().getMonthValue() >= filtroPeriodo.getMesInicio()){
+                        compraPeriodo.add(compras.get(i));
+                        log.error(compras.get(i).getId());
+                        log.error(compras.get(i).getDataCadastro());
+                    }
+                } else if(compras.get(i).getDataCadastro().getYear() == filtroPeriodo.getAnoFim()){
+                    if(compras.get(i).getDataCadastro().getMonthValue() <= filtroPeriodo.getMesFim()){
+                        compraPeriodo.add(compras.get(i));
+                        log.error(compras.get(i).getId());
+                        log.error(compras.get(i).getDataCadastro());
+                    }
+                }
+            }
+        }
+        return compraPeriodo;
+    }
+
+    public HashMap<String, Integer> contarLivrosVendidosPeriodo(List<Compra> comprasPeriodo){
+        Map<String, Integer> vendaLivros = new HashMap<>();
+        List<Livro> livros = livroFacade.listarTodos();
+        List<Compra> compras = comprasPeriodo;
+        for(int i=0; i < livros.size(); i++){
+            Integer quantidade = 0;
+            for(int j=0; j < compras.size(); j++){
+                for(int c=0; c < compras.get(j).getItensVinculados().size(); c++){
+                    if(compras.get(j).getItensVinculados().get(c).getLivro() == livros.get(i)){
+                        quantidade += compras.get(j).getItensVinculados().get(c).getQuantidade();
+                    }
+                }
+            }
+            vendaLivros.put(livros.get(i).getTitulo(), quantidade);
+        }
+        return (HashMap<String, Integer>) vendaLivros;
+    }
+
+    public HashMap<String, Integer> contarCategoriasVendidasPeriodo(List<Compra> comprasPeriodo){
+        Map<String, Integer> vendaCategorias = new HashMap<>();
+        List<Categoria> categorias = livroFacade.pegarCategorias();
+        List<Compra> compras = comprasPeriodo;
         for(int i=0; i < categorias.size(); i++){
             Integer quantidade = 0;
             for(int j=0; j < compras.size(); j++){

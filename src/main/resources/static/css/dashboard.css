@@ -12,3 +12,93 @@
 .admin .conteudo{
     padding: 5rem 3rem;
 }
+
+main .caixa{
+    margin: 0 auto;
+    width: 850px;
+    padding: 2rem 2rem;
+    border-radius: 0.8rem;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-bottom: 2rem;
+}
+
+.caixa form fieldset{
+    border: none;
+    margin-top: 2rem;
+}
+
+main .caixa .titulo {
+    font-size: 2rem;
+    color: #000000;
+
+    margin-bottom: 1rem;
+}
+
+.caixa form fieldset .coluna{
+    display: flex;
+    justify-content: flex-start;
+    height: 6rem;
+}
+
+.caixa form fieldset label{
+    display: block;
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+    color: #4B4C4D;
+}
+
+.caixa form fieldset input{
+    padding: 0.5rem 1rem;
+    border: #4B4C4D solid 1px;
+}
+
+.caixa form fieldset select{
+    padding: 0.5rem 1rem;
+    border: #4B4C4D solid 1px;
+}
+
+.caixa form fieldset .esp{
+    margin-right: 2rem;
+}
+
+.caixa form fieldset .p{
+    width: 20rem;
+}
+
+.caixa form fieldset .g{
+    width: 40rem;
+}
+
+.caixa form .div-botao {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
+    margin-top: 2rem;
+}
+
+.caixa form .div-botao .botao{
+    background-color: #0C6FF9;
+    padding: 0.8rem 2rem;
+    color:#ffffff;
+    font-size: 1.5rem;
+    border: none;
+}
+
+.opcao_bloco {
+    display: flex;
+    align-items: center;
+}
+
+.opcao {
+    margin-bottom: 0 !important;
+    margin-right: 1rem;
+    margin-left: 0.5rem;
+}
+
+.titulo_opcao {
+    font-size: 1.7rem;
+    color: #4B4C4D;
+    margin-bottom: 0.8rem;
+}
