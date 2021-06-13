@@ -19,26 +19,34 @@ LivroFacade implements IFacade{
     private final CategoriaDAO categoriaDAO;
     private final CategoriaLivroDAO categoriaLivroDAO;
     private final LogDesativacaoLivroDAO logDesativacaoLivroDAO;
+    private final LogEstoqueDAO logEstoqueDAO;
     private final GrupoPrecificacaoDAO grupoPrecificacaoDAO;
+    private final ValidadorLucroLivro vLucroLivro;
+    private final ComplementarDtCadastro cDataCadastro;
     private Map<String, CrudRepository> daos;
 
     @Autowired
-    public LivroFacade(LivroDAO livroDAO, CategoriaDAO categoriaDAO, CategoriaLivroDAO categoriaLivroDAO, LogDesativacaoLivroDAO logDesativacaoLivroDAO, GrupoPrecificacaoDAO grupoPrecificacaoDAO) {
+    public LivroFacade(LivroDAO livroDAO, CategoriaDAO categoriaDAO, CategoriaLivroDAO categoriaLivroDAO, LogDesativacaoLivroDAO logDesativacaoLivroDAO, GrupoPrecificacaoDAO grupoPrecificacaoDAO, LogEstoqueDAO logEstoqueDAO,
+                       ValidadorLucroLivro vLucroLivro, ComplementarDtCadastro cDataCadastro) {
         this.livroDAO = livroDAO;
         this.categoriaDAO = categoriaDAO;
         this.categoriaLivroDAO = categoriaLivroDAO;
         this.logDesativacaoLivroDAO = logDesativacaoLivroDAO;
         this.grupoPrecificacaoDAO = grupoPrecificacaoDAO;
-        definirDAOS(livroDAO, categoriaDAO, categoriaLivroDAO, logDesativacaoLivroDAO, grupoPrecificacaoDAO);
+        this.logEstoqueDAO = logEstoqueDAO;
+        this.vLucroLivro = vLucroLivro;
+        this.cDataCadastro = cDataCadastro;
+        definirDAOS(livroDAO, categoriaDAO, categoriaLivroDAO, logDesativacaoLivroDAO, grupoPrecificacaoDAO, logEstoqueDAO);
     }
 
-    private void definirDAOS(LivroDAO livroDAO, CategoriaDAO categoriaDAO, CategoriaLivroDAO categoriaLivroDAO, LogDesativacaoLivroDAO logDesativacaoLivroDAO, GrupoPrecificacaoDAO grupoPrecificacaoDAO){
+    private void definirDAOS(LivroDAO livroDAO, CategoriaDAO categoriaDAO, CategoriaLivroDAO categoriaLivroDAO, LogDesativacaoLivroDAO logDesativacaoLivroDAO, GrupoPrecificacaoDAO grupoPrecificacaoDAO, LogEstoqueDAO logEstoqueDAO){
         daos = new HashMap<>();
         daos.put(Livro.class.getName(), livroDAO);
         daos.put(Categoria.class.getName(), categoriaDAO);
         daos.put(CategoriaLivro.class.getName(), categoriaLivroDAO);
         daos.put(LogDesativacaoLivro.class.getName(), logDesativacaoLivroDAO);
         daos.put(GrupoPrecificacao.class.getName(), grupoPrecificacaoDAO);
+        daos.put(LogEstoque.class.getName(), logEstoqueDAO);
     }
 
     @Override
@@ -88,6 +96,13 @@ LivroFacade implements IFacade{
 
     public void retirarEstoque(Integer quantidade, Livro livro){
         livro.setEstoque(livro.getEstoque() - quantidade);
+        if(livro.getEstoque() == 0){
+            LogDesativacaoLivro logDesativacaoLivro = new LogDesativacaoLivro();
+            logDesativacaoLivro.setLivro(livro);
+            logDesativacaoLivro.setCategoriaInativacao(CategoriaInativacaoEnum.FORA_MERCADO);
+            logDesativacaoLivro.setJustificativa("Sem estoque");
+            DesativarAtivarLivro(logDesativacaoLivro);
+        }
         alterarDados(livro);
     }
 
@@ -108,11 +123,19 @@ LivroFacade implements IFacade{
         return grupos;
     }
 
-    public void AtualizarDados(Livro livro, Livro livroForm){
+    public String AtualizarDados(Livro livro, Livro livroForm){
         for(CategoriaLivro categoriaLivro: livro.getCategoriasVinculadas()){
             ExcluirCategoria(categoriaLivro);
         }
+        String msg = null;
+        if(livro.getPreco() != livroForm.getPreco()){
+            msg = vLucroLivro.processar(livroForm);
+            if(msg != null){
+                return msg;
+            }
+        }
         cadastrar(livroForm);
+        return msg;
     }
 
     public void ExcluirCategoria(CategoriaLivro categoriaLivro){
@@ -120,17 +143,22 @@ LivroFacade implements IFacade{
         alterarDados(categoriaLivro);
     }
 
-    public void DesativarAtivarLivro(AbstractEntidade entidade){
+    public String DesativarAtivarLivro(AbstractEntidade entidade){
         LogDesativacaoLivro logDesativacaoLivro = (LogDesativacaoLivro) entidade;
         if(logDesativacaoLivro.getLivro().isAtivo()){
             logDesativacaoLivro.getLivro().setAtivo(false);
         }else {
+            if(logDesativacaoLivro.getLivro().getEstoque() == 0){
+                return "O livro não tem estoque para ser ativado";
+            }
             logDesativacaoLivro.getLivro().setAtivo(true);
         }
+        cDataCadastro.processar(logDesativacaoLivro);
         String nmClasse = entidade.getClass().getName();
         CrudRepository dao = daos.get(nmClasse);
         dao.save(logDesativacaoLivro);
         alterarDados(logDesativacaoLivro.getLivro());
+        return null;
     }
 
     public void retornarEstoque(Compra compra){
@@ -145,6 +173,20 @@ LivroFacade implements IFacade{
         Livro livro = getLivro(compraLivro.getLivro().getId());
         livro.setEstoque(compraLivro.getQuantidade() + livro.getEstoque());
         alterarDados(livro);
+    }
+
+    public String darEntradaEstoque(LogEstoque logEstoque){
+        Livro livro = getLivro(logEstoque.getLivro().getId());
+        livro.setEstoque(livro.getEstoque() + logEstoque.getQuantidade());
+        String msg = null;
+        if(livro.getCusto() < logEstoque.getPrecoCusto()){
+            livro.setCusto(logEstoque.getPrecoCusto());
+            msg = vLucroLivro.processar(livro);
+        }
+        cDataCadastro.processar(logEstoque);
+        alterarDados(livro);
+        alterarDados(logEstoque);
+        return msg;
     }
 
 }

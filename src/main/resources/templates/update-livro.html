@@ -22,6 +22,7 @@
     </header>
     <main>
         <div class="caixa">
+            <div class="alert-danger" role="alert" th:text="${erro}" th:if="${erro}"> </div>
             <div class="titulo">
                 <p class="editar">Editar livro</p>
             </div>
@@ -79,13 +80,9 @@
                             <div class="campo esp">
                                 <p class="titulo_opcao">Grupo precificação</p>
                                 <div class="opcao_bloco" th:each="gPrecificacao : ${gruposPrecificacao}">
-                                    <input th:field="*{grupoPrecificacao}" th:value="${gPrecificacao}" type="radio" name="grupo_precificacao" class="opcao_input">
+                                    <input th:field="*{grupoPrecificacao}" th:value="${gPrecificacao.id}" type="radio" name="grupo_precificacao" class="opcao_input">
                                     <label class="opcao" th:text="${gPrecificacao.nome}"></label>
                                 </div>
-                            </div>
-                            <div class="campo esp">
-                                <label for="custo">Custo</label>
-                                <input class="p" type="text" id="custo" th:field="*{custo}" required>
                             </div>
                             <div class="campo">
                                 <label for="preco">Preço</label>

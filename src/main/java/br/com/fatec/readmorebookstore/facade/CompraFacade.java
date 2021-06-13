@@ -68,6 +68,7 @@ public class CompraFacade implements IFacade {
         List<IStrategy> rnsCompraLivro = new ArrayList<>();
         rnsCompraLivro.add(vItemExistenteCarrinho);
         rnsCompraLivro.add(vQuantidadeLivro);
+        rnsCompra.add(cDataCadastro);
 
         rns.put(CompraLivro.class.getName(), rnsCompraLivro);
     }
@@ -165,11 +166,11 @@ public class CompraFacade implements IFacade {
     }
 
     public void cadastrarDependencias(Compra compra){
-        addItensCompra(compra);
+        Integer verificacao = vincularCartaoCompra(compra);
+        addItensCompra(compra, verificacao);
         if(compra.getCupons().size() > 0){
             utilizarCupons(compra);
         }
-        vincularCartaoCompra(compra);
     }
 
     public void cadastrarCartaoCompra(AbstractEntidade entidade){
@@ -177,7 +178,7 @@ public class CompraFacade implements IFacade {
         dao.save(entidade);
     }
 
-    public void vincularCartaoCompra(Compra compra){
+    public Integer vincularCartaoCompra(Compra compra){
         Integer msg = 0;
         for(int i = 0; i < compra.getCartoes().size(); i++){
             CompraCartao compraCartao = new CompraCartao();
@@ -191,9 +192,11 @@ public class CompraFacade implements IFacade {
         if(msg > 0){
             compraProcessada.setStatus(StatusEnum.REPROVADA);
             alterarDados(compraProcessada);
+            return msg;
         } else {
             compraProcessada.setStatus(StatusEnum.APROVADA);
             alterarDados(compraProcessada);
+            return msg;
         }
     }
 
@@ -206,12 +209,22 @@ public class CompraFacade implements IFacade {
         }
     }
 
-    public void addItensCompra(Compra compra){
-        for(int i = 0; i < compra.getCliente().getItensVinculados().size(); i++){
-            CompraLivro compraLivro = compra.getCliente().getItensVinculados().get(i);
-            compraLivro.setCompra(compra);
-            compraLivro.setCliente(null);
-            efetivarCompraLivro(compraLivro);
+    public void addItensCompra(Compra compra, Integer verificacao){
+        if(verificacao == 1){
+            for(int i = 0; i < compra.getCliente().getItensVinculados().size(); i++){
+                CompraLivro compraLivro = compra.getCliente().getItensVinculados().get(i);
+                compraLivro.setCompra(compra);
+                compraLivro.setCliente(null);
+                efetivarCompraLivro(compraLivro);
+                livroFacade.retornarEstoqueCarrinho(compraLivro);
+            }
+        } else {
+            for(int i = 0; i < compra.getCliente().getItensVinculados().size(); i++){
+                CompraLivro compraLivro = compra.getCliente().getItensVinculados().get(i);
+                compraLivro.setCompra(compra);
+                compraLivro.setCliente(null);
+                efetivarCompraLivro(compraLivro);
+            }
         }
     }
 
@@ -302,7 +315,7 @@ public class CompraFacade implements IFacade {
             alterarDados(compraLivro);
             return null;
         }
-        return "Quantidade maior do que estoque";
+        return "Quantidade maior do que em estoque";
     }
 
     public void alterarDados(AbstractEntidade entidade){

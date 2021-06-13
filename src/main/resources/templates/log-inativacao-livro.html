@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>ReadMore Books</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/css/lista-logs.css}" rel="stylesheet">
+</head>
+<body id="page-landing">
+<div id="container" class="admin">
+    <header class="page-header">
+        <div class="top-bar-container">
+            <div class="logo"></div>
+            <h2>ReadMore Books</h2>
+        </div>
+    </header>
+    <main>
+        <div class="conteudo">
+            <div th:switch="${logsInativacao}" class="listagem">
+                <h2 th:case="null" class="alerta">Nenhuma inativação feita ainda!</h2>
+                <div th:case="*" class="div-tabela">
+                    <h2 class="titulo-tabela">Logs inativação/ativação</h2>
+                    <table class="tabela">
+                        <thead>
+                        <tr>
+                            <th>Justificativa</th>
+                            <th>Ação</th>
+                            <th>Categoria</th>
+                            <th>Data</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="log : ${logsInativacao}">
+                            <td th:text="${log.justificativa}" class="nome"></td>
+                            <td th:if="${log.categoriaInativacao != null}" class="preco">Inativação</td>
+                            <td th:if="${log.categoriaInativacao != null}" th:text="${log.categoriaInativacao.descricao}" class="preco"></td>
+                            <td th:if="${log.categoriaInativacao != null}" th:text="${log.dataCadastro}" class="preco"></td>
+                            <td th:if="${log.categoriaAtivacao != null}" class="preco">Ativação</td>
+                            <td th:if="${log.categoriaAtivacao != null}" th:text="${log.categoriaAtivacao.descricao}" class="preco"></td>
+                            <td th:if="${log.categoriaAtivacao != null}" th:text="${log.dataCadastro}" class="preco"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

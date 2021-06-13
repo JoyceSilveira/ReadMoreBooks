@@ -156,6 +156,7 @@
                 </form>
             </div>
             <div th:switch="${livros}" class="listagem">
+                <div class="alert-danger" role="alert" th:text="${erro}" th:if="${erro}"> </div>
                 <div class="div-tabela">
                     <table class="tabela">
                         <tbody>

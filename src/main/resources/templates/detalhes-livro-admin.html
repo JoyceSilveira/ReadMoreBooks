@@ -82,6 +82,7 @@
         </div>
         <div class="conteudo">
             <div class="caixa">
+                <div class="alert-danger" role="alert" th:text="${erro}" th:if="${erro}"> </div>
                 <div class="titulo">
                     <p class="detalhe">Detalhes do livro</p>
                 </div>
@@ -184,14 +185,19 @@
                             </div>
                         </fieldset>
                         <fieldset class="add-estoque">
-                            <div class="campo">
-                                <p class="sub-legend">Dar entrada no estoque</p>
-                                <label for="quantidade">Quantidade</label>
-                                <input class="quant" type="text" id="quantidade" required>
+                            <div>
+                                <div class="div-botao">
+                                    <a th:href="@{/livros/estoque/{id}(id=${livro.id})}" class="botao">Dar entrada estoque</a>
+                                </div>
                             </div>
                             <div>
                                 <div class="div-botao">
-                                    <input type="submit" class="botao" value="Adicionar">
+                                    <a th:href="@{/livros/logs-inativacao/{id}(id=${livro.id})}" class="botao">Logs inativação</a>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="div-botao">
+                                    <a th:href="@{/livros/logs-estoque/{id}(id=${livro.id})}" class="botao">Logs estoque</a>
                                 </div>
                             </div>
                         </fieldset>

@@ -69,13 +69,15 @@
                             <th>Código pedido</th>
                             <th>Valor</th>
                             <th>Status</th>
+                            <th>Data</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="compra : ${cliente.comprasVinculadas}">
+                        <tr th:each="compra : ${compras}">
                             <td th:text="${compra.id}" class="nome"></td>
                             <td th:text="${compra.valorTotal}" class="preco"></td>
                             <td th:text="${compra.status}"></td>
+                            <td th:text="${compra.dataCadastro}"></td>
                             <td class="botao-acao"><a th:href="@{/compras/detalhes-pedido/{id}(id=${compra.id})}" class="botao">Detalhes</a></td>
                         </tr>
                         </tbody>

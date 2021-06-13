@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class Compra extends AbstractEntidade {
+public class Compra extends AbstractEntidade implements Comparable<Compra>{
     @ManyToOne(cascade= CascadeType.PERSIST)
     private Cliente cliente;
     private Double frete;
@@ -37,4 +37,13 @@ public class Compra extends AbstractEntidade {
     private List<Integer> cartoes = new ArrayList<>();
     @Transient
     private List<Integer> compraLivros = new ArrayList<>();
+
+    @Override public int compareTo(Compra outraCompra) {
+        if (this.getId() > outraCompra.getId()) {
+            return -1;
+        } if (this.getId() < outraCompra.getId()) {
+            return 1;
+        }
+        return 0;
+    }
 }

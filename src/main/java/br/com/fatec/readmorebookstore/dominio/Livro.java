@@ -39,6 +39,10 @@ public class Livro extends AbstractEntidade {
     private Integer estoque;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "livro")
     private List<CompraLivro> compras;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "livro")
+    private List<LogEstoque> logsEstoque = new ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "livro")
+    private List<LogDesativacaoLivro> logsInativacao = new ArrayList<>();
 
     @Transient
     private List<Integer> categorias = new ArrayList<>();

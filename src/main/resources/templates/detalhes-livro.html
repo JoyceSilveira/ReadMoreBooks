@@ -161,7 +161,7 @@
                         <fieldset class="compra">
                             <div class="campo">
                                 <label for="quantidade">Quantidade</label>
-                                <input class="quant" type="text" id="quantidade" th:field="*{quantidade}" required>
+                                <input class="quant" type="number" id="quantidade" min="1" th:field="*{quantidade}" required>
                             </div>
                             <div class="div-botao">
                                 <input type="submit" class="botao" id="add-carrinho" value="Adicionar ao carrinho" onclick="verificaZero()">

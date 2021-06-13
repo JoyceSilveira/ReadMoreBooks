@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Collections;
+import java.util.List;
+
 @Log4j2
 @Controller
 @RequestMapping("/compras")
@@ -54,20 +57,26 @@ public class CompraController {
     @GetMapping("/lista-compra/{clienteId}")
     public String listaCompra(@PathVariable("clienteId") Integer clienteId, Model model){
         Cliente cliente = clienteFacade.getCliente(clienteId);
-        model.addAttribute("cliente", cliente);
+        List<Compra> compras = cliente.getComprasVinculadas();
+        Collections.sort(compras);
+        model.addAttribute("compras", compras);
         return "lista-compra";
     }
 
     @GetMapping("/lista-venda")
     public String listaVenda(Model model){
-        model.addAttribute("compras", compraFacade.listarTodas());
+        List<Compra> compras = compraFacade.listarTodas();
+        Collections.sort(compras);
+        model.addAttribute("compras", compras);
         return "lista-venda";
     }
 
     @GetMapping("/lista-venda-cliente/{clienteId}")
     public String listaVendaCliente(Model model, @PathVariable("clienteId") Integer clienteId){
         Cliente cliente = clienteFacade.getCliente(clienteId);
-        model.addAttribute("compras", cliente.getComprasVinculadas());
+        List<Compra> compras = cliente.getComprasVinculadas();
+        Collections.sort(compras);
+        model.addAttribute("compras", compras);
         return "lista-venda";
     }
 
@@ -126,7 +135,7 @@ public class CompraController {
             compraLivro.setCliente(cliente);
             String msg = compraFacade.cadastrarItem(compraLivro);
             if(msg == null){
-                return "redirect:/livros/detalhes-livro/" + livro.getId() + "/" + cliente.getId() + "";
+                return "redirect:/livros/principal/" + cliente.getId() + "";
             } else {
                 redirAttrs. addFlashAttribute ( "erro" , msg ) ;
                 return "redirect:/livros/detalhes-livro/" + livro.getId() + "/" + cliente.getId() + "";

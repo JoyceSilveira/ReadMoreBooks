@@ -9,6 +9,10 @@ import org.springframework.stereotype.Controller;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.Collections;
+import java.util.List;
 
 @Log4j2
 @Controller
@@ -32,11 +36,16 @@ public class LivroController {
     }
 
     @GetMapping("/atualizar-livro/{id}")
-    public String AtualizarLivro(Livro livroForm, @PathVariable("id") Integer id){
+    public String AtualizarLivro(Livro livroForm, @PathVariable("id") Integer id, RedirectAttributes redirAttrs){
         Livro livro = livroFacade.getLivro(id);
         livroForm.setEstoque(livro.getEstoque());
-        livroFacade.AtualizarDados(livro, livroForm);
-        return "redirect:/livros/detalhes-livro-admin/" + id + "";
+        String msg = livroFacade.AtualizarDados(livro, livroForm);
+        if(msg == null){
+            return "redirect:/livros/detalhes-livro-admin/" + id + "";
+        } else {
+            redirAttrs. addFlashAttribute ( "erro" , msg ) ;
+            return "redirect:/livros/editar-livro/" + id + "";
+        }
     }
 
     @GetMapping("/lista-livro")
@@ -87,11 +96,16 @@ public class LivroController {
     }
 
     @GetMapping("/inativar-ativar-livro/{id}")
-    public String InativarAtivarLivro(@PathVariable("id") Integer id, LogDesativacaoLivro logDesativacaoLivro){
+    public String InativarAtivarLivro(@PathVariable("id") Integer id, LogDesativacaoLivro logDesativacaoLivro, RedirectAttributes redirAttrs){
         Livro livro = livroFacade.getLivro(id);
         logDesativacaoLivro.setLivro(livro);
-        livroFacade.DesativarAtivarLivro(logDesativacaoLivro);
-        return "redirect:/livros/lista-livro";
+        String msg = livroFacade.DesativarAtivarLivro(logDesativacaoLivro);
+        if(msg == null){
+            return "redirect:/livros/lista-livro";
+        } else {
+            redirAttrs. addFlashAttribute ( "erro" , msg ) ;
+            return "redirect:/livros/lista-livro";
+        }
     }
 
     @GetMapping("/retornar-estoque-troca/{id}")
@@ -111,5 +125,43 @@ public class LivroController {
         compraFacade.cadastrar(compra);
         compraFacade.cadastrarCupomTroca(compra);
         return "redirect:/compras/detalhes-pedido-admin/" + id + "";
+    }
+
+    @GetMapping("/estoque/{id}")
+    public String estoque(@PathVariable("id") Integer id, Model model, LogEstoque logEstoque){
+        Livro livro = livroFacade.getLivro(id);
+        model.addAttribute("livro", livro);
+        return "add-estoque";
+    }
+
+    @GetMapping("/entrada-estoque/{id}")
+    public String entradaEstoque(@PathVariable("id") Integer id, LogEstoque logEstoque, RedirectAttributes redirAttrs ){
+        Livro livro = livroFacade.getLivro(id);
+        logEstoque.setLivro(livro);
+        String msg = livroFacade.darEntradaEstoque(logEstoque);
+        if(msg == null){
+            return "redirect:/livros/detalhes-livro-admin/" + id + "";
+        } else {
+            redirAttrs. addFlashAttribute ( "erro" , msg ) ;
+            return "redirect:/livros/detalhes-livro-admin/" + id + "";
+        }
+    }
+
+    @GetMapping("/logs-estoque/{id}")
+    public String logsEstoque(@PathVariable("id") Integer id, Model model){
+        Livro livro = livroFacade.getLivro(id);
+        List<LogEstoque> logsEstoque = livro.getLogsEstoque();
+        Collections.sort(logsEstoque);
+        model.addAttribute("logsEstoque", logsEstoque);
+        return "log-estoque";
+    }
+
+    @GetMapping("/logs-inativacao/{id}")
+    public String logsInativacao(@PathVariable("id") Integer id, Model model){
+        Livro livro = livroFacade.getLivro(id);
+        List<LogDesativacaoLivro> logsInativacao = livro.getLogsInativacao();
+        Collections.sort(logsInativacao);
+        model.addAttribute("logsInativacao", logsInativacao);
+        return "log-inativacao-livro";
     }
 }

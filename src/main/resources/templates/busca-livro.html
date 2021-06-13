@@ -139,11 +139,11 @@
                     <table class="tabela">
                         <tbody>
                         <tr th:each="livro : ${livros}">
-                            <td th:if="${livro.estoque > 0}"><img th:src="@{/img/livro.png}" alt="" class="livro"></td>
-                            <td th:if="${livro.estoque > 0}" th:text="${livro.titulo}" class="nome"></td>
-                            <td th:if="${livro.estoque > 0}" th:text="${livro.edicao}" class="edicao"></td>
-                            <td th:if="${livro.estoque > 0}" th:text="${livro.preco}" class="preco"></td>
-                            <td th:if="${livro.estoque > 0}" class="botao-acao"><a th:href="@{/livros/detalhes-livro/{id}/{clienteId}(id=${livro.id}, clienteId=${cliente.id})}" class="botao">Detalhes</a></td>
+                            <td th:if="${livro.ativo == true}"><img th:src="@{/img/livro.png}" alt="" class="livro"></td>
+                            <td th:if="${livro.ativo == true}" th:text="${livro.titulo}" class="nome"></td>
+                            <td th:if="${livro.ativo == true}" th:text="${livro.edicao}" class="edicao"></td>
+                            <td th:if="${livro.ativo == true}" th:text="${livro.preco}" class="preco"></td>
+                            <td th:if="${livro.ativo == true}" class="botao-acao"><a th:href="@{/livros/detalhes-livro/{id}/{clienteId}(id=${livro.id}, clienteId=${cliente.id})}" class="botao">Detalhes</a></td>
                         </tr>
                         </tbody>
                     </table>

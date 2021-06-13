@@ -91,6 +91,7 @@
                             <th>Código</th>
                             <th>Valor</th>
                             <th>Status</th>
+                            <th>Data</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -98,6 +99,7 @@
                             <td th:text="${compra.id}" class="nome"></td>
                             <td th:text="${compra.valorTotal}" class="preco"></td>
                             <td th:text="${compra.status}"></td>
+                            <td th:text="${compra.dataCadastro}"></td>
                             <td class="botao-acao"><a th:href="@{/compras/detalhes-pedido-admin/{id}(id=${compra.id})}" class="botao">Detalhes</a></td>
                         </tr>
                         </tbody>
