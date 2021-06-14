@@ -302,8 +302,9 @@ public class CompraFacade implements IFacade {
     public void cadastrarCupomPromocional(Cupom cupom){
         List<Cliente> clientes = clienteFacade.listarTodos();
         for(Cliente cliente : clientes){
-            cupom.setCliente(cliente);
-            cadastrarCupom(cupom);
+            Cupom novoCupom = cupom;
+            novoCupom.setCliente(cliente);
+            cadastrarCupom(novoCupom);
         }
     }
 

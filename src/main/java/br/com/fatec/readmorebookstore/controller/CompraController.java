@@ -60,6 +60,7 @@ public class CompraController {
         List<Compra> compras = cliente.getComprasVinculadas();
         Collections.sort(compras);
         model.addAttribute("compras", compras);
+        model.addAttribute("cliente", cliente);
         return "lista-compra";
     }
 

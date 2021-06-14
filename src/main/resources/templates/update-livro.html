@@ -84,6 +84,10 @@
                                     <label class="opcao" th:text="${gPrecificacao.nome}"></label>
                                 </div>
                             </div>
+                            <div class="campo esp">
+                                <label for="custo">Preço de custo</label>
+                                <input class="p" type="text" id="custo" th:field="*{custo}" readonly>
+                            </div>
                             <div class="campo">
                                 <label for="preco">Preço</label>
                                 <input class="p" type="text" id="preco" th:field="*{preco}" required>

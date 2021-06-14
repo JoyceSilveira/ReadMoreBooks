@@ -134,7 +134,7 @@ public class ClienteController {
         try {
             Cliente cliente = clienteFacade.getCliente(id);
             clienteFacade.excluir(cliente);
-            return "redirect:/clientes/list-cliente";
+            return "redirect:/clientes/lista-cliente";
         } catch (Exception e) {
             log.error("Falha ao inativar.", e);
             return "Falha ao inativar cliente.";

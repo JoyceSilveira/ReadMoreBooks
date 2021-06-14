@@ -156,6 +156,8 @@
                                     <td th:text="${cartaoC.bandeira}" class="nome"></td>
                                     <td th:text="${cartaoC.numero}" class="cpf"></td>
                                     <td th:text="${cartaoC.nomeImpresso}" class="email"></td>
+                                    <td th:if="${cartaoC.preferencial == true}" class="cpf">Preferencial</td>
+                                    <td th:if="${cartaoC.preferencial == false}" class="cpf"></td>
                                     <td><a th:href="@{/clientes/editar-cartao/{id}(id=${cartaoC.id})}" class="editar">Editar</a></td>
                                     <td style="display: none;"><a th:href="@{/clientes/alterar-cartao-preferencial/{id}(id=${cartaoC.id})}" class="editar">Selecionar preferencial</a></td>
                                 </tr>
@@ -175,8 +177,8 @@
     function mudarPreferencial(){
         tbody = document.getElementById("cartoes");
         for(var i = 0; i < tbody.childElementCount; i++){
-            tbody.children[i].children[3].style.display = "none";
-            tbody.children[i].children[4].style.display = "block";
+            tbody.children[i].children[4].style.display = "none";
+            tbody.children[i].children[5].style.display = "block";
         }
     }
 </script>

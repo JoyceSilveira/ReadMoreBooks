@@ -51,6 +51,7 @@ LivroFacade implements IFacade{
 
     @Override
     public String cadastrar(AbstractEntidade entidade) {
+        vLucroLivro.processar(entidade);
         CrudRepository dao = daos.get(entidade.getClass().getName());
         dao.save(entidade);
         Livro livro = (Livro) entidade;
@@ -128,7 +129,7 @@ LivroFacade implements IFacade{
             ExcluirCategoria(categoriaLivro);
         }
         String msg = null;
-        if(livro.getPreco() != livroForm.getPreco()){
+        if(livro.getPreco() != livroForm.getPreco() || livro.getGrupoPrecificacao() != livroForm.getGrupoPrecificacao()){
             msg = vLucroLivro.processar(livroForm);
             if(msg != null){
                 return msg;
